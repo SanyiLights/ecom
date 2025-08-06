@@ -14,7 +14,7 @@ export const Navigation = () => {
           {/* Logo */}
           <div className="flex items-center space-x-4">
             <img 
-              src="/lovable-uploads/7903f7c1-09e4-4991-9794-eb54f4b2e59e.png" 
+              src="./lovable-uploads/7903f7c1-09e4-4991-9794-eb54f4b2e59e.png" 
               alt="Sanyi Lights Argentina" 
               className="h-10 w-10"
             />
