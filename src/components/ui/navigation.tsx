@@ -113,12 +113,6 @@ export const Navigation = ({ isTransparent = false }: NavigationProps) => {
               Productos
             </Link>
             <a 
-              href="#servicios" 
-              className={`transition-all duration-300 px-3 py-2 rounded-md ${getTextClasses(true)}`}
-            >
-              Servicios
-            </a>
-            <a 
               href="#contacto" 
               onClick={scrollToContact}
               className={`transition-all duration-300 px-3 py-2 rounded-md ${getTextClasses(true)}`}

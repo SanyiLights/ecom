@@ -1,11 +1,9 @@
 import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
-import { ArrowRight, ChevronLeft, ChevronRight, Zap, Star, Lightbulb, Phone } from "lucide-react";
+import { ArrowRight, ChevronLeft, ChevronRight, Zap, Star, Lightbulb, Phone, MessageCircle } from "lucide-react";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { colors, getButtonClasses } from "@/lib/colors";
 
-// Importar las imágenes
 import prof1 from "/src/assets/prof1.jpg";
 import messi from "/src/assets/messi.jpg";
 import prof2 from "/src/assets/prof2.jpg";
@@ -43,13 +41,13 @@ const professionalImages = [
 export const HeroSection = () => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
-  // Auto-advance carousel
   useEffect(() => {
+    const oneSecond = 1000;
     const interval = setInterval(() => {
       setCurrentImageIndex((prevIndex) => 
         prevIndex === professionalImages.length - 1 ? 0 : prevIndex + 1
       );
-    }, 100000);
+    }, oneSecond * 5);
 
     return () => clearInterval(interval);
   }, []);
@@ -68,6 +66,25 @@ export const HeroSection = () => {
 
   const goToImage = (index: number) => {
     setCurrentImageIndex(index);
+  };
+
+  // Función para scroll suave al footer
+  const scrollToContact = (e: React.MouseEvent) => {
+    e.preventDefault();
+    const contactSection = document.getElementById('contacto');
+    if (contactSection) {
+      contactSection.scrollIntoView({ 
+        behavior: 'smooth',
+        block: 'start'
+      });
+    }
+  };
+
+  const openWhatsApp = () => {
+    const phoneNumber = "5491171388885";
+    const message = "Hola! Me interesa conocer más sobre sus equipos de iluminación profesional.";
+    const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+    window.open(whatsappUrl, '_blank');
   };
 
   return (
@@ -115,6 +132,7 @@ export const HeroSection = () => {
                 <Button
                   size="lg"
                   variant="outline"
+                  onClick={scrollToContact}
                   className="border-white text-white bg-white/10 backdrop-blur-sm hover:bg-white/20 hover:border-white/80 w-full sm:w-auto text-sm sm:text-base px-6 sm:px-8 py-3 sm:py-4 transition-all duration-300"
                 >
                   <Phone className="mr-2 h-4 w-4 sm:h-5 sm:w-5" />
@@ -169,6 +187,16 @@ export const HeroSection = () => {
           <ChevronRight className="h-3 w-3" />
         </div>
       </div>
+
+      {/* WhatsApp Fixed Button */}
+      <Button
+        onClick={openWhatsApp}
+        size="lg"
+        className="fixed bottom-6 right-6 z-50 bg-green-500 hover:bg-green-600 text-white shadow-lg rounded-full w-16 h-16 p-0 flex items-center justify-center transition-all duration-300 hover:scale-110"
+        aria-label="Contactar por WhatsApp"
+      >
+        <MessageCircle className="h-8 w-8" />
+      </Button>
     </section>
   );
 };
