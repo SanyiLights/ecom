@@ -1,7 +1,11 @@
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Separator } from "@/components/ui/separator";
+import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
 import { ProductCard } from "@/components/ui/product-card";
 import { ArrowRight } from "lucide-react";
+import { getBadgeClasses, getButtonClasses } from "@/lib/colors";
 
 export const FeaturedProducts = () => {
   // Featured products
@@ -55,11 +59,11 @@ export const FeaturedProducts = () => {
   ];
 
   return (
-    <section className="py-20">
+    <section className="py-20 bg-muted/30">
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between mb-12">
           <div>
-            <Badge className="mb-4 bg-primary/10 text-primary border-primary/20">
+            <Badge className={`mb-4 ${getBadgeClasses('primary')}`}>
               Productos Destacados
             </Badge>
             <h2 className="text-4xl font-bold mb-4">Los Más Populares</h2>
@@ -73,7 +77,10 @@ export const FeaturedProducts = () => {
           </Button>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <Separator className="mb-8" />
+
+        {/* Desktop Grid */}
+        <div className="hidden md:grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {featuredProducts.map((product, index) => (
             <div 
               key={product.id}
@@ -83,6 +90,24 @@ export const FeaturedProducts = () => {
               <ProductCard {...product} />
             </div>
           ))}
+        </div>
+
+        {/* Mobile Scrollable */}
+        <div className="md:hidden">
+          <ScrollArea className="w-full whitespace-nowrap">
+            <div className="flex space-x-4 p-1">
+              {featuredProducts.map((product, index) => (
+                <div 
+                  key={product.id}
+                  className="w-80 flex-shrink-0 animate-fade-in"
+                  style={{ animationDelay: `${index * 0.1}s` }}
+                >
+                  <ProductCard {...product} />
+                </div>
+              ))}
+            </div>
+            <ScrollBar orientation="horizontal" />
+          </ScrollArea>
         </div>
 
         <div className="text-center mt-12 md:hidden">

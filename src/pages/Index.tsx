@@ -1,21 +1,20 @@
 import { Navigation } from "@/components/ui/navigation";
 import { HeroSection } from "@/components/ui/hero-section";
-import { ProductShowcase } from "@/components/sections/ProductShowcase";
-import { Features } from "@/components/sections/Features";
+import { Testimonials } from "@/components/sections/Testimonials";
 import { FeaturedProducts } from "@/components/sections/FeaturedProducts";
 import { Stats } from "@/components/sections/Stats";
 import { CTA } from "@/components/sections/CTA";
+import { Footer } from "@/components/ui/footer";
 
 const Index = () => {
   return (
     <div className="min-h-screen bg-background">
-      <Navigation />
+      <Navigation isTransparent={true} />
       <HeroSection />
-      <ProductShowcase />
-      <Features />
       <FeaturedProducts />
-      <Stats />
+      <Testimonials />
       <CTA />
+      <Footer />
     </div>
   );
 };

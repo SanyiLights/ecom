@@ -6,6 +6,7 @@ import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Filter, Search, Grid, List } from "lucide-react";
 import { useState } from "react";
+import { Footer } from "@/components/ui/footer";
 
 // Mock product data
 const products = [
@@ -68,139 +69,129 @@ const products = [
   },
   {
     id: "6",
-    name: "Foco Seguidor LED 300W",
-    price: 95000,
-    originalPrice: 110000,
-    image: "https://images.unsplash.com/photo-1485846234645-a62644f84728?w=500&h=500&fit=crop",
-    category: "Focos",
-    rating: 4.8,
-    reviews: 15,
+    name: "Controlador DMX 512",
+    price: 15000,
+    image: "https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=500&h=500&fit=crop",
+    category: "Controladores",
+    rating: 4.4,
+    reviews: 42,
     isNew: false,
-    isOnSale: true
+    isOnSale: false
   }
 ];
 
-const categories = ["Todos", "Luces Par", "Moving Lights", "Barras LED", "Efectos Láser", "Efectos", "Focos"];
-
 const Products = () => {
+  const [searchQuery, setSearchQuery] = useState("");
+  const [selectedCategory, setSelectedCategory] = useState<string>("");
   const [viewMode, setViewMode] = useState<"grid" | "list">("grid");
-  const [selectedCategory, setSelectedCategory] = useState("Todos");
-  const [searchTerm, setSearchTerm] = useState("");
+
+  const categories = [
+    "Todos",
+    "Luces Par",
+    "Moving Lights",
+    "Barras LED",
+    "Efectos Láser",
+    "Efectos",
+    "Controladores"
+  ];
 
   const filteredProducts = products.filter(product => {
-    const matchesCategory = selectedCategory === "Todos" || product.category === selectedCategory;
-    const matchesSearch = product.name.toLowerCase().includes(searchTerm.toLowerCase());
-    return matchesCategory && matchesSearch;
+    const matchesQuery = product.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                        product.category.toLowerCase().includes(searchQuery.toLowerCase());
+    const matchesCategory = selectedCategory === "" || selectedCategory === "Todos" || 
+                           product.category === selectedCategory;
+    return matchesQuery && matchesCategory;
   });
 
   return (
     <div className="min-h-screen bg-background">
-      <Navigation />
+      <Navigation isTransparent={false} />
       
-      {/* Page Header */}
-      <section className="bg-gradient-primary text-white py-16">
-        <div className="container mx-auto px-4 text-center">
-          <h1 className="text-4xl md:text-6xl font-bold mb-4 animate-fade-in">
-            Nuestros Productos
-          </h1>
-          <p className="text-xl text-white/90 max-w-2xl mx-auto animate-slide-up">
-            Descubre nuestra amplia gama de equipos de iluminación profesional
-          </p>
-        </div>
-      </section>
+      <div className="pt-20">
+        <div className="container mx-auto px-4 py-8">
+          {/* Header */}
+          <div className="mb-8">
+            <h1 className="text-4xl font-bold mb-4">Nuestros Productos</h1>
+            <p className="text-xl text-muted-foreground">
+              Equipos de iluminación profesional para todos tus eventos
+            </p>
+          </div>
 
-      <div className="container mx-auto px-4 py-8">
-        {/* Filters and Search */}
-        <div className="flex flex-col lg:flex-row gap-6 mb-8">
-          {/* Categories */}
-          <div className="flex flex-wrap gap-2">
-            {categories.map((category) => (
-              <Badge
-                key={category}
-                variant={selectedCategory === category ? "default" : "secondary"}
-                className={`cursor-pointer px-4 py-2 transition-colors ${
-                  selectedCategory === category 
-                    ? "bg-primary text-primary-foreground" 
-                    : "hover:bg-primary/10"
-                }`}
-                onClick={() => setSelectedCategory(category)}
-              >
-                {category}
-              </Badge>
+          {/* Filters */}
+          <div className="flex flex-col md:flex-row gap-4 mb-8">
+            <div className="flex-1">
+              <Input
+                placeholder="Buscar productos..."
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                className="max-w-md"
+              />
+            </div>
+            
+            <div className="flex items-center gap-4">
+              <Select value={selectedCategory} onValueChange={setSelectedCategory}>
+                <SelectTrigger className="w-[180px]">
+                  <SelectValue placeholder="Categoría" />
+                </SelectTrigger>
+                <SelectContent>
+                  {categories.map((category) => (
+                    <SelectItem key={category} value={category}>
+                      {category}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+              
+              <div className="flex items-center border rounded-lg">
+                <Button
+                  variant={viewMode === "grid" ? "default" : "ghost"}
+                  size="sm"
+                  onClick={() => setViewMode("grid")}
+                  className="rounded-r-none"
+                >
+                  <Grid className="h-4 w-4" />
+                </Button>
+                <Button
+                  variant={viewMode === "list" ? "default" : "ghost"}
+                  size="sm"
+                  onClick={() => setViewMode("list")}
+                  className="rounded-l-none"
+                >
+                  <List className="h-4 w-4" />
+                </Button>
+              </div>
+            </div>
+          </div>
+
+          {/* Results */}
+          <div className="mb-4">
+            <p className="text-muted-foreground">
+              {filteredProducts.length} productos encontrados
+            </p>
+          </div>
+
+          {/* Products Grid */}
+          <div className={`grid gap-6 ${
+            viewMode === "grid" 
+              ? "grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4" 
+              : "grid-cols-1"
+          }`}>
+            {filteredProducts.map((product) => (
+              <ProductCard key={product.id} {...product} />
             ))}
           </div>
 
-          <div className="flex flex-col sm:flex-row gap-4 lg:ml-auto">
-            {/* Search */}
-            <div className="relative">
-              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-              <Input
-                placeholder="Buscar productos..."
-                value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
-                className="pl-10 w-full sm:w-64"
-              />
+          {filteredProducts.length === 0 && (
+            <div className="text-center py-12">
+              <p className="text-muted-foreground text-lg">
+                No se encontraron productos que coincidan con tu búsqueda.
+              </p>
             </div>
-
-            {/* Sort */}
-            <Select>
-              <SelectTrigger className="w-full sm:w-48">
-                <SelectValue placeholder="Ordenar por" />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="price-asc">Precio: Menor a Mayor</SelectItem>
-                <SelectItem value="price-desc">Precio: Mayor a Menor</SelectItem>
-                <SelectItem value="name">Nombre A-Z</SelectItem>
-                <SelectItem value="rating">Mejor Calificados</SelectItem>
-              </SelectContent>
-            </Select>
-
-            {/* View Mode */}
-            <div className="flex border border-border rounded-lg">
-              <Button
-                variant={viewMode === "grid" ? "default" : "ghost"}
-                size="sm"
-                onClick={() => setViewMode("grid")}
-                className="rounded-r-none"
-              >
-                <Grid className="h-4 w-4" />
-              </Button>
-              <Button
-                variant={viewMode === "list" ? "default" : "ghost"}
-                size="sm"
-                onClick={() => setViewMode("list")}
-                className="rounded-l-none"
-              >
-                <List className="h-4 w-4" />
-              </Button>
-            </div>
-          </div>
-        </div>
-
-        {/* Products Grid */}
-        <div className={`grid gap-6 ${
-          viewMode === "grid" 
-            ? "grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4" 
-            : "grid-cols-1"
-        }`}>
-          {filteredProducts.map((product, index) => (
-            <div 
-              key={product.id}
-              className="animate-fade-in"
-              style={{ animationDelay: `${index * 0.1}s` }}
-            >
-              <ProductCard {...product} />
-            </div>
-          ))}
-        </div>
-
-        {/* Load More */}
-        <div className="text-center mt-12">
-          <Button size="lg" variant="outline" className="hover:bg-primary hover:text-primary-foreground">
-            Cargar Más Productos
-          </Button>
+          )}
         </div>
       </div>
+
+      <Footer />
     </div>
   );
 };
