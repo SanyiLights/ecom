@@ -38,7 +38,7 @@ export const HeroSection = () => {
             Ver Productos
             <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
           </Button>
-          <Button size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-primary transition-colors">
+          <Button size="lg" variant="outline-white">
             <Lightbulb className="mr-2 h-5 w-5" />
             Asesoramiento
           </Button>
