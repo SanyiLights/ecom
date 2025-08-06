@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Lightbulb, Zap, Star, ArrowRight } from "lucide-react";
 
 export const HeroSection = () => {
@@ -14,11 +14,6 @@ export const HeroSection = () => {
       </div>
 
       <div className="relative z-10 container mx-auto px-4 text-center text-black">
-        <Badge className="mb-6 bg-red-500/20 text-red-600 border-red-500/30 hover:bg-red-500/30 transition-colors">
-          <Star className="h-4 w-4 mr-2" />
-          Iluminación Profesional
-        </Badge>
-        
         <h1 className="text-5xl md:text-7xl font-bold mb-6 animate-fade-in text-black">
           Ilumina Tus
           <span className="block text-gray-800">Espectáculos</span>
@@ -42,23 +37,41 @@ export const HeroSection = () => {
 
         {/* Features */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto animate-fade-in" style={{ animationDelay: '0.5s' }}>
-          <div className="bg-red-500 rounded-xl p-6 border border-red-500 hover:bg-red-600 transition-colors text-white">
-            <Zap className="h-8 w-8 mb-4 mx-auto text-white" />
-            <h3 className="text-lg font-semibold mb-2">Tecnología LED</h3>
-            <p className="text-white/90">Eficiencia energética y colores vibrantes</p>
-          </div>
+          <Card className="bg-red-500 border-red-500 hover:bg-red-600 transition-colors text-white group">
+            <CardHeader className="text-center">
+              <div className="p-3 bg-white/20 rounded-full mx-auto mb-4 group-hover:bg-white/30 transition-colors">
+                <Zap className="h-8 w-8 text-white" />
+              </div>
+              <CardTitle className="text-white text-lg">Tecnología LED</CardTitle>
+            </CardHeader>
+            <CardContent className="text-center">
+              <p className="text-white/90">Eficiencia energética y colores vibrantes</p>
+            </CardContent>
+          </Card>
           
-          <div className="bg-red-500 rounded-xl p-6 border border-red-500 hover:bg-red-600 transition-colors text-white">
-            <Star className="h-8 w-8 mb-4 mx-auto text-white" />
-            <h3 className="text-lg font-semibold mb-2">Calidad Premium</h3>
-            <p className="text-white/90">Equipos profesionales de marcas reconocidas</p>
-          </div>
+          <Card className="bg-red-500 border-red-500 hover:bg-red-600 transition-colors text-white group">
+            <CardHeader className="text-center">
+              <div className="p-3 bg-white/20 rounded-full mx-auto mb-4 group-hover:bg-white/30 transition-colors">
+                <Star className="h-8 w-8 text-white" />
+              </div>
+              <CardTitle className="text-white text-lg">Calidad Premium</CardTitle>
+            </CardHeader>
+            <CardContent className="text-center">
+              <p className="text-white/90">Equipos profesionales de marcas reconocidas</p>
+            </CardContent>
+          </Card>
           
-          <div className="bg-red-500 rounded-xl p-6 border border-red-500 hover:bg-red-600 transition-colors text-white">
-            <Lightbulb className="h-8 w-8 mb-4 mx-auto text-white" />
-            <h3 className="text-lg font-semibold mb-2">Soporte Técnico</h3>
-            <p className="text-white/90">Asesoramiento especializado incluido</p>
-          </div>
+          <Card className="bg-red-500 border-red-500 hover:bg-red-600 transition-colors text-white group">
+            <CardHeader className="text-center">
+              <div className="p-3 bg-white/20 rounded-full mx-auto mb-4 group-hover:bg-white/30 transition-colors">
+                <Lightbulb className="h-8 w-8 text-white" />
+              </div>
+              <CardTitle className="text-white text-lg">Soporte Técnico</CardTitle>
+            </CardHeader>
+            <CardContent className="text-center">
+              <p className="text-white/90">Asesoramiento especializado incluido</p>
+            </CardContent>
+          </Card>
         </div>
       </div>
     </section>
