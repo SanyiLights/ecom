@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { ShoppingCart, Menu, X } from "lucide-react";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import { SearchDialog } from "./search-dialog";
 
 export const Navigation = () => {
@@ -26,12 +27,12 @@ export const Navigation = () => {
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-8">
-            <a href="/" className="text-foreground hover:text-primary transition-colors">
+            <Link to="/" className="text-foreground hover:text-primary transition-colors">
               Inicio
-            </a>
-            <a href="/productos" className="text-foreground hover:text-primary transition-colors">
+            </Link>
+            <Link to="/productos" className="text-foreground hover:text-primary transition-colors">
               Productos
-            </a>
+            </Link>
             <a href="#servicios" className="text-foreground hover:text-primary transition-colors">
               Servicios
             </a>
@@ -66,18 +67,20 @@ export const Navigation = () => {
         {isMenuOpen && (
           <div className="md:hidden border-t border-border">
             <div className="px-2 pt-2 pb-3 space-y-1">
-              <a
-                href="/"
+              <Link
+                to="/"
                 className="block px-3 py-2 text-foreground hover:text-primary transition-colors"
+                onClick={() => setIsMenuOpen(false)}
               >
                 Inicio
-              </a>
-              <a
-                href="/productos"
+              </Link>
+              <Link
+                to="/productos"
                 className="block px-3 py-2 text-foreground hover:text-primary transition-colors"
+                onClick={() => setIsMenuOpen(false)}
               >
                 Productos
-              </a>
+              </Link>
               <a
                 href="#servicios"
                 className="block px-3 py-2 text-foreground hover:text-primary transition-colors"
