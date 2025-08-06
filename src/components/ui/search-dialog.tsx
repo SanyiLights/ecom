@@ -1,56 +1,48 @@
 import { Button } from "@/components/ui/button";
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
-import { Badge } from "@/components/ui/badge";
-import { Search, Info, X } from "lucide-react";
+import { Search, X } from "lucide-react";
 import { useState } from "react";
-import { getButtonClasses, getBadgeClasses } from "@/lib/colors";
+import { ProductCard } from "./product-card";
+import { searchProducts } from "@/data/products";
 
 export const SearchDialog = () => {
+  const [open, setOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
-  const [isOpen, setIsOpen] = useState(false);
+  const [searchResults, setSearchResults] = useState<any[]>([]);
 
-  // Mock search results
-  const searchResults = [
-    {
-      id: "1",
-      name: "LED Par 64 RGBW 180W",
-      category: "Luces Par",
-      price: 45000,
-      isNew: true,
-      isOnSale: true
-    },
-    {
-      id: "2",
-      name: "Moving Head Beam 230W",
-      category: "Moving Lights",
-      price: 120000,
-      isNew: false,
-      isOnSale: false
-    },
-    {
-      id: "3",
-      name: "Barra LED RGBW 18x10W",
-      category: "Barras LED",
-      price: 28000,
-      isNew: false,
-      isOnSale: true
+  const handleSearch = (query: string) => {
+    setSearchQuery(query);
+    if (query.trim()) {
+      const results = searchProducts(query);
+      setSearchResults(results);
+    } else {
+      setSearchResults([]);
     }
-  ];
+  };
 
-  const filteredResults = searchResults.filter(product =>
-    product.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-    product.category.toLowerCase().includes(searchQuery.toLowerCase())
-  );
+  const handleOpenChange = (newOpen: boolean) => {
+    setOpen(newOpen);
+    if (!newOpen) {
+      setSearchQuery("");
+      setSearchResults([]);
+    }
+  };
 
   return (
-    <Dialog open={isOpen} onOpenChange={setIsOpen}>
+    <Dialog open={open} onOpenChange={handleOpenChange}>
       <DialogTrigger asChild>
-        <Button variant="ghost" size="icon" className="text-white">
+        <Button variant="ghost" size="icon" className="relative">
           <Search className="h-5 w-5" />
         </Button>
       </DialogTrigger>
-      <DialogContent className="sm:max-w-[600px]">
+      <DialogContent className="sm:max-w-[600px] max-h-[80vh] overflow-y-auto">
         <DialogHeader>
           <DialogTitle>Buscar Productos</DialogTitle>
         </DialogHeader>
@@ -59,47 +51,39 @@ export const SearchDialog = () => {
           <div className="relative">
             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
             <Input
-              placeholder="Buscar productos..."
+              placeholder="Buscar por nombre, categoría o descripción..."
               value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
+              onChange={(e) => handleSearch(e.target.value)}
               className="pl-10"
             />
+            {searchQuery && (
+              <Button
+                variant="ghost"
+                size="icon"
+                className="absolute right-2 top-1/2 transform -translate-y-1/2 h-6 w-6"
+                onClick={() => handleSearch("")}
+              >
+                <X className="h-4 w-4" />
+              </Button>
+            )}
           </div>
 
           {searchQuery && (
-            <div className="space-y-2">
-              {filteredResults.length > 0 ? (
-                filteredResults.map((product) => (
-                  <div
-                    key={product.id}
-                    className="flex items-center justify-between p-3 border rounded-lg hover:bg-muted/50 transition-colors"
-                  >
-                    <div className="flex-1">
-                      <h4 className="font-medium">{product.name}</h4>
-                      <p className="text-sm text-muted-foreground">{product.category}</p>
-                      <div className="flex items-center gap-2 mt-1">
-                        <span className="font-bold">${product.price.toLocaleString()}</span>
-                        {product.isNew && (
-                          <Badge className={`${getBadgeClasses('primary')} text-xs`}>
-                            Nuevo
-                          </Badge>
-                        )}
-                        {product.isOnSale && (
-                          <Badge className={`${getBadgeClasses('error')} text-xs`}>
-                            Oferta
-                          </Badge>
-                        )}
-                      </div>
-                    </div>
-                    <Button size="sm" className={`${getButtonClasses('primary')}`}>
-                      <Info className="h-4 w-4 mr-2" />
-                      Ver
-                    </Button>
-                  </div>
-                ))
+            <div className="space-y-4">
+              <div className="flex items-center justify-between">
+                <p className="text-sm text-muted-foreground">
+                  {searchResults.length} resultados encontrados
+                </p>
+              </div>
+
+              {searchResults.length > 0 ? (
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  {searchResults.map((product) => (
+                    <ProductCard key={product.id} {...product} />
+                  ))}
+                </div>
               ) : (
                 <div className="text-center py-8">
-                  <X className="h-12 w-12 text-muted-foreground mx-auto mb-4" />
                   <p className="text-muted-foreground">
                     No se encontraron productos que coincidan con "{searchQuery}"
                   </p>

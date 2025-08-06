@@ -67,7 +67,7 @@ export const Navigation = ({ isTransparent = false }: NavigationProps) => {
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
-          <div className="flex items-center space-x-4">
+          <Link to="/" className="flex items-center space-x-4 hover:opacity-80 transition-opacity">
             <div className="w-10 h-10 bg-white rounded-full flex items-center justify-center shadow-lg">
               <img 
                 src={logo}
@@ -96,7 +96,7 @@ export const Navigation = ({ isTransparent = false }: NavigationProps) => {
                 Argentina
               </span>
             </div>
-          </div>
+          </Link>
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-8">

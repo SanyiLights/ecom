@@ -2,9 +2,8 @@ import { Button } from "@/components/ui/button";
 import { ArrowRight, ChevronLeft, ChevronRight, Zap, Star, Lightbulb, Phone, MessageCircle } from "lucide-react";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { colors, getButtonClasses } from "@/lib/colors";
+import { getButtonClasses } from "@/lib/colors";
 
-import prof1 from "/src/assets/prof1.jpg";
 import messi from "/src/assets/messi.jpg";
 import prof2 from "/src/assets/prof2.jpg";
 import prof3 from "/src/assets/prof3.jpg";
@@ -17,25 +16,20 @@ const professionalImages = [
     subtitle: "Lideres con +23 años de experiencia en equipos de iluminación escénica"
   },
   {
-    src: prof1,
-    title: "Equipos de Alta Calidad",
-    subtitle: "Moving heads, LED series y efectos especiales profesionales"
-  },
-  {
-    src: messi,
-    title: "Distribuidor Oficial",
-    subtitle: "Representante exclusivo de Sanyi Lights en Argentina"
-  },
-  {
     src: prof2, 
     title: "Tecnología Avanzada",
     subtitle: "Cabezal movil LED, LED displays y consolas DMX"
   },
   {
     src: professionalLightingEvent,
-    title: "Sanyi Lights Argentina",
-    subtitle: "Chile 1380, C.A.B.A - (+54 9)11 7138 8885"
-  }
+    title: "Solicita Asesoramiento",
+    subtitle: "Te ayudamos a elegir la mejor iluminación para tu evento"
+  },
+  {
+    src: messi,
+    title: "Distribuidor Oficial",
+    subtitle: "Representante exclusivo de Sanyi Lights en Argentina"
+  },
 ];
 
 export const HeroSection = () => {
@@ -123,7 +117,7 @@ export const HeroSection = () => {
               </p>
 
               <div className="flex flex-col sm:flex-row items-start gap-3 sm:gap-4">
-                <Link to="/products">
+                <Link to="/productos" onClick={() => window.scrollTo(0, 0)}>
                   <Button size="lg" className={`${getButtonClasses('primary')} shadow-elegant group w-full sm:w-auto text-sm sm:text-base px-6 sm:px-8 py-3 sm:py-4`}>
                     Ver Productos
                     <ArrowRight className="ml-2 h-4 w-4 sm:h-5 sm:w-5 group-hover:translate-x-1 transition-transform" />
@@ -187,16 +181,6 @@ export const HeroSection = () => {
           <ChevronRight className="h-3 w-3" />
         </div>
       </div>
-
-      {/* WhatsApp Fixed Button */}
-      <Button
-        onClick={openWhatsApp}
-        size="lg"
-        className="fixed bottom-6 right-6 z-50 bg-green-500 hover:bg-green-600 text-white shadow-lg rounded-full w-16 h-16 p-0 flex items-center justify-center transition-all duration-300 hover:scale-110"
-        aria-label="Contactar por WhatsApp"
-      >
-        <MessageCircle className="h-8 w-8" />
-      </Button>
     </section>
   );
 };
