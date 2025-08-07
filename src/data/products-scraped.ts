@@ -256,164 +256,164 @@ export const products: Product[] = [
   {
     "id": "29",
     "name": "VERSATILIS LUCIDUS 1000",
-    "image": "",
+    "image": "https://static.wixstatic.com/media/4f23bc_102e831a9b914745bc8f28c918e4e948~mv2.jpg/v1/fill/w_132,h_132,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/SPL-PRO-1000HBRT.jpg",
     "category": "Controller",
     "description": "VERSATILIS LUCIDUS 1000 - Professional lighting equipment",
-    "video": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
-    "manual": "https://example.com/manual-29.pdf"
+    "video": "",
+    "manual": "https://drive.google.com/drive/folders/16dfZL5txCdO6S0rZ-P6GM-K02Hn0oQ7n?usp=drive_link"
   },
   {
     "id": "30",
     "name": "VIVAX J300B IP",
-    "image": "",
-    "category": "Controller",
+    "image": "https://static.wixstatic.com/media/4f23bc_60dc28fea80048cfa3ba8aae1f34a334~mv2.png/v1/crop/x_297,y_243,w_4775,h_4775/fill/w_132,h_132,fp_0.50_0.50,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/J300%E6%AD%A32.png",
+    "category": "Automatic Lights",
     "description": "VIVAX J300B IP - Professional lighting equipment",
-    "video": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
-    "manual": "https://example.com/manual-30.pdf"
+    "video": "",
+    "manual": "https://drive.google.com/drive/folders/1k5JDPoXo7SZ167H3prYKy9Yqkvi5Q2lx?usp=drive_link"
   },
   {
     "id": "31",
     "name": "VERSATILIS 680CMY",
-    "image": "",
+    "image": "https://static.wixstatic.com/media/4f23bc_e3165d2a06d842438f6029950aef8be8~mv2.jpg/v1/crop/x_57,y_106,w_1749,h_1749/fill/w_132,h_132,fp_0.50_0.50,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/680-1_edited.jpg",
     "category": "Controller",
     "description": "VERSATILIS 680CMY - Professional lighting equipment",
-    "video": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
-    "manual": "https://example.com/manual-31.pdf"
+    "video": "",
+    "manual": "https://drive.google.com/drive/folders/1cezc1n9J5_Jwe5-Je68JhjpzO3UAi-ix?usp=drive_link"
   },
   {
     "id": "32",
     "name": "JUBARIS BEAM L200",
-    "image": "",
-    "category": "Controller",
+    "image": "https://static.wixstatic.com/media/4f23bc_a3f3c86d6b6c4d62936328e97da8812b~mv2.png/v1/crop/x_197,y_360,w_2509,h_2509/fill/w_132,h_132,fp_0.50_0.50,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/200%E6%AD%A3_edited.png",
+    "category": "Automatic Lights",
     "description": "JUBARIS BEAM L200 - Professional lighting equipment",
-    "video": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
-    "manual": "https://example.com/manual-32.pdf"
+    "video": "",
+    "manual": "https://drive.google.com/drive/folders/1ZFgk6bX3FUD9kpuKrvgJahO7RP-684vN?usp=drive_link"
   },
   {
     "id": "33",
     "name": "VERSATILIS IMPERVIUS 1000",
-    "image": "",
-    "category": "Controller",
+    "image": "https://static.wixstatic.com/media/4f23bc_25dd9012d3824f78be245573caa147c6~mv2.png/v1/crop/x_225,y_201,w_2491,h_2491/fill/w_132,h_132,fp_0.50_0.50,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/SPL-PRO-1000IP_edited.png",
+    "category": "Automatic Lights",
     "description": "VERSATILIS IMPERVIUS 1000 - Professional lighting equipment",
-    "video": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
-    "manual": "https://example.com/manual-33.pdf"
+    "video": "",
+    "manual": "https://drive.google.com/drive/folders/1dY4YNG3bxtuLv3DBDMARMBpqfe2m7InH?usp=drive_link"
   },
   {
     "id": "34",
     "name": "VERSATILIS VERUS 1000",
-    "image": "",
-    "category": "Controller",
+    "image": "https://static.wixstatic.com/media/4f23bc_ba7a69fafeac4e0e88c736bd150081a1~mv2.jpg/v1/fill/w_132,h_132,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/1000HCRI%E6%AD%A3.jpg",
+    "category": "Automatic Lights",
     "description": "VERSATILIS VERUS 1000 - Professional lighting equipment",
-    "video": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
-    "manual": "https://example.com/manual-34.pdf"
+    "video": "",
+    "manual": "https://drive.google.com/drive/folders/1MrbSiLRHajG3PWoeS5xdMx2SDX5bc2w0?usp=drive_link"
   },
   {
     "id": "35",
     "name": "PULSARIS 3000IP",
-    "image": "",
-    "category": "Controller",
+    "image": "https://static.wixstatic.com/media/4f23bc_edbaa8da09a94fd3b7269021480befcf~mv2.jpg/v1/fill/w_132,h_132,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/3000%E6%AD%A3_edited.jpg",
+    "category": "Automatic Lights",
     "description": "PULSARIS 3000IP - Professional lighting equipment",
-    "video": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
-    "manual": "https://example.com/manual-35.pdf"
+    "video": "",
+    "manual": "https://drive.google.com/drive/folders/1h0xhb1EOO5sK2ublIE0Yqiw_pm1tt2tf?usp=drive_link"
   },
   {
     "id": "36",
     "name": "SPOTTY LED 150",
-    "image": "",
-    "category": "Controller",
+    "image": "https://static.wixstatic.com/media/4f23bc_c8466aec574446eb9835087fee1fe570~mv2.png/v1/crop/x_200,y_175,w_2307,h_2307/fill/w_132,h_132,fp_0.50_0.50,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/150%E6%AD%A32_edited.png",
+    "category": "Automatic Lights",
     "description": "SPOTTY LED 150 - Professional lighting equipment",
-    "video": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
-    "manual": "https://example.com/manual-36.pdf"
+    "video": "",
+    "manual": "https://drive.google.com/drive/folders/135bSJY7-qY7-vGJIKX8n3BfsMs5h0Dnz?usp=drive_link"
   },
   {
     "id": "37",
     "name": "JUBARIS BEAM 551",
-    "image": "",
-    "category": "Static Lights",
+    "image": "https://static.wixstatic.com/media/030325_b5da0acf0ab742e79b39ee1b3b8cfbd9~mv2.jpg/v1/fill/w_132,h_132,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/SPL-MHL-M551B%20IP%201_edited_edited.jpg",
+    "category": "Automatic Lights",
     "description": "JUBARIS BEAM 551 - Professional lighting equipment",
-    "video": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
-    "manual": "https://example.com/manual-37.pdf"
+    "video": "",
+    "manual": "https://drive.google.com/drive/folders/1jLiniAUGaEwkcN_dh05VNarMCFETaHfG?usp=drive_link"
   },
   {
     "id": "38",
     "name": "JUBARIS BEAM 380IP",
-    "image": "",
-    "category": "Static Lights",
+    "image": "https://static.wixstatic.com/media/4f23bc_85ca9d999f624372afcb4f80547bbf8f~mv2.jpeg/v1/fill/w_132,h_132,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/380%E6%AD%A33.jpeg",
+    "category": "Automatic Lights",
     "description": "JUBARIS BEAM 380IP - Professional lighting equipment",
-    "video": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
-    "manual": "https://example.com/manual-38.pdf"
+    "video": "",
+    "manual": "https://drive.google.com/drive/folders/1oaMXCjTNj-OmlaVyUgN92aXEsXLWT-xn?usp=drive_link"
   },
   {
     "id": "39",
     "name": "JUBARIS BEAM 300",
-    "image": "",
-    "category": "Static Lights",
+    "image": "https://static.wixstatic.com/media/4f23bc_ce92049d361b4e59a3bfb2e1faa4b2e9~mv2.jpg/v1/crop/x_1110,y_382,w_3266,h_3266/fill/w_132,h_132,fp_0.50_0.50,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/300B%E6%AD%A3.jpg",
+    "category": "Automatic Lights",
     "description": "JUBARIS BEAM 300 - Professional lighting equipment",
-    "video": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
-    "manual": "https://example.com/manual-39.pdf"
+    "video": "",
+    "manual": "https://drive.google.com/drive/folders/1xpFM7OvSHW4vzMmTspj9RPswANmx_LMY?usp=drive_link"
   },
   {
     "id": "40",
     "name": "VERSATILIS 480CMY",
-    "image": "",
-    "category": "Static Lights",
+    "image": "https://static.wixstatic.com/media/030325_8756f8331f634d00990ef2682f1be8e9~mv2.jpg/v1/crop/x_26,y_26,w_516,h_516/fill/w_104,h_104,fp_0.50_0.50,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/SPL-LED-480CMY11_edited_edited_edited_edited.jpg",
+    "category": "Automatic Lights",
     "description": "VERSATILIS 480CMY - Professional lighting equipment",
-    "video": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
-    "manual": "https://example.com/manual-40.pdf"
+    "video": "",
+    "manual": "https://drive.google.com/drive/folders/1tPclIoLlpNiBRI7gdYMaBXU8KNU6YQ-q"
   },
   {
     "id": "41",
     "name": "STELLA WASH 1940IP",
-    "image": "",
-    "category": "Static Lights",
+    "image": "https://static.wixstatic.com/media/4f23bc_9a1e8acb6dd547dc9d7e35054c635552~mv2.jpg/v1/fill/w_132,h_132,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/SPL-LED-1940F%20IP%2015.jpg",
+    "category": "Automatic Lights",
     "description": "STELLA WASH 1940IP - Professional lighting equipment",
-    "video": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
-    "manual": "https://example.com/manual-41.pdf"
+    "video": "",
+    "manual": "https://drive.google.com/drive/folders/1dCLJQolXu-Yiug2C22f4DgEWmiHObEVA?usp=drive_link"
   },
   {
     "id": "42",
     "name": "STELLA WASH 1920F",
-    "image": "",
-    "category": "Static Lights",
+    "image": "https://static.wixstatic.com/media/4f23bc_eea45a2168554a0c9c16594bd40e50af~mv2.jpg/v1/crop/x_18,y_25,w_639,h_639/fill/w_132,h_132,fp_0.50_0.50,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/1920%E6%AD%A33.jpg",
+    "category": "Automatic Lights",
     "description": "STELLA WASH 1920F - Professional lighting equipment",
-    "video": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
-    "manual": "https://example.com/manual-42.pdf"
+    "video": "",
+    "manual": "https://drive.google.com/drive/folders/1_rUasdCqdU5MQIA6BYd8-nTA8QlPlZZI?usp=drive_link"
   },
   {
     "id": "43",
     "name": "STELLA WASH 740F",
-    "image": "",
+    "image": "https://static.wixstatic.com/media/4f23bc_fd29d9d12dca4a0ab097727347dfb9bc~mv2.jpeg/v1/crop/x_17,y_24,w_697,h_697/fill/w_132,h_132,fp_0.50_0.50,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/SPL-LED-740F9.jpeg",
     "category": "Static Lights",
     "description": "STELLA WASH 740F - Professional lighting equipment",
-    "video": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
-    "manual": "https://example.com/manual-43.pdf"
+    "video": "",
+    "manual": "https://drive.google.com/drive/folders/1AnpQkAEH1WV443pb3oFr6Rt2dbhD0p56?usp=drive_link"
   },
   {
     "id": "44",
     "name": "STELLA WASH 1940F",
-    "image": "",
-    "category": "Static Lights",
+    "image": "https://static.wixstatic.com/media/4f23bc_2ab9768dfaf64bebb9b34739f7b09794~mv2.jpg/v1/crop/x_206,y_267,w_2120,h_2120/fill/w_132,h_132,fp_0.50_0.50,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/SPL-LED-1940F%20%203.jpg",
+    "category": "Automatic Lights",
     "description": "STELLA WASH 1940F - Professional lighting equipment",
-    "video": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
-    "manual": "https://example.com/manual-44.pdf"
+    "video": "",
+    "manual": "https://drive.google.com/drive/folders/1KyP62Z98ysWxhyD6XuGUz3qoeNwzl2AE?usp=drive_link"
   },
   {
     "id": "45",
     "name": "VIVID TREAD 1260YZ",
-    "image": "",
-    "category": "Static Lights",
+    "image": "https://static.wixstatic.com/media/4f23bc_f26efbad8766441a80191d65e1c9649b~mv2.webp/v1/fill/w_132,h_132,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/%E6%AD%A31.webp",
+    "category": "Automatic Lights",
     "description": "VIVID TREAD 1260YZ - Professional lighting equipment",
-    "video": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
-    "manual": "https://example.com/manual-45.pdf"
+    "video": "",
+    "manual": "https://drive.google.com/drive/folders/1__AvPdWr7lSYuUbZ70pDLF_eKTLVwpVv?usp=drive_link"
   },
   {
     "id": "46",
     "name": "HUEWAVE MOVING HEAD 1915Z",
-    "image": "",
+    "image": "https://static.wixstatic.com/media/4f23bc_675263775298458f8467df70457025b5~mv2.jpg/v1/fill/w_132,h_132,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/1915%E6%AD%A31_edited.jpg",
     "category": "Static Lights",
     "description": "HUEWAVE MOVING HEAD 1915Z - Professional lighting equipment",
-    "video": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
-    "manual": "https://example.com/manual-46.pdf"
+    "video": "",
+    "manual": "https://drive.google.com/drive/folders/17QXW4dobPIvFUBr4KKob1TZKUe2XL3s3?usp=drive_link"
   },
   {
     "id": "47",
@@ -810,5 +810,69 @@ export const products: Product[] = [
     "description": "COLOR SPECTRUM STROBE T3240 - Professional lighting equipment",
     "video": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
     "manual": "https://example.com/manual-90.pdf"
+  },
+  {
+    "id": "91",
+    "name": "VERSATILIS PROFILE 800",
+    "image": "https://static.wixstatic.com/media/4f23bc_93032e1c847b49e39d93df526d21603f~mv2.jpg/v1/crop/x_716,y_221,w_3390,h_3390/fill/w_132,h_132,fp_0.50_0.50,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/800%E6%AD%A31.jpg",
+    "category": "Automatic Lights",
+    "description": "VERSATILIS PROFILE 800 - Professional lighting equipment",
+    "video": "",
+    "manual": "https://drive.google.com/drive/folders/1egpEE6W0bEiondt-gfSG_qtvNIo5PsP6?usp=drive_link"
+  },
+  {
+    "id": "92",
+    "name": "VERSATILIS BSWF700",
+    "image": "https://static.wixstatic.com/media/4f23bc_59bec0a9e1fc4fc8acaddc36e79d5bef~mv2.jpg/v1/crop/x_64,y_62,w_583,h_583/fill/w_132,h_132,fp_0.50_0.50,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/700bswf.jpg",
+    "category": "Automatic Lights",
+    "description": "VERSATILIS BSWF700 - Professional lighting equipment",
+    "video": "",
+    "manual": "https://drive.google.com/drive/folders/1NrCU9_7S-s26SBjPoa-1tZdvUhamqVxW?usp=drive_link"
+  },
+  {
+    "id": "93",
+    "name": "SPOTTY LED 90",
+    "image": "https://static.wixstatic.com/media/4f23bc_fa9c9de21a6f4e5aab18cc1d9bd69109~mv2.jpg/v1/crop/x_326,y_325,w_2474,h_2474/fill/w_132,h_132,fp_0.50_0.50,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/%E6%AD%A35.jpg",
+    "category": "Automatic Lights",
+    "description": "SPOTTY LED 90 - Professional lighting equipment",
+    "video": "",
+    "manual": "https://drive.google.com/drive/folders/1NiqRI7p3q6fuwKv9fK4rx0y2pIeUnVOu?usp=drive_link"
+  },
+  {
+    "id": "94",
+    "name": "JUBARIS BEAM L90",
+    "image": "https://static.wixstatic.com/media/4f23bc_d761c25e3e184483af66ac841d2b3514~mv2.jpg/v1/crop/x_32,y_39,w_697,h_697/fill/w_132,h_132,fp_0.50_0.50,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/%E6%AD%A32.jpg",
+    "category": "Automatic Lights",
+    "description": "JUBARIS BEAM L90 - Professional lighting equipment",
+    "video": "",
+    "manual": "https://drive.google.com/drive/folders/1NN--F471ElfJ48e8bye8SDEsVyMwB2QO?usp=drive_link"
+  },
+  {
+    "id": "95",
+    "name": "SERPENTINE 1260S",
+    "image": "https://static.wixstatic.com/media/4f23bc_9177811aa45a426fba5caa6938ddb453~mv2.jpg/v1/fill/w_132,h_132,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/1260s.jpg",
+    "category": "Automatic Lights",
+    "description": "SERPENTINE 1260S - Professional lighting equipment",
+    "video": "",
+    "manual": "https://drive.google.com/drive/folders/1BfWtI-QPnYq3ChrLcVp5C3A8mfW_2JgC?usp=drive_link"
+  },
+  {
+    "id": "96",
+    "name": "STUDIO LUX FRESNEL 400",
+    "image": "https://static.wixstatic.com/media/4f23bc_bd6492c8a38d4bffb7d62492fbcb167d~mv2.jpg/v1/fill/w_135,h_133,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/%E6%AD%A33.jpg",
+    "category": "Tv & Studio",
+    "description": "STUDIO LUX FRESNEL 400 - Professional lighting equipment",
+    "video": "",
+    "manual": "https://drive.google.com/drive/folders/18BLRmB-a_WCo0rF1ZkVwD-XblVt2Otvr?usp=drive_link"
+  },
+  {
+    "id": "97",
+    "name": "STUDIO LUX 1600",
+    "image": "https://static.wixstatic.com/media/4f23bc_793a50e8fba24acfb76825495c40f111~mv2.jpg/v1/fill/w_135,h_133,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/%E6%AD%A35.jpg",
+    "category": "Tv & Studio",
+    "description": "STUDIO LUX FRESNEL 400 - Professional lighting equipment",
+    "video": "",
+    "manual": "https://drive.google.com/drive/folders/1FBvhZ-k7LNoCiv3qk4SmCEXbgbc7JAda?usp=drive_link"
   }
+
 ];
