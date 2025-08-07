@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
-import { Menu, ChevronDown } from "lucide-react";
+import { Menu, X, ChevronDown } from "lucide-react";
 import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { SearchDialog } from "./search-dialog";
@@ -141,45 +141,49 @@ export const Navigation = ({ isTransparent = false }: NavigationProps) => {
                   <Menu className="h-5 w-5" />
                 </Button>
               </SheetTrigger>
-              <SheetContent side="right" className="w-[300px] sm:w-[400px]">
-                <SheetHeader>
+              <SheetContent side="right" className="w-[300px] sm:w-[400px] flex flex-col">
+                <SheetHeader className="flex-shrink-0">
                   <SheetTitle className="text-left">Menú</SheetTitle>
                 </SheetHeader>
-                <div className="flex flex-col space-y-4 mt-6">
-                  <Link
-                    to="/"
-                    className="flex items-center px-3 py-2 text-lg font-medium hover:bg-muted rounded-md transition-colors"
-                    onClick={() => setIsMenuOpen(false)}
-                  >
-                    Inicio
-                  </Link>
-                  <div className="space-y-2">
-                    <div className="px-3 py-2 text-lg font-medium text-muted-foreground">
-                      Productos
+                <div className="flex-1 overflow-y-auto py-6">
+                  <div className="flex flex-col space-y-4">
+                    <Link
+                      to="/"
+                      className="flex items-center px-3 py-2 text-lg font-medium hover:bg-muted rounded-md transition-colors"
+                      onClick={() => setIsMenuOpen(false)}
+                    >
+                      Inicio
+                    </Link>
+                    <div className="space-y-2">
+                      <div className="px-3 py-2 text-lg font-medium text-muted-foreground">
+                        Productos
+                      </div>
+                      <div className="space-y-1">
+                        {categories.map((category) => (
+                          <button
+                            key={category}
+                            onClick={() => {
+                              handleCategorySelect(category);
+                              setIsMenuOpen(false);
+                            }}
+                            className="flex items-center px-6 py-2 text-base hover:bg-muted rounded-md transition-colors w-full text-left"
+                          >
+                            {category}
+                          </button>
+                        ))}
+                      </div>
                     </div>
-                    {categories.map((category) => (
-                      <button
-                        key={category}
-                        onClick={() => {
-                          handleCategorySelect(category);
-                          setIsMenuOpen(false);
-                        }}
-                        className="flex items-center px-6 py-2 text-base hover:bg-muted rounded-md transition-colors w-full text-left"
-                      >
-                        {category}
-                      </button>
-                    ))}
+                    <a
+                      href="#contacto"
+                      onClick={(e) => {
+                        scrollToContact(e);
+                        setIsMenuOpen(false);
+                      }}
+                      className="flex items-center px-3 py-2 text-lg font-medium hover:bg-muted rounded-md transition-colors"
+                    >
+                      Contacto
+                    </a>
                   </div>
-                  <a
-                    href="#contacto"
-                    onClick={(e) => {
-                      scrollToContact(e);
-                      setIsMenuOpen(false);
-                    }}
-                    className="flex items-center px-3 py-2 text-lg font-medium hover:bg-muted rounded-md transition-colors"
-                  >
-                    Contacto
-                  </a>
                 </div>
               </SheetContent>
             </Sheet>
