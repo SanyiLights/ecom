@@ -7,6 +7,7 @@ import { useParams, Link, useNavigate } from "react-router-dom";
 import { Footer } from "@/components/ui/footer";
 import { getProductById } from "@/lib/product-utils";
 import { Product } from "@/data/products";
+import { getHighQualityImage } from "@/lib/image-utils";
 
 const ProductDetail = () => {
   const { id } = useParams<{ id: string }>();
@@ -41,6 +42,7 @@ const ProductDetail = () => {
   };
 
   const videoId = getYouTubeVideoId(product.video);
+  const highQualityImage = getHighQualityImage(product.image);
 
   return (
     <div className="min-h-screen bg-background">
@@ -72,23 +74,30 @@ const ProductDetail = () => {
             <div className="space-y-4">
               <div className="relative w-80 h-80 bg-muted rounded-lg overflow-hidden">
                 <img 
-                  src={product.image} 
+                  src={highQualityImage} 
                   alt={product.name}
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-cover product-image"
+                  onError={(e) => {
+                    // Fallback to original image if high-quality fails
+                    const target = e.target as HTMLImageElement;
+                    if (target.src !== product.image) {
+                      target.src = product.image;
+                    }
+                  }}
                 />
               </div>
             </div>
         
+            {/* Columna derecha - Video y Manual */}
             <div className="space-y-6">
+              {/* Video del producto */}
               {videoId && (
                 <div>
-                  <h3 className="text-lg font-semibold mb-3">Video del Producto</h3>
                   <div className="relative aspect-video bg-muted rounded-lg overflow-hidden">
                     <iframe
                       src={`https://www.youtube.com/embed/${videoId}`}
                       title={`Video de ${product.name}`}
                       className="w-full h-full"
-                      frameBorder="0"
                       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                       allowFullScreen
                     />
@@ -96,11 +105,10 @@ const ProductDetail = () => {
                 </div>
               )}
               
+              {/* Manual de usuario */}
               <div>
-                <h3 className="text-lg font-semibold mb-3">Manual de Equipo</h3>
                 <Button 
                   onClick={openUserManual}
-                  variant="outline"
                   size="lg"
                   className="group w-full text-base py-4"
                 >
@@ -110,9 +118,6 @@ const ProductDetail = () => {
               </div>
             </div>
           </div>
-
-          {/* Información del producto debajo */}
-          
         </div>
       </div>
 

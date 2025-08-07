@@ -7,7 +7,7 @@ export const products: Product[] = [
     "image": "https://static.wixstatic.com/media/4f23bc_226667a7a0264b0aae8abec3483fa0f0~mv2.jpg/v1/crop/x_1392,y_293,w_2782,h_2782/fill/w_115,h_113,fp_0.50_0.50,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/%E6%AD%A3_JPG.jpg",
     "category": "Static Lights",
     "description": "SOLSTICE QUAD 616F - Professional lighting equipment",
-    "video": "",
+    "video": "https://www.youtube.com/watch?v=PHGPwOyD0kY",
     "manual": "https://drive.google.com/drive/folders/1zovlTR-YQI6eSgASwfmlA-mP32vvuef_?usp=drive_link"
   },
   {

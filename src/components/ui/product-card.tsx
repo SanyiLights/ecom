@@ -4,6 +4,7 @@ import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Eye } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
 import { Product } from "@/data/products";
+import { getHighQualityImage } from "@/lib/image-utils";
 
 interface ProductCardProps extends Product {
   showVideoIcon?: boolean;
@@ -18,6 +19,7 @@ export const ProductCard = ({
   ...props 
 }: ProductCardProps) => {
   const navigate = useNavigate();
+  const highQualityImage = getHighQualityImage(image);
 
   const handleViewDetails = (e: React.MouseEvent) => {
     e.preventDefault();
@@ -31,9 +33,17 @@ export const ProductCard = ({
         <CardHeader className="p-0 relative">
           <div className="aspect-square overflow-hidden">
             <img 
-              src={image} 
+              src={highQualityImage} 
               alt={name}
-              className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+              className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105 product-image"
+              loading="lazy"
+              onError={(e) => {
+                // Fallback to original image if high-quality fails
+                const target = e.target as HTMLImageElement;
+                if (target.src !== image) {
+                  target.src = image;
+                }
+              }}
             />
           </div>
           
