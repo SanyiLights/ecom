@@ -2,16 +2,17 @@ import { Navigation } from "@/components/ui/navigation";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { ArrowLeft, FileText } from "lucide-react";
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import { useParams, Link, useNavigate } from "react-router-dom";
 import { Footer } from "@/components/ui/footer";
 import { getProductById } from "@/lib/product-utils";
+import { Product } from "@/data/products";
 
 const ProductDetail = () => {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
 
-  const product = getProductById(id || "");
+  const product: Product = getProductById(id || "");
 
   useEffect(() => {
     if (!product) {
@@ -27,11 +28,12 @@ const ProductDetail = () => {
     return null;
   }
 
+  console.log(product);
+
   const openUserManual = () => {
     window.open(product.manual, '_blank');
   };
 
-  // Función para extraer el ID del video de YouTube
   const getYouTubeVideoId = (url: string) => {
     const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/;
     const match = url.match(regExp);
@@ -39,10 +41,6 @@ const ProductDetail = () => {
   };
 
   const videoId = getYouTubeVideoId(product.video);
-
-  // Debug logging
-  console.log('Product image URL:', product.image);
-  console.log('Product data:', product);
 
   return (
     <div className="min-h-screen bg-background">
@@ -72,7 +70,7 @@ const ProductDetail = () => {
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mt-5">
             <div className="space-y-4">
-              <div className="relative aspect-square bg-muted rounded-lg overflow-hidden">
+              <div className="relative w-80 h-80 bg-muted rounded-lg overflow-hidden">
                 <img 
                   src={product.image} 
                   alt={product.name}
