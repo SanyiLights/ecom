@@ -220,44 +220,44 @@ export const products: Product[] = [
   {
     "id": "25",
     "name": "HEMERA DMX C192",
-    "image": "",
-    "category": "TV & Studio",
+    "image": "https://static.wixstatic.com/media/4f23bc_d896749fd6714a4db7419bbe85e9cec7~mv2.png/v1/crop/x_326,y_340,w_2349,h_2321/fill/w_155,h_153,fp_0.50_0.50,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/%E6%AD%A3_edited.png",
+    "category": "Controller",
     "description": "HEMERA DMX C192 - Professional lighting equipment",
-    "video": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
-    "manual": "https://example.com/manual-25.pdf"
+    "video": "",
+    "manual": "https://drive.google.com/drive/folders/1_HlXRZpX8NLlJvwneN9kn-dS62ehyhPm?usp=drive_link"
   },
   {
     "id": "26",
     "name": "HEMERA DMX C384",
-    "image": "",
-    "category": "TV & Studio",
+    "image": "https://static.wixstatic.com/media/4f23bc_f460ee9edbb244d295d6738a0ffbd456~mv2.jpg/v1/fill/w_155,h_153,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/%E6%AD%A31.jpg",
+    "category": "Controller",
     "description": "HEMERA DMX C384 - Professional lighting equipment",
-    "video": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
-    "manual": "https://example.com/manual-26.pdf"
+    "video": "",
+    "manual": "https://drive.google.com/drive/folders/1MQN5zGvKh-Z2JddgDzitjBeW02jPN8Ir?usp=drive_link"
   },
   {
     "id": "27",
     "name": "EMPOWERER UNI4",
-    "image": "",
-    "category": "TV & Studio",
+    "image": "https://static.wixstatic.com/media/4f23bc_ba138cb42ae148c2b21372af701af3d9~mv2.png/v1/fill/w_155,h_153,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/IEU4%E6%AD%A3_edited.png",
+    "category": "Controller",
     "description": "EMPOWERER UNI4 - Professional lighting equipment",
-    "video": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
-    "manual": "https://example.com/manual-27.pdf"
+    "video": "",
+    "manual": "https://drive.google.com/drive/folders/14gTlBwWJEwtjR7eD7dDHSX1bpPzL302h?usp=drive_link"
   },
   {
     "id": "28",
     "name": "EMPOWERER MINI2",
-    "image": "",
-    "category": "TV & Studio",
+    "image": "https://static.wixstatic.com/media/4f23bc_28c75d1f87ce47398f02469d40a5e75f~mv2.jpg/v1/crop/x_1315,y_374,w_3129,h_3092/fill/w_155,h_153,fp_0.50_0.50,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/%E6%AD%A3.jpg",
+    "category": "Controller",
     "description": "EMPOWERER MINI2 - Professional lighting equipment",
-    "video": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
-    "manual": "https://example.com/manual-28.pdf"
+    "video": "",
+    "manual": "https://drive.google.com/drive/folders/1E3-_eyb5qyeucFivSWPBhXjb5o_h0vJn?usp=drive_link"
   },
   {
     "id": "29",
     "name": "VERSATILIS LUCIDUS 1000",
     "image": "https://static.wixstatic.com/media/4f23bc_102e831a9b914745bc8f28c918e4e948~mv2.jpg/v1/fill/w_132,h_132,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/SPL-PRO-1000HBRT.jpg",
-    "category": "Controller",
+    "category": "",
     "description": "VERSATILIS LUCIDUS 1000 - Professional lighting equipment",
     "video": "",
     "manual": "https://drive.google.com/drive/folders/16dfZL5txCdO6S0rZ-P6GM-K02Hn0oQ7n?usp=drive_link"
@@ -275,7 +275,7 @@ export const products: Product[] = [
     "id": "31",
     "name": "VERSATILIS 680CMY",
     "image": "https://static.wixstatic.com/media/4f23bc_e3165d2a06d842438f6029950aef8be8~mv2.jpg/v1/crop/x_57,y_106,w_1749,h_1749/fill/w_132,h_132,fp_0.50_0.50,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/680-1_edited.jpg",
-    "category": "Controller",
+    "category": "",
     "description": "VERSATILIS 680CMY - Professional lighting equipment",
     "video": "",
     "manual": "https://drive.google.com/drive/folders/1cezc1n9J5_Jwe5-Je68JhjpzO3UAi-ix?usp=drive_link"
@@ -425,85 +425,31 @@ export const products: Product[] = [
     "manual": "https://example.com/manual-47.pdf"
   },
   {
-    "id": "48",
-    "name": "VINTAGE COLUMNA 6",
-    "image": "",
-    "category": "Effect Light",
-    "description": "VINTAGE COLUMNA 6 - Professional lighting equipment",
-    "video": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
-    "manual": "https://example.com/manual-48.pdf"
-  },
-  {
     "id": "49",
     "name": "LEVATIO BALL",
-    "image": "",
+    "image": "https://static.wixstatic.com/media/4f23bc_7b70537b830e4e74894748e677b62e36~mv2.jpg/v1/fill/w_115,h_113,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/R201%E6%AD%A3_edited.jpg",
     "category": "Effect Light",
     "description": "LEVATIO BALL - Professional lighting equipment",
-    "video": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
-    "manual": "https://example.com/manual-49.pdf"
+    "video": "",
+    "manual": "https://drive.google.com/drive/folders/1GEDXcz85nlC33X0xscu0-0l4Qv40SPhD?usp=drive_link"
   },
   {
     "id": "50",
     "name": "VINTAGE CIRCULUS 7",
-    "image": "",
+    "image": "https://static.wixstatic.com/media/4f23bc_be68b05e101b4cf1b9b755fb1426c30c~mv2.jpg/v1/fill/w_115,h_113,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/CIRC7%E6%AD%A3_edited.jpg",
     "category": "Effect Light",
     "description": "VINTAGE CIRCULUS 7 - Professional lighting equipment",
-    "video": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
-    "manual": "https://example.com/manual-50.pdf"
-  },
-  {
-    "id": "51",
-    "name": "EMPOWERER MINI2",
-    "image": "",
-    "category": "Controller",
-    "description": "EMPOWERER MINI2 - Professional lighting equipment",
-    "video": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
-    "manual": "https://example.com/manual-51.pdf"
-  },
-  {
-    "id": "52",
-    "name": "HEMERA DMX C384",
-    "image": "",
-    "category": "Controller",
-    "description": "HEMERA DMX C384 - Professional lighting equipment",
-    "video": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
-    "manual": "https://example.com/manual-52.pdf"
-  },
-  {
-    "id": "53",
-    "name": "HEMERA DMX C192",
-    "image": "",
-    "category": "Controller",
-    "description": "HEMERA DMX C192 - Professional lighting equipment",
-    "video": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
-    "manual": "https://example.com/manual-53.pdf"
-  },
-  {
-    "id": "54",
-    "name": "EMPOWERER UNI4",
-    "image": "",
-    "category": "Controller",
-    "description": "EMPOWERER UNI4 - Professional lighting equipment",
-    "video": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
-    "manual": "https://example.com/manual-54.pdf"
-  },
-  {
-    "id": "55",
-    "name": "MAGICAL MIST",
-    "image": "",
-    "category": "Effect Machine",
-    "description": "MAGICAL MIST - Professional lighting equipment",
-    "video": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
-    "manual": "https://example.com/manual-55.pdf"
+    "video": "",
+    "manual": "https://drive.google.com/drive/folders/19rOYmeauAENYnLXpogLlZFBkZZQK3Tlw?usp=drive_link"
   },
   {
     "id": "56",
     "name": "MIST 2L",
-    "image": "",
+    "image": "https://static.wixstatic.com/media/4f23bc_7ad55db035fd4002b0eaee637d4b4896~mv2.jpg/v1/fill/w_67,h_97,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/mist_2L.jpg",
     "category": "Effect Machine",
     "description": "MIST 2L - Professional lighting equipment",
-    "video": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
-    "manual": "https://example.com/manual-56.pdf"
+    "video": "",
+    "manual": "https://drive.google.com/drive/folders/1I5PXT5uNtbNeaL4KHjfo8zYEJfLWySSI?usp=drive_link"
   },
   {
     "id": "57",
@@ -517,11 +463,11 @@ export const products: Product[] = [
   {
     "id": "58",
     "name": "VINTAGE COLUMNA 6",
-    "image": "",
-    "category": "TV & Studio",
+    "image": "https://static.wixstatic.com/media/4f23bc_6a066106d477424c9ba8c5122a5fcb94~mv2.png/v1/fill/w_115,h_113,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/SPL-VINT-COLM6%20(1)_edited.png",
+    "category": "Effect Light",
     "description": "VINTAGE COLUMNA 6 - Professional lighting equipment",
-    "video": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
-    "manual": "https://example.com/manual-58.pdf"
+    "video": "",
+    "manual": "https://drive.google.com/drive/folders/1XqeIQCynEr8yoaX0qnUL7U9hGx6hDVDq?usp=drive_link"
   },
   {
     "id": "59",
@@ -533,22 +479,13 @@ export const products: Product[] = [
     "manual": "https://example.com/manual-59.pdf"
   },
   {
-    "id": "60",
-    "name": "MIST 2L",
-    "image": "",
-    "category": "Effect Machine",
-    "description": "MIST 2L - Professional lighting equipment",
-    "video": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
-    "manual": "https://example.com/manual-60.pdf"
-  },
-  {
     "id": "61",
     "name": "MAGICAL MIST",
-    "image": "",
+    "image": "https://static.wixstatic.com/media/4f23bc_4af07b12b90949cd842ab4ea50052bae~mv2.jpg/v1/fill/w_67,h_97,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/%E6%AD%A3%E6%9C%BA.jpg",
     "category": "Effect Machine",
     "description": "MAGICAL MIST - Professional lighting equipment",
-    "video": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
-    "manual": "https://example.com/manual-61.pdf"
+    "video": "",
+    "manual": "https://drive.google.com/drive/folders/1I66bClrA_xS__9LikewZ8rVeoSSOSQAy?usp=drive_link"
   },
   {
     "id": "62",
