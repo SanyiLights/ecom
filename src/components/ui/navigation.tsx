@@ -6,7 +6,7 @@ import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { SearchDialog } from "./search-dialog";
 import { colors } from "@/lib/colors";
-import { categories } from "@/data/products";
+import { categories } from "@/data/categories";
 import logo from "/src/assets/logo.png";
 
 interface NavigationProps {

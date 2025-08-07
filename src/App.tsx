@@ -13,8 +13,6 @@ import About from "./pages/About";
 const queryClient = new QueryClient();
 
 function App() {
-
-
   return (
     <QueryClientProvider client={queryClient}>
       <TooltipProvider>

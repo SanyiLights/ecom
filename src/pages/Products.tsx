@@ -4,10 +4,10 @@ import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
 import { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
-import { Footer } from "@/components/ui/footer";
-import { categories } from "@/data/products";
+import { Footer } from "@/components/sections/Footer";
+import { categories } from "@/data/categories";
 import { filterProducts } from "@/lib/product-utils";
-import { products } from "@/data/products-scraped";
+import { products } from "@/data/products";
 
 const Products = () => {
   const location = useLocation();
@@ -30,7 +30,7 @@ const Products = () => {
 
   const handleCategorySelect = (category: string) => {
     if (selectedCategory === category) {
-      setSelectedCategory("Todos"); // Deseleccionar si ya está seleccionada
+      setSelectedCategory("Todos");
     } else {
       setSelectedCategory(category);
     }

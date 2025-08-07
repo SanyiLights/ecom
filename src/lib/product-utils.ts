@@ -1,5 +1,5 @@
 import { Product } from "@/data/products";
-import { products } from "@/data/products-scraped";
+import { products } from "@/data/products";
 
 export const getProductById = (id: string): Product | undefined => {
   return products.find(product => product.id === id);
@@ -26,14 +26,10 @@ export const filterProducts = (
 };
 
 export const getFeaturedProducts = (count: number = 6) => {
-  const featuredIds = ["1", "6", "11", "19", "23", "27"];
+  const featuredIds = ["1", "6", "11", "15", "22", "27"];
   return products
     .filter(product => featuredIds.includes(product.id))
     .slice(0, count);
-};
-
-export const getProductsByCategory = (category: string) => {
-  return products.filter(product => product.category === category);
 };
 
 export const searchProducts = (query: string) => {

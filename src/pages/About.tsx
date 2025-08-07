@@ -2,7 +2,7 @@ import { Navigation } from "@/components/ui/navigation";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { MapPin, Phone, Mail, Globe, Users, Award, Truck, Shield } from "lucide-react";
-import { Footer } from "@/components/ui/footer";
+import { Footer } from "@/components/sections/Footer";
 import { Link } from "react-router-dom";
 
 const About = () => {
