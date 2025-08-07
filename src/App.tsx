@@ -9,6 +9,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { Toaster } from "@/components/ui/toaster";
 import { openWhatsApp } from "./lib/contact";
 import About from "./pages/About";
+import Videos from "./pages/Videos";
 
 const queryClient = new QueryClient();
 
@@ -24,6 +25,7 @@ function App() {
             <Route path="/products" element={<Products />} />
             <Route path="/producto/:id" element={<ProductDetail />} />
             <Route path="/about" element={<About />} />
+            <Route path="/videos" element={<Videos />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
           
