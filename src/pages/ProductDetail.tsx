@@ -57,6 +57,7 @@ const ProductDetail = () => {
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            {/* Columna izquierda: Imagen */}
             <div className="space-y-4">
               <div className="relative aspect-square bg-muted rounded-lg overflow-hidden">
                 <img 
@@ -67,58 +68,48 @@ const ProductDetail = () => {
               </div>
             </div>
 
+            {/* Columna derecha: Video + Manual */}
             <div className="space-y-6">
-              <div>
-                <div className="flex items-center gap-2 mb-2">
-                  <Badge variant="outline">{product.category}</Badge>
+              {videoId && (
+                <div>
+                  <h3 className="text-lg font-semibold mb-3">Video del Producto</h3>
+                  <div className="relative aspect-video bg-muted rounded-lg overflow-hidden">
+                    <iframe
+                      src={`https://www.youtube.com/embed/${videoId}`}
+                      title={`Video de ${product.name}`}
+                      className="w-full h-full"
+                      frameBorder="0"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      allowFullScreen
+                    />
+                  </div>
                 </div>
-                
-                <h1 className="text-3xl font-bold mb-2">{product.name}</h1>
-
-                <p className="text-lg text-muted-foreground mb-6">
-                  {product.description}
-                </p>
+              )}
+              
+              <div>
+                <h3 className="text-lg font-semibold mb-3">Manual de Usuario</h3>
+                <Button 
+                  onClick={openUserManual}
+                  variant="outline"
+                  size="lg"
+                  className="group w-full text-base py-4"
+                >
+                  <FileText className="mr-2 h-5 w-5 group-hover:scale-110 transition-transform" />
+                  Manual de Usuario
+                </Button>
               </div>
             </div>
           </div>
 
-          {/* Video Embebido */}
-          {videoId && (
-            <div className="mt-12">
-              <h3 className="text-xl font-semibold mb-4">Video del Producto</h3>
-              <div className="relative aspect-video bg-muted rounded-lg overflow-hidden">
-                <iframe
-                  src={`https://www.youtube.com/embed/${videoId}`}
-                  title={`Video de ${product.name}`}
-                  className="w-full h-full"
-                  frameBorder="0"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  allowFullScreen
-                />
-              </div>
-            </div>
-          )}
-
-          {/* Manual de Usuario */}
+          {/* Información del producto debajo */}
           <div className="mt-8">
-            <h3 className="text-xl font-semibold mb-4">Manual de Usuario</h3>
-            <Button 
-              onClick={openUserManual}
-              variant="outline"
-              className="group"
-            >
-              <FileText className="mr-2 h-4 w-4 group-hover:scale-110 transition-transform" />
-              Descargar Manual de Usuario
-            </Button>
-          </div>
-
-          <div className="mt-12">
-            <div className="prose max-w-none">
-              <h3 className="text-xl font-semibold mb-4">Descripción del Producto</h3>
-              <p className="text-muted-foreground leading-relaxed">
-                {product.description}
-              </p>
+            <div className="flex items-center gap-2 mb-2">
+              <Badge variant="outline">{product.category}</Badge>
             </div>
+            <h1 className="text-3xl font-bold mb-2">{product.name}</h1>
+            <p className="text-lg text-muted-foreground">
+              {product.description}
+            </p>
           </div>
         </div>
       </div>

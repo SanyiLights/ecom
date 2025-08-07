@@ -325,16 +325,12 @@ export const products: Product[] = [
   }
 ];
 
-// Categorías actualizadas basadas en Sanyi Lights US
 export const categories = [
   "Todos",
-  "Beam Moving Head",
-  "Wash Moving Head", 
-  "LED PAR Light",
-  "LED Blinder",
-  "LED Display",
-  "Console Series",
-  "TV & Studio",
+  "Automatic Lights",
+  "Static Lights", 
+  "Tv & Studio",
+  "Controller",
   "Effect Light",
-  "Effect Machine"
+  "Effect Machine",
 ]

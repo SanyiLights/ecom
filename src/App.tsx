@@ -8,6 +8,7 @@ import { Button } from "@/components/ui/button";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { Toaster } from "@/components/ui/toaster";
 import { openWhatsApp } from "./lib/contact";
+import About from "./pages/About";
 
 const queryClient = new QueryClient();
 
@@ -24,6 +25,7 @@ function App() {
             <Route path="/productos" element={<Products />} />
             <Route path="/products" element={<Products />} />
             <Route path="/producto/:id" element={<ProductDetail />} />
+            <Route path="/about" element={<About />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
           

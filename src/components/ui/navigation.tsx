@@ -119,6 +119,13 @@ export const Navigation = ({ isTransparent = false }: NavigationProps) => {
               </DropdownMenuContent>
             </DropdownMenu>
             
+            <Link 
+              to="/about" 
+              className={`transition-all duration-300 px-3 py-2 rounded-md ${getTextClasses(true)}`}
+            >
+              Sobre Nosotros
+            </Link>
+            
             <a 
               href="#contacto" 
               onClick={scrollToContact}
@@ -173,6 +180,13 @@ export const Navigation = ({ isTransparent = false }: NavigationProps) => {
                         ))}
                       </div>
                     </div>
+                    <Link
+                      to="/about"
+                      className="flex items-center px-3 py-2 text-lg font-medium hover:bg-muted rounded-md transition-colors"
+                      onClick={() => setIsMenuOpen(false)}
+                    >
+                      Sobre Nosotros
+                    </Link>
                     <a
                       href="#contacto"
                       onClick={(e) => {
