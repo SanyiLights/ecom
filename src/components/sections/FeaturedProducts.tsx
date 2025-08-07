@@ -4,14 +4,15 @@ import { Badge } from "@/components/ui/badge";
 import { ArrowRight } from "lucide-react";
 import { getFeaturedProducts } from "@/data/products";
 import { Link } from "react-router-dom";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 export const FeaturedProducts = () => {
-  const featuredProducts = getFeaturedProducts(6);
+  const isMobile = useIsMobile();
+  const featuredProducts = getFeaturedProducts(isMobile ? 3 : 6);
 
   return (
     <section className="py-20 bg-gradient-to-b from-background to-muted/30">
       <div className="container mx-auto px-4">
-        {/* Header */}
         <div className="text-center mb-16">
           <Badge className="mb-4 bg-primary text-primary-foreground">
             Productos Destacados
@@ -25,7 +26,6 @@ export const FeaturedProducts = () => {
           </p>
         </div>
 
-        {/* Products Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
           {featuredProducts.map((product, index) => (
             <div 
@@ -38,7 +38,6 @@ export const FeaturedProducts = () => {
           ))}
         </div>
 
-        {/* CTA Section */}
         <div className="text-center">
          
           <Link to="/productos" onClick={() => window.scrollTo(0, 0)}>

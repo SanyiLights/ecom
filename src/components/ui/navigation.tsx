@@ -5,8 +5,6 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { SearchDialog } from "./search-dialog";
 import { colors } from "@/lib/colors";
-
-// Importar el logo
 import logo from "/src/assets/logo.png";
 
 interface NavigationProps {
@@ -17,10 +15,9 @@ export const Navigation = ({ isTransparent = false }: NavigationProps) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
 
-  // Detectar scroll para cambiar el fondo solo si es transparente
   useEffect(() => {
     if (!isTransparent) {
-      setIsScrolled(true); // Siempre sólido en otras páginas
+      setIsScrolled(true);
       return;
     }
 
@@ -33,7 +30,6 @@ export const Navigation = ({ isTransparent = false }: NavigationProps) => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, [isTransparent]);
 
-  // Función para scroll suave al footer
   const scrollToContact = (e: React.MouseEvent) => {
     e.preventDefault();
     const contactSection = document.getElementById('contacto');
@@ -45,7 +41,6 @@ export const Navigation = ({ isTransparent = false }: NavigationProps) => {
     }
   };
 
-  // Función para obtener clases de texto según el estado
   const getTextClasses = (isLink = false) => {
     if (isScrolled) {
       return isLink 
@@ -66,26 +61,12 @@ export const Navigation = ({ isTransparent = false }: NavigationProps) => {
     }`}>
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16">
-          {/* Logo */}
           <Link to="/" className="flex items-center space-x-4 hover:opacity-80 transition-opacity">
             <div className="w-10 h-10 bg-white rounded-full flex items-center justify-center shadow-lg">
               <img 
                 src={logo}
                 alt="Sanyi Lights Argentina" 
                 className="w-8 h-8 object-contain"
-                onError={(e) => {
-                  // Fallback si el logo no carga
-                  const target = e.target as HTMLImageElement;
-                  target.style.display = 'none';
-                  const parent = target.parentElement;
-                  if (parent) {
-                    parent.innerHTML = `
-                      <div class="w-8 h-8 bg-red-600 rounded-full flex items-center justify-center">
-                        <span class="text-white text-xs font-bold">SL</span>
-                      </div>
-                    `;
-                  }
-                }}
               />
             </div>
             <div className="hidden sm:block">
@@ -98,7 +79,6 @@ export const Navigation = ({ isTransparent = false }: NavigationProps) => {
             </div>
           </Link>
 
-          {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-8">
             <Link 
               to="/" 
@@ -121,11 +101,9 @@ export const Navigation = ({ isTransparent = false }: NavigationProps) => {
             </a>
           </div>
 
-          {/* Actions */}
           <div className="flex items-center space-x-4">
             <SearchDialog />
             
-            {/* Mobile Menu */}
             <Sheet open={isMenuOpen} onOpenChange={setIsMenuOpen}>
               <SheetTrigger asChild>
                 <Button

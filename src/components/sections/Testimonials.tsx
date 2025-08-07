@@ -197,28 +197,6 @@ export const Testimonials = () => {
             <CarouselNext className="right-4" />
           </Carousel>
         </div>
-
-        {/* Stats Section */}
-        <div className="mt-16 text-center">
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-            <div className="text-center">
-              <div className="text-3xl font-bold text-red-600 mb-2">500+</div>
-              <p className="text-muted-foreground">Eventos Exitosos</p>
-            </div>
-            <div className="text-center">
-              <div className="text-3xl font-bold text-red-600 mb-2">98%</div>
-              <p className="text-muted-foreground">Clientes Satisfechos</p>
-            </div>
-            <div className="text-center">
-              <div className="text-3xl font-bold text-red-600 mb-2">4.9</div>
-              <p className="text-muted-foreground">Rating Promedio</p>
-            </div>
-            <div className="text-center">
-              <div className="text-3xl font-bold text-red-600 mb-2">24/7</div>
-              <p className="text-muted-foreground">Soporte Técnico</p>
-            </div>
-          </div>
-        </div>
       </div>
     </section>
   );
