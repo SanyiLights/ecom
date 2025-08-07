@@ -4,20 +4,20 @@ export const products: Product[] = [
   {
     "id": "1",
     "name": "SOLSTICE QUAD 616F",
-    "image": "",
-    "category": "Uncategorized",
+    "image": "https://static.wixstatic.com/media/4f23bc_226667a7a0264b0aae8abec3483fa0f0~mv2.jpg/v1/crop/x_1392,y_293,w_2782,h_2782/fill/w_115,h_113,fp_0.50_0.50,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/%E6%AD%A3_JPG.jpg",
+    "category": "Static Lights",
     "description": "SOLSTICE QUAD 616F - Professional lighting equipment",
-    "video": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
-    "manual": "https://example.com/manual-1.pdf"
+    "video": "",
+    "manual": "https://drive.google.com/drive/folders/1zovlTR-YQI6eSgASwfmlA-mP32vvuef_?usp=drive_link"
   },
   {
     "id": "2",
     "name": "SOLSTICE DUO 616C",
-    "image": "",
-    "category": "Uncategorized",
+    "image": "https://static.wixstatic.com/media/4f23bc_b538fe93d35e42ab936756d963b9e0c8~mv2.png/v1/crop/x_374,y_259,w_2425,h_2425/fill/w_115,h_113,fp_0.50_0.50,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/%E6%AD%A3_edited.png",
+    "category": "Static Lights",
     "description": "SOLSTICE DUO 616C - Professional lighting equipment",
-    "video": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
-    "manual": "https://example.com/manual-2.pdf"
+    "video": "",
+    "manual": "https://drive.google.com/drive/folders/1Mwy_dEh4BRHwg796YIAIJakaYM3hVNLM?usp=drive_link"
   },
   {
     "id": "3",
@@ -166,11 +166,11 @@ export const products: Product[] = [
   {
     "id": "19",
     "name": "SOLSTICE DUO 616IP",
-    "image": "",
-    "category": "Uncategorized",
+    "image": "https://static.wixstatic.com/media/4f23bc_3fdd0a56a36a45258a06f2f0d548bb34~mv2.png/v1/fill/w_115,h_113,fp_0.46_0.63,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/616IP.png",
+    "category": "Static Lights",
     "description": "SOLSTICE DUO 616IP - Professional lighting equipment",
-    "video": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
-    "manual": "https://example.com/manual-19.pdf"
+    "video": "",
+    "manual": ""
   },
   {
     "id": "20",
@@ -490,11 +490,11 @@ export const products: Product[] = [
   {
     "id": "62",
     "name": "SOLSTICE QUAD 4100IP",
-    "image": "",
-    "category": "Automatic Lights",
+    "image": "https://static.wixstatic.com/media/030325_5f554947d210414f8ee4d371d9da1b66~mv2.jpg/v1/fill/w_115,h_113,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/SPL-LED-4100IP%204.jpg",
+    "category": "Static Lights",
     "description": "SOLSTICE QUAD 4100IP - Professional lighting equipment",
-    "video": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
-    "manual": "https://example.com/manual-62.pdf"
+    "video": "",
+    "manual": "https://drive.google.com/drive/folders/11zIU-qf_Mz07Npu9B2POQx1qOGL_CcrM?usp=drive_link"
   },
   {
     "id": "63",
@@ -526,101 +526,101 @@ export const products: Product[] = [
   {
     "id": "66",
     "name": "SOLSTICE 616HEX",
-    "image": "",
-    "category": "Automatic Lights",
+    "image": "https://static.wixstatic.com/media/4f23bc_8cabcee38bf945068b958131b40e3f36~mv2.jpg/v1/crop/x_854,y_372,w_4027,h_3980/fill/w_115,h_113,fp_0.50_0.50,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/%E6%AD%A3.jpg",
+    "category": "Static Lights",
     "description": "SOLSTICE 616HEX - Professional lighting equipment",
-    "video": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
-    "manual": "https://example.com/manual-66.pdf"
+    "video": "",
+    "manual": "https://drive.google.com/drive/folders/1ob3IjeUg1f52h7ead3mnApPrLa9JlHv2?usp=drive_link"
   },
   {
     "id": "67",
     "name": "LIMONA UPLIGHT 618",
-    "image": "",
-    "category": "Automatic Lights",
+    "image": "https://static.wixstatic.com/media/4f23bc_c6c383fce7ae43f4a4e004af68e87ffa~mv2.jpg/v1/crop/x_1039,y_242,w_3397,h_3357/fill/w_115,h_113,fp_0.50_0.50,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/5.jpg",
+    "category": "Static Lights",
     "description": "LIMONA UPLIGHT 618 - Professional lighting equipment",
-    "video": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
-    "manual": "https://example.com/manual-67.pdf"
+    "video": "",
+    "manual": "https://drive.google.com/drive/folders/1raDay0bsgODGWlu1BcOjE6kGv3LsIPBx?usp=drive_link"
   },
   {
     "id": "68",
     "name": "LIMONA 1815L IP",
-    "image": "",
-    "category": "Automatic Lights",
+    "image": "https://static.wixstatic.com/media/4f23bc_87e2b859bdf74ac6957c27bf4dbce5e6~mv2.jpg/v1/crop/x_1158,y_585,w_3486,h_3445/fill/w_115,h_113,fp_0.50_0.50,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/SPL-LED-1815L%20IP%E6%AD%A3.jpg",
+    "category": "Static Lights",
     "description": "LIMONA 1815L IP - Professional lighting equipment",
-    "video": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
-    "manual": "https://example.com/manual-68.pdf"
+    "video": "",
+    "manual": "https://drive.google.com/drive/folders/1iHOUGonx2cYgL2DWqEZl-IftPVL-MPMi?usp=drive_link"
   },
   {
     "id": "69",
     "name": "LIMONA PAR L2415 IP (RGBLA-UV)",
-    "image": "",
-    "category": "Automatic Lights",
+    "image": "https://static.wixstatic.com/media/4f23bc_90dae03585154855bc758d64b86f62f3~mv2.jpg/v1/crop/x_1140,y_209,w_3980,h_3933/fill/w_115,h_113,fp_0.50_0.50,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/%E6%AD%A3.jpg",
+    "category": "Static Lights",
     "description": "LIMONA PAR L2415 IP (RGBLA-UV) - Professional lighting equipment",
-    "video": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
-    "manual": "https://example.com/manual-69.pdf"
+    "video": "",
+    "manual": "https://drive.google.com/drive/folders/13ydRNiy5FXfDm6TnIkhPhG4tHCg6AzMZ?usp=drive_link"
   },
   {
     "id": "70",
     "name": "HUEWAVE PL 910IP",
-    "image": "",
-    "category": "Automatic Lights",
+    "image": "https://static.wixstatic.com/media/030325_3a63de18698f4ea59edc035addb62513~mv2.jpg/v1/fill/w_115,h_113,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/SPL-LED-910%20IP1_edited.jpg",
+    "category": "Static Lights",
     "description": "HUEWAVE PL 910IP - Professional lighting equipment",
-    "video": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
-    "manual": "https://example.com/manual-70.pdf"
+    "video": "",
+    "manual": "https://drive.google.com/drive/folders/1qCY95eF7-QMEF_9Fjm80p8WohDelELk6?usp=drive_link"
   },
   {
     "id": "71",
     "name": "HUEWAVE PL 1210",
-    "image": "",
-    "category": "Automatic Lights",
+    "image": "https://static.wixstatic.com/media/030325_81187ffb94c943b98430aeb1dadf85ce~mv2.jpg/v1/fill/w_115,h_113,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/SPL-LED-12101_edited.jpg",
+    "category": "Static Lights",
     "description": "HUEWAVE PL 1210 - Professional lighting equipment",
-    "video": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
-    "manual": "https://example.com/manual-71.pdf"
+    "video": "",
+    "manual": "https://drive.google.com/drive/folders/1MCEUDPlGYLHTNY8bZg7Q3YlQoMsBekZf?usp=drive_link"
   },
   {
     "id": "72",
     "name": "HUEWAVE PL 1810",
-    "image": "",
-    "category": "Automatic Lights",
+    "image": "https://static.wixstatic.com/media/4f23bc_bc259a59cd3846c6a6d89bf3ec319f4e~mv2.jpg/v1/crop/x_1186,y_293,w_3099,h_3062/fill/w_115,h_113,fp_0.35_0.59,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/%E6%AD%A3.jpg",
+    "category": "Static Lights",
     "description": "HUEWAVE PL 1810 - Professional lighting equipment",
-    "video": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
-    "manual": "https://example.com/manual-72.pdf"
+    "video": "",
+    "manual": "https://drive.google.com/drive/folders/1EMfdX8W73pUFtFuRwKaJ19aqQhcWBDdH?usp=drive_link"
   },
   {
     "id": "73",
     "name": "HUEWAVE PL 1810IP",
-    "image": "",
-    "category": "Automatic Lights",
+    "image": "https://static.wixstatic.com/media/4f23bc_16d76155313d440591402c680f090a20~mv2.jpg/v1/crop/x_1132,y_239,w_3209,h_3170/fill/w_115,h_113,fp_0.50_0.50,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/%E6%AD%A3_JPG.jpg",
+    "category": "Static Lights",
     "description": "HUEWAVE PL 1810IP - Professional lighting equipment",
-    "video": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
-    "manual": "https://example.com/manual-73.pdf"
+    "video": "",
+    "manual": "https://drive.google.com/drive/folders/10OLoEN6jXOlhTJoNeWvebuSv3_edLYfp?usp=drive_link"
   },
   {
     "id": "74",
     "name": "DUALTONE PAR L450",
-    "image": "",
-    "category": "Automatic Lights",
+    "image": "https://static.wixstatic.com/media/4f23bc_991272a3ae9c4595b2eafa4a4d715e13~mv2.jpg/v1/crop/x_1690,y_969,w_2981,h_2946/fill/w_115,h_113,fp_0.50_0.50,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/%E6%AD%A3.jpg",
+    "category": "Static Lights",
     "description": "DUALTONE PAR L450 - Professional lighting equipment",
-    "video": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
-    "manual": "https://example.com/manual-74.pdf"
+    "video": "",
+    "manual": "https://drive.google.com/drive/folders/1lLX4MsvEbfTO34p5R7DiZ9nuts5rPLYc?usp=drive_link"
   },
   {
     "id": "75",
     "name": "DUALTONE PAR L750",
-    "image": "",
-    "category": "Automatic Lights",
+    "image": "https://static.wixstatic.com/media/030325_46b4627d8fbe442fa64ab58d337c6088~mv2.jpg/v1/fill/w_126,h_124,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/SPL-LED-P750%201_edited.jpg",
+    "category": "Static Lights",
     "description": "DUALTONE PAR L750 - Professional lighting equipment",
-    "video": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
-    "manual": "https://example.com/manual-75.pdf"
+    "video": "",
+    "manual": "https://drive.google.com/drive/folders/1zLV5JqQy9XJuaRz26Q10RuqKUN0FA4Rr?usp=drive_link"
   },
   {
     "id": "76",
     "name": "HUEWAVE PL 2410IP",
-    "image": "",
-    "category": "Automatic Lights",
+    "image": "https://static.wixstatic.com/media/4f23bc_e9e30e2603b3422aa50bdb46aabc2cd3~mv2.jpg/v1/crop/x_1192,y_186,w_2997,h_2961/fill/w_126,h_124,fp_0.50_0.50,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/%E6%AD%A3.jpg",
+    "category": "Static Lights",
     "description": "HUEWAVE PL 2410IP - Professional lighting equipment",
-    "video": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
-    "manual": "https://example.com/manual-76.pdf"
+    "video": "",
+    "manual": "https://drive.google.com/drive/folders/15djbaU5U7XqhjfZRAghSCQ_BGZTfNMA0?usp=drive_link"
   },
   {
     "id": "77",

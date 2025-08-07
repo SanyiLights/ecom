@@ -2,7 +2,6 @@ import { Navigation } from "@/components/ui/navigation";
 import { ProductCard } from "@/components/ui/product-card";
 import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import { Footer } from "@/components/ui/footer";
@@ -13,7 +12,7 @@ import { products } from "@/data/products-scraped";
 const Products = () => {
   const location = useLocation();
   const [searchQuery, setSearchQuery] = useState("");
-  const [selectedCategory, setSelectedCategory] = useState<string>("");
+  const [selectedCategory, setSelectedCategory] = useState<string>("Todos");
   const [viewMode, setViewMode] = useState<"grid" | "list">("grid");
 
   useEffect(() => {
@@ -29,6 +28,14 @@ const Products = () => {
 
   const filteredProducts = filterProducts(products, searchQuery, selectedCategory);
 
+  const handleCategorySelect = (category: string) => {
+    if (selectedCategory === category) {
+      setSelectedCategory("Todos"); // Deseleccionar si ya está seleccionada
+    } else {
+      setSelectedCategory(category);
+    }
+  };
+
   return (
     <div className="min-h-screen bg-background">
       <Navigation isTransparent={false} />
@@ -42,7 +49,7 @@ const Products = () => {
             </p>
           </div>
 
-          <div className="flex flex-col md:flex-row gap-4 mb-8">
+          <div className="flex flex-col gap-4 mb-8">
             <div className="flex-1">
               <Input
                 placeholder="Buscar productos..."
@@ -52,20 +59,20 @@ const Products = () => {
               />
             </div>
             
-            <div className="flex items-center gap-4">
-              <Select value={selectedCategory} onValueChange={setSelectedCategory}>
-                <SelectTrigger className="w-[180px]">
-                  <SelectValue placeholder="Categoría" />
-                </SelectTrigger>
-                <SelectContent>
-                  {categories.map((category) => (
-                    <SelectItem key={category} value={category}>
-                      {category}
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
-            
+            {/* Chips de categorías */}
+            <div className="flex flex-wrap gap-2">
+              {categories.map((category) => (
+                <Badge
+                  key={category}
+                  variant={selectedCategory === category ? "default" : "secondary"}
+                  className={`cursor-pointer hover:bg-primary hover:text-primary-foreground transition-colors ${
+                    selectedCategory === category ? "bg-primary text-primary-foreground" : ""
+                  }`}
+                  onClick={() => handleCategorySelect(category)}
+                >
+                  {category}
+                </Badge>
+              ))}
             </div>
           </div>
 
@@ -99,7 +106,7 @@ const Products = () => {
           )}
         </div>
       </div>
-
+      
       <Footer />
     </div>
   );
