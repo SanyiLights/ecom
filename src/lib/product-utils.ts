@@ -1,4 +1,5 @@
-import { Product, products } from "@/data/products";
+import { Product } from "@/data/products";
+import { products } from "@/data/products-scraped";
 
 export const getProductById = (id: string): Product | undefined => {
   return products.find(product => product.id === id);

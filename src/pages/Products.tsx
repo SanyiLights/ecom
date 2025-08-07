@@ -1,15 +1,14 @@
 import { Navigation } from "@/components/ui/navigation";
 import { ProductCard } from "@/components/ui/product-card";
-import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Grid, List } from "lucide-react";
 import { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import { Footer } from "@/components/ui/footer";
-import { products, categories } from "@/data/products";
+import { categories } from "@/data/products";
 import { filterProducts } from "@/lib/product-utils";
+import { products } from "@/data/products-scraped";
 
 const Products = () => {
   const location = useLocation();
@@ -66,25 +65,7 @@ const Products = () => {
                   ))}
                 </SelectContent>
               </Select>
-              
-              <div className="flex items-center border rounded-lg">
-                <Button
-                  variant={viewMode === "grid" ? "default" : "ghost"}
-                  size="sm"
-                  onClick={() => setViewMode("grid")}
-                  className="rounded-r-none"
-                >
-                  <Grid className="h-4 w-4" />
-                </Button>
-                <Button
-                  variant={viewMode === "list" ? "default" : "ghost"}
-                  size="sm"
-                  onClick={() => setViewMode("list")}
-                  className="rounded-l-none"
-                >
-                  <List className="h-4 w-4" />
-                </Button>
-              </div>
+            
             </div>
           </div>
 

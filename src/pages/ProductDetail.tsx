@@ -40,6 +40,10 @@ const ProductDetail = () => {
 
   const videoId = getYouTubeVideoId(product.video);
 
+  // Debug logging
+  console.log('Product image URL:', product.image);
+  console.log('Product data:', product);
+
   return (
     <div className="min-h-screen bg-background">
       <Navigation isTransparent={false} />
@@ -56,8 +60,17 @@ const ProductDetail = () => {
             </Link>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-            {/* Columna izquierda: Imagen */}
+          <div className="mt-8">
+            <div className="flex items-center gap-2 mb-2">
+              <Badge variant="outline">{product.category}</Badge>
+            </div>
+            <h1 className="text-3xl font-bold mb-2">{product.name}</h1>
+            <p className="text-lg text-muted-foreground">
+              {product.description}
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mt-5">
             <div className="space-y-4">
               <div className="relative aspect-square bg-muted rounded-lg overflow-hidden">
                 <img 
@@ -67,8 +80,7 @@ const ProductDetail = () => {
                 />
               </div>
             </div>
-
-            {/* Columna derecha: Video + Manual */}
+        
             <div className="space-y-6">
               {videoId && (
                 <div>
@@ -102,15 +114,7 @@ const ProductDetail = () => {
           </div>
 
           {/* Información del producto debajo */}
-          <div className="mt-8">
-            <div className="flex items-center gap-2 mb-2">
-              <Badge variant="outline">{product.category}</Badge>
-            </div>
-            <h1 className="text-3xl font-bold mb-2">{product.name}</h1>
-            <p className="text-lg text-muted-foreground">
-              {product.description}
-            </p>
-          </div>
+          
         </div>
       </div>
 
