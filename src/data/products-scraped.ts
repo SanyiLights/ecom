@@ -95,7 +95,7 @@ export const products: Product[] = [
     "id": "29",
     "name": "VERSATILIS LUCIDUS 1000",
     "image": "https://static.wixstatic.com/media/4f23bc_102e831a9b914745bc8f28c918e4e948~mv2.jpg/v1/fill/w_132,h_132,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/SPL-PRO-1000HBRT.jpg",
-    "category": "",
+    "category": "Automatic Lights",
     "description": "VERSATILIS LUCIDUS 1000 - Professional lighting equipment",
     "video": "",
     "manual": "https://drive.google.com/drive/folders/16dfZL5txCdO6S0rZ-P6GM-K02Hn0oQ7n?usp=drive_link"
@@ -113,7 +113,7 @@ export const products: Product[] = [
     "id": "31",
     "name": "VERSATILIS 680CMY",
     "image": "https://static.wixstatic.com/media/4f23bc_e3165d2a06d842438f6029950aef8be8~mv2.jpg/v1/crop/x_57,y_106,w_1749,h_1749/fill/w_132,h_132,fp_0.50_0.50,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/680-1_edited.jpg",
-    "category": "",
+    "category": "Automatic Lights",
     "description": "VERSATILIS 680CMY - Professional lighting equipment",
     "video": "",
     "manual": "https://drive.google.com/drive/folders/1cezc1n9J5_Jwe5-Je68JhjpzO3UAi-ix?usp=drive_link"
@@ -221,7 +221,7 @@ export const products: Product[] = [
     "id": "43",
     "name": "STELLA WASH 740F",
     "image": "https://static.wixstatic.com/media/4f23bc_fd29d9d12dca4a0ab097727347dfb9bc~mv2.jpeg/v1/crop/x_17,y_24,w_697,h_697/fill/w_132,h_132,fp_0.50_0.50,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/SPL-LED-740F9.jpeg",
-    "category": "Static Lights",
+    "category": "Automatic Lights",
     "description": "STELLA WASH 740F - Professional lighting equipment",
     "video": "",
     "manual": "https://drive.google.com/drive/folders/1AnpQkAEH1WV443pb3oFr6Rt2dbhD0p56?usp=drive_link"
@@ -248,7 +248,7 @@ export const products: Product[] = [
     "id": "46",
     "name": "HUEWAVE MOVING HEAD 1915Z",
     "image": "https://static.wixstatic.com/media/4f23bc_675263775298458f8467df70457025b5~mv2.jpg/v1/fill/w_132,h_132,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/1915%E6%AD%A31_edited.jpg",
-    "category": "Static Lights",
+    "category": "Automatic Lights",
     "description": "HUEWAVE MOVING HEAD 1915Z - Professional lighting equipment",
     "video": "",
     "manual": "https://drive.google.com/drive/folders/17QXW4dobPIvFUBr4KKob1TZKUe2XL3s3?usp=drive_link"
