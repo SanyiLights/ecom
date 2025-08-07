@@ -2,7 +2,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Eye } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Product } from "@/data/products";
 
 interface ProductCardProps extends Product {
@@ -17,6 +17,14 @@ export const ProductCard = ({
   showVideoIcon = false,
   ...props 
 }: ProductCardProps) => {
+  const navigate = useNavigate();
+
+  const handleViewDetails = (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    navigate(`/producto/${id}`);
+  };
+
   return (
     <Link to={`/producto/${id}`} className="block group">
       <Card className="overflow-hidden transition-all duration-300 hover:shadow-lg hover:scale-[1.02] cursor-pointer">
@@ -45,11 +53,8 @@ export const ProductCard = ({
             <div className="flex items-center justify-between pt-2">
               <Button 
                 size="sm" 
-                className="w-full group-hover:bg-primary group-hover:text-primary-foreground transition-colors"
-                onClick={(e) => {
-                  e.preventDefault();
-                  // Aquí puedes agregar lógica adicional si necesitas
-                }}
+                className="w-full bg-gray-100 text-gray-700 group-hover:bg-red-500 group-hover:text-white transition-all duration-300"
+                onClick={handleViewDetails}
               >
                 <Eye className="h-4 w-4 mr-1" />
                 Ver Detalles

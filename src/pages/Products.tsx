@@ -8,7 +8,7 @@ import { Grid, List } from "lucide-react";
 import { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import { Footer } from "@/components/ui/footer";
-import { products, categories} from "@/data/products";
+import { products, categories } from "@/data/products";
 import { filterProducts } from "@/lib/product-utils";
 
 const Products = () => {
@@ -49,7 +49,7 @@ const Products = () => {
                 placeholder="Buscar productos..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="max-w-md"
+                className="max-w-md bg-white focus:border-red-600 focus:ring-red-500 shadow-lg"
               />
             </div>
             

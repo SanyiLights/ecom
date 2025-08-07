@@ -8,6 +8,7 @@ import messi from "/src/assets/messi.jpg";
 import prof2 from "/src/assets/prof2.jpg";
 import prof3 from "/src/assets/prof3.jpg";
 import professionalLightingEvent from "/src/assets/professional-lighting-event.jpg";
+import { openWhatsApp } from "@/lib/contact";
 
 const professionalImages = [
   {
@@ -89,17 +90,6 @@ export const HeroSection = () => {
     }
   };
 
-  const scrollToContact = (e: React.MouseEvent) => {
-    e.preventDefault();
-    const contactSection = document.getElementById('contacto');
-    if (contactSection) {
-      contactSection.scrollIntoView({ 
-        behavior: 'smooth',
-        block: 'start'
-      });
-    }
-  };
-
   return (
     <section className="relative min-h-[100vh] sm:min-h-[90vh] overflow-hidden">
       <div 
@@ -147,7 +137,7 @@ export const HeroSection = () => {
                 <Button
                   size="lg"
                   variant="outline"
-                  onClick={scrollToContact}
+                  onClick={openWhatsApp}
                   className="border-white text-white bg-white/10 backdrop-blur-sm hover:bg-white/20 hover:border-white/80 w-full sm:w-auto text-sm sm:text-base px-6 sm:px-8 py-3 sm:py-4 transition-all duration-300 flex-1 sm:flex-none"
                 >
                   <svg className="mr-2 h-4 w-4 sm:h-5 sm:w-5" fill="currentColor" viewBox="0 0 24 24">
@@ -194,7 +184,6 @@ export const HeroSection = () => {
           />
         ))}
       </div>
-
     </section>
   );
 };

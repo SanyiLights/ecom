@@ -5,19 +5,14 @@ import Products from "./pages/Products";
 import ProductDetail from "./pages/ProductDetail";
 import NotFound from "./pages/NotFound";
 import { Button } from "@/components/ui/button";
-import { MessageCircle } from "lucide-react";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { Toaster } from "@/components/ui/toaster";
+import { openWhatsApp } from "./lib/contact";
 
 const queryClient = new QueryClient();
 
 function App() {
-  const openWhatsApp = () => {
-    const phoneNumber = "5491171388885";
-    const message = "Hola! Me interesa conocer más sobre sus productos de iluminación profesional.";
-    const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
-    window.open(url, '_blank');
-  };
+
 
   return (
     <QueryClientProvider client={queryClient}>

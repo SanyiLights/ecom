@@ -88,7 +88,7 @@ export const Navigation = ({ isTransparent = false }: NavigationProps) => {
             </div>
           </Link>
 
-          <div className="hidden md:flex items-center space-x-8">
+          <div className="hidden md:flex items-center space-x-6">
             <Link 
               to="/" 
               className={`transition-all duration-300 px-3 py-2 rounded-md ${getTextClasses(true)}`}

@@ -1,7 +1,8 @@
 import { Navigation } from "@/components/ui/navigation";
 import { Button } from "@/components/ui/button";
-import { ArrowLeft, Play, FileText } from "lucide-react";
-import { useEffect } from "react";
+import { Badge } from "@/components/ui/badge";
+import { ArrowLeft, FileText } from "lucide-react";
+import { useState, useEffect } from "react";
 import { useParams, Link, useNavigate } from "react-router-dom";
 import { Footer } from "@/components/ui/footer";
 import { getProductById } from "@/lib/product-utils";
@@ -26,13 +27,18 @@ const ProductDetail = () => {
     return null;
   }
 
-  const openDemoVideo = () => {
-    window.open(product.video, '_blank');
-  };
-
   const openUserManual = () => {
     window.open(product.manual, '_blank');
   };
+
+  // Función para extraer el ID del video de YouTube
+  const getYouTubeVideoId = (url: string) => {
+    const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/;
+    const match = url.match(regExp);
+    return (match && match[2].length === 11) ? match[2] : null;
+  };
+
+  const videoId = getYouTubeVideoId(product.video);
 
   return (
     <div className="min-h-screen bg-background">
@@ -63,33 +69,55 @@ const ProductDetail = () => {
 
             <div className="space-y-6">
               <div>
+                <div className="flex items-center gap-2 mb-2">
+                  <Badge variant="outline">{product.category}</Badge>
+                </div>
                 
                 <h1 className="text-3xl font-bold mb-2">{product.name}</h1>
 
                 <p className="text-lg text-muted-foreground mb-6">
                   {product.description}
                 </p>
-
-                <div className="flex gap-4">
-                  <Button 
-                    size="lg" 
-                    onClick={openDemoVideo}
-                    className="flex-1 group"
-                  >
-                    <Play className="mr-2 h-5 w-5 group-hover:scale-110 transition-transform" />
-                    Ver Demo
-                  </Button>
-                  <Button 
-                    size="lg" 
-                    variant="outline"
-                    onClick={openUserManual}
-                    className="flex-1 group"
-                  >
-                    <FileText className="mr-2 h-5 w-5 group-hover:scale-110 transition-transform" />
-                    Manual Usuario
-                  </Button>
-                </div>
               </div>
+            </div>
+          </div>
+
+          {/* Video Embebido */}
+          {videoId && (
+            <div className="mt-12">
+              <h3 className="text-xl font-semibold mb-4">Video del Producto</h3>
+              <div className="relative aspect-video bg-muted rounded-lg overflow-hidden">
+                <iframe
+                  src={`https://www.youtube.com/embed/${videoId}`}
+                  title={`Video de ${product.name}`}
+                  className="w-full h-full"
+                  frameBorder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                />
+              </div>
+            </div>
+          )}
+
+          {/* Manual de Usuario */}
+          <div className="mt-8">
+            <h3 className="text-xl font-semibold mb-4">Manual de Usuario</h3>
+            <Button 
+              onClick={openUserManual}
+              variant="outline"
+              className="group"
+            >
+              <FileText className="mr-2 h-4 w-4 group-hover:scale-110 transition-transform" />
+              Descargar Manual de Usuario
+            </Button>
+          </div>
+
+          <div className="mt-12">
+            <div className="prose max-w-none">
+              <h3 className="text-xl font-semibold mb-4">Descripción del Producto</h3>
+              <p className="text-muted-foreground leading-relaxed">
+                {product.description}
+              </p>
             </div>
           </div>
         </div>

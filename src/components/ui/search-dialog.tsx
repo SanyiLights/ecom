@@ -11,11 +11,12 @@ import { Search, X } from "lucide-react";
 import { useState } from "react";
 import { ProductCard } from "./product-card";
 import { searchProducts } from "@/lib/product-utils";
+import { Product } from "@/data/products";
 
 export const SearchDialog = () => {
   const [open, setOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
-  const [searchResults, setSearchResults] = useState<any[]>([]);
+  const [searchResults, setSearchResults] = useState<Product[]>([]);
 
   const handleSearch = (query: string) => {
     setSearchQuery(query);
@@ -38,7 +39,11 @@ export const SearchDialog = () => {
   return (
     <Dialog open={open} onOpenChange={handleOpenChange}>
       <DialogTrigger asChild>
-        <Button variant="ghost" size="icon" className="relative">
+        <Button 
+          variant="ghost" 
+          size="icon" 
+          className="relative bg-white/10 hover:bg-white/20 text-white border border-white/20 hover:border-white/30"
+        >
           <Search className="h-5 w-5" />
         </Button>
       </DialogTrigger>
