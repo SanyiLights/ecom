@@ -2,9 +2,9 @@ import { ProductCard } from "@/components/ui/product-card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { ArrowRight } from "lucide-react";
-import { getFeaturedProducts } from "@/data/products";
 import { Link } from "react-router-dom";
 import { useIsMobile } from "@/hooks/use-mobile";
+import { getFeaturedProducts } from "@/lib/product-utils";
 
 export const FeaturedProducts = () => {
   const isMobile = useIsMobile();

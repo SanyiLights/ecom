@@ -9,174 +9,332 @@ export interface Product {
 }
 
 export const products: Product[] = [
+  // AUTOMATED LIGHT - BEAM
   {
     id: "1",
-    name: "SPL-MHL-M251G YH",
+    name: "VERSATILIS LUCIDUS 1000",
     image: "https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=500&h=500&fit=crop",
     category: "Beam Moving Head",
-    description: "250W Beam Moving Head con tecnología avanzada para eventos profesionales",
+    description: "Moving head beam 1000W high brightness para eventos profesionales",
     video: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
     manual: "https://example.com/manual-1.pdf"
   },
   {
     id: "2",
-    name: "SPL-LED-M560S",
+    name: "VERSATILIS VERUS 1000",
     image: "https://images.unsplash.com/photo-1485846234645-a62644f84728?w=500&h=500&fit=crop",
-    category: "LED Moving Head",
-    description: "5X120W LED Moving Light con efectos RGBW avanzados",
+    category: "Beam Moving Head",
+    description: "SPL-PRO-1000HCRI high CRI beam moving head con excelente reproducción de color",
     video: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
     manual: "https://example.com/manual-2.pdf"
   },
   {
     id: "3",
-    name: "SPL-LED-S616C IP",
+    name: "VERSATILIS IMPERVIUS 1000",
     image: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=500&h=500&fit=crop",
-    category: "LED Series",
-    description: "IP 65 2*100W dual white LED blinder para exteriores",
+    category: "Beam Moving Head",
+    description: "Moving head beam 1000W IP65 waterproof para exteriores",
     video: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
     manual: "https://example.com/manual-3.pdf"
   },
   {
     id: "4",
-    name: "SPL-LED-P1815 6IN1 IP",
+    name: "JUBARIS BEAM L200",
     image: "https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=500&h=500&fit=crop",
-    category: "LED PAR Light",
-    description: "IP 65 LED PAR LIGHT con 6 efectos integrados",
+    category: "Beam Moving Head",
+    description: "L200 beam moving head compacto y potente",
     video: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
     manual: "https://example.com/manual-4.pdf"
   },
   {
     id: "5",
-    name: "SPL-LED-P1220 4IN1 IP",
+    name: "JUBARIS BEAM L90",
     image: "https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=500&h=500&fit=crop",
-    category: "LED PAR Light",
-    description: "IP 65 LED PAR LIGHT con 4 efectos integrados",
+    category: "Beam Moving Head",
+    description: "Beam moving head compacto para espacios reducidos",
     video: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
     manual: "https://example.com/manual-5.pdf"
   },
+
+  // AUTOMATED LIGHT - WASH
   {
     id: "6",
-    name: "SPL-LED-P450 II IP",
-    image: "https://images.unsplash.com/photo-1511795409834-ef04bbd61622?w=500&h=500&fit=crop",
-    category: "LED PAR Light",
-    description: "IP 65 4 EYES PAR LIGHTS para iluminación escénica",
+    name: "STELLA WASH 1940F",
+    image: "https://images.unsplash.com/photo-1501281668545-0dc85e0b8e7b?w=500&h=500&fit=crop",
+    category: "Wash Moving Head",
+    description: "Moving head wash 19x15W LED para iluminación de escenarios",
     video: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
     manual: "https://example.com/manual-6.pdf"
   },
   {
     id: "7",
-    name: "SPL-LED-M600BSWF",
-    image: "https://images.unsplash.com/photo-1501281668545-0dc85e0b8e7b?w=500&h=500&fit=crop",
-    category: "LED Moving Head",
-    description: "LED Beam Moving Head con tecnología de vanguardia",
+    name: "STELLA WASH 1920F",
+    image: "https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=500&h=500&fit=crop",
+    category: "Wash Moving Head",
+    description: "Moving head wash 19x20W LED con excelente cobertura",
     video: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
     manual: "https://example.com/manual-7.pdf"
   },
   {
     id: "8",
-    name: "SPL-LED-M400B",
-    image: "https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=500&h=500&fit=crop",
-    category: "LED Moving Head",
-    description: "LED Moving Head Lights para eventos profesionales",
+    name: "STELLA WASH 740F",
+    image: "https://images.unsplash.com/photo-1485846234645-a62644f84728?w=500&h=500&fit=crop",
+    category: "Wash Moving Head",
+    description: "Moving head wash 7x40W LED para eventos medianos",
     video: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
     manual: "https://example.com/manual-8.pdf"
   },
   {
     id: "9",
-    name: "SPL-LED-616C 6in1",
-    image: "https://images.unsplash.com/photo-1485846234645-a62644f84728?w=500&h=500&fit=crop",
-    category: "LED Series",
-    description: "SOLSTICE DUO 616C con efectos especiales",
+    name: "STELLA WASH 1940IP",
+    image: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=500&h=500&fit=crop",
+    category: "Wash Moving Head",
+    description: "Moving head wash 19x40W IP65 waterproof para exteriores",
     video: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
     manual: "https://example.com/manual-9.pdf"
   },
   {
     id: "10",
-    name: "SPL-LED-P2415 6IN1 IP",
-    image: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=500&h=500&fit=crop",
-    category: "LED PAR Light",
-    description: "IP 65 LED PAR LIGHTS con 6 efectos integrados",
+    name: "HUEWAVE MOVING HEAD 1915Z",
+    image: "https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=500&h=500&fit=crop",
+    category: "Wash Moving Head",
+    description: "Moving head wash 19x15W con zoom para control preciso",
     video: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
     manual: "https://example.com/manual-10.pdf"
   },
+
+  // STATIC LIGHT - PAR LED
   {
     id: "11",
-    name: "SPL-LED-Display-1000",
-    image: "https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=500&h=500&fit=crop",
-    category: "LED Display",
-    description: "LED Display Panel 1000x1000mm para eventos masivos",
+    name: "HUEWAVE PL 1810",
+    image: "https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=500&h=500&fit=crop",
+    category: "LED PAR Light",
+    description: "PAR LED 18x10W RGBWA para iluminación escénica",
     video: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
     manual: "https://example.com/manual-11.pdf"
   },
   {
     id: "12",
-    name: "SPL-Console-DMX-512",
-    image: "https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=500&h=500&fit=crop",
-    category: "Console Series",
-    description: "DMX 512 Console Controller para control profesional",
+    name: "HUEWAVE PL 1810IP",
+    image: "https://images.unsplash.com/photo-1501281668545-0dc85e0b8e7b?w=500&h=500&fit=crop",
+    category: "LED PAR Light",
+    description: "PAR LED 18x10W IP65 waterproof para exteriores",
     video: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
     manual: "https://example.com/manual-12.pdf"
+  },
+  {
+    id: "13",
+    name: "HUEWAVE PL 1210",
+    image: "https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=500&h=500&fit=crop",
+    category: "LED PAR Light",
+    description: "PAR LED 12x10W RGBWA para eventos compactos",
+    video: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+    manual: "https://example.com/manual-13.pdf"
+  },
+  {
+    id: "14",
+    name: "HUEWAVE PL 910IP",
+    image: "https://images.unsplash.com/photo-1485846234645-a62644f84728?w=500&h=500&fit=crop",
+    category: "LED PAR Light",
+    description: "PAR LED 9x10W IP65 waterproof para exteriores",
+    video: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+    manual: "https://example.com/manual-14.pdf"
+  },
+  {
+    id: "15",
+    name: "HUEWAVE PL 2410IP",
+    image: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=500&h=500&fit=crop",
+    category: "LED PAR Light",
+    description: "PAR LED 24x10W IP65 waterproof para alta potencia",
+    video: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+    manual: "https://example.com/manual-15.pdf"
+  },
+  {
+    id: "16",
+    name: "HUEWAVE PL 363",
+    image: "https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=500&h=500&fit=crop",
+    category: "LED PAR Light",
+    description: "PAR LED 3x6W RGBWA compacto para espacios reducidos",
+    video: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+    manual: "https://example.com/manual-16.pdf"
+  },
+  {
+    id: "17",
+    name: "DUALTONE PAR L450",
+    image: "https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=500&h=500&fit=crop",
+    category: "LED PAR Light",
+    description: "PAR LED 4x50W dual white para iluminación profesional",
+    video: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+    manual: "https://example.com/manual-17.pdf"
+  },
+  {
+    id: "18",
+    name: "DUALTONE PAR L750",
+    image: "https://images.unsplash.com/photo-1501281668545-0dc85e0b8e7b?w=500&h=500&fit=crop",
+    category: "LED PAR Light",
+    description: "PAR LED 7x50W dual white de alta potencia",
+    video: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+    manual: "https://example.com/manual-18.pdf"
+  },
+
+  // STATIC LIGHT - BLINDER
+  {
+    id: "19",
+    name: "COLOR SPECTRUM STROBE T3240",
+    image: "https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=500&h=500&fit=crop",
+    category: "LED Blinder",
+    description: "Blinder LED 32x40W RGBWA para efectos de escena",
+    video: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+    manual: "https://example.com/manual-19.pdf"
+  },
+  {
+    id: "20",
+    name: "COLOR SPECTRUM 4410IP",
+    image: "https://images.unsplash.com/photo-1485846234645-a62644f84728?w=500&h=500&fit=crop",
+    category: "LED Blinder",
+    description: "Blinder LED 44x10W IP65 waterproof para exteriores",
+    video: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+    manual: "https://example.com/manual-20.pdf"
+  },
+
+  // LED VIDEO WALL
+  {
+    id: "21",
+    name: "LED VIDEO WALL P2.6 INDOOR",
+    image: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=500&h=500&fit=crop",
+    category: "LED Display",
+    description: "LED Video Wall P2.6 indoor 500x500mm para interiores",
+    video: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+    manual: "https://example.com/manual-21.pdf"
+  },
+  {
+    id: "22",
+    name: "LED VIDEO WALL P3.91 OUTDOOR",
+    image: "https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=500&h=500&fit=crop",
+    category: "LED Display",
+    description: "LED Video Wall P3.91 outdoor 500x500mm para exteriores",
+    video: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+    manual: "https://example.com/manual-22.pdf"
+  },
+
+  // CONTROLLER
+  {
+    id: "23",
+    name: "HEMERA DMX C192",
+    image: "https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=500&h=500&fit=crop",
+    category: "Console Series",
+    description: "DMX Controller 192 channels para control profesional",
+    video: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+    manual: "https://example.com/manual-23.pdf"
+  },
+  {
+    id: "24",
+    name: "HEMERA DMX C384",
+    image: "https://images.unsplash.com/photo-1501281668545-0dc85e0b8e7b?w=500&h=500&fit=crop",
+    category: "Console Series",
+    description: "DMX Controller 384 channels para eventos grandes",
+    video: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+    manual: "https://example.com/manual-24.pdf"
+  },
+  {
+    id: "25",
+    name: "EMPOWERER UNI4",
+    image: "https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=500&h=500&fit=crop",
+    category: "Console Series",
+    description: "DMX Controller universal 4 universes para control avanzado",
+    video: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+    manual: "https://example.com/manual-25.pdf"
+  },
+  {
+    id: "26",
+    name: "EMPOWERER MINI2",
+    image: "https://images.unsplash.com/photo-1485846234645-a62644f84728?w=500&h=500&fit=crop",
+    category: "Console Series",
+    description: "DMX Controller mini 2 universes para eventos compactos",
+    video: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+    manual: "https://example.com/manual-26.pdf"
+  },
+
+  // TV & STUDIO
+  {
+    id: "27",
+    name: "STUDIO LUX 1600",
+    image: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=500&h=500&fit=crop",
+    category: "TV & Studio",
+    description: "Studio light 1600W para producción televisiva profesional",
+    video: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+    manual: "https://example.com/manual-27.pdf"
+  },
+  {
+    id: "28",
+    name: "STUDIO LUX FRESNEL 400",
+    image: "https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=500&h=500&fit=crop",
+    category: "TV & Studio",
+    description: "Studio Fresnel 400W para iluminación de estudio",
+    video: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+    manual: "https://example.com/manual-28.pdf"
+  },
+
+  // EFFECT LIGHT
+  {
+    id: "29",
+    name: "VINTAGE COLUMNA 6",
+    image: "https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=500&h=500&fit=crop",
+    category: "Effect Light",
+    description: "Efecto vintage columna 6 canales para ambiente retro",
+    video: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+    manual: "https://example.com/manual-29.pdf"
+  },
+  {
+    id: "30",
+    name: "VINTAGE CIRCULUS 7",
+    image: "https://images.unsplash.com/photo-1501281668545-0dc85e0b8e7b?w=500&h=500&fit=crop",
+    category: "Effect Light",
+    description: "Efecto vintage circular 7 canales para efectos especiales",
+    video: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+    manual: "https://example.com/manual-30.pdf"
+  },
+  {
+    id: "31",
+    name: "LEVATIO BALL",
+    image: "https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=500&h=500&fit=crop",
+    category: "Effect Light",
+    description: "Efecto bola flotante para eventos únicos",
+    video: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+    manual: "https://example.com/manual-31.pdf"
+  },
+
+  // EFFECT MACHINE
+  {
+    id: "32",
+    name: "MAGICAL MIST",
+    image: "https://images.unsplash.com/photo-1485846234645-a62644f84728?w=500&h=500&fit=crop",
+    category: "Effect Machine",
+    description: "Máquina de niebla mágica para efectos atmosféricos",
+    video: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+    manual: "https://example.com/manual-32.pdf"
+  },
+  {
+    id: "33",
+    name: "MIST 2L",
+    image: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=500&h=500&fit=crop",
+    category: "Effect Machine",
+    description: "Máquina de niebla 2L para efectos de escena",
+    video: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+    manual: "https://example.com/manual-33.pdf"
   }
 ];
 
-// Categorías disponibles
+// Categorías actualizadas basadas en Sanyi Lights US
 export const categories = [
   "Todos",
   "Beam Moving Head",
-  "LED Moving Head",
-  "LED Series",
+  "Wash Moving Head", 
   "LED PAR Light",
-  "Laser Light",
+  "LED Blinder",
   "LED Display",
-  "Console Series"
-];
-
-// Función para obtener un producto por ID
-export const getProductById = (id: string): Product | undefined => {
-  return products.find(product => product.id === id);
-};
-
-// Función para filtrar productos
-export const filterProducts = (
-  products: Product[],
-  searchQuery: string = "",
-  selectedCategory: string = ""
-) => {
-  return products.filter(product => {
-    const matchesQuery = 
-      product.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      product.category.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      product.description.toLowerCase().includes(searchQuery.toLowerCase());
-    
-    const matchesCategory = 
-      selectedCategory === "" || 
-      selectedCategory === "Todos" || 
-      product.category === selectedCategory;
-    
-    return matchesQuery && matchesCategory;
-  });
-};
-
-// Función para obtener productos destacados (como en sanyilights.com)
-export const getFeaturedProducts = (count: number = 6) => {
-  // Productos destacados basados en la página oficial
-  const featuredIds = ["1", "2", "3", "4", "7", "11"]; // IDs de productos destacados
-  return products
-    .filter(product => featuredIds.includes(product.id))
-    .slice(0, count);
-};
-
-// Función para obtener productos por categoría
-export const getProductsByCategory = (category: string) => {
-  return products.filter(product => product.category === category);
-};
-
-// Función para buscar productos
-export const searchProducts = (query: string) => {
-  const searchTerm = query.toLowerCase();
-  return products.filter(product => 
-    product.name.toLowerCase().includes(searchTerm) ||
-    product.category.toLowerCase().includes(searchTerm) ||
-    product.description.toLowerCase().includes(searchTerm)
-  );
-}; 
+  "Console Series",
+  "TV & Studio",
+  "Effect Light",
+  "Effect Machine"
+]

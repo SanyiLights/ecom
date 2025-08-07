@@ -1,10 +1,12 @@
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
-import { Menu, X } from "lucide-react";
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
+import { Menu, ChevronDown } from "lucide-react";
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { SearchDialog } from "./search-dialog";
 import { colors } from "@/lib/colors";
+import { categories } from "@/data/products";
 import logo from "/src/assets/logo.png";
 
 interface NavigationProps {
@@ -14,6 +16,7 @@ interface NavigationProps {
 export const Navigation = ({ isTransparent = false }: NavigationProps) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (!isTransparent) {
@@ -39,6 +42,12 @@ export const Navigation = ({ isTransparent = false }: NavigationProps) => {
         block: 'start'
       });
     }
+  };
+
+  const handleCategorySelect = (category: string) => {
+    navigate('/productos', { 
+      state: { selectedCategory: category } 
+    });
   };
 
   const getTextClasses = (isLink = false) => {
@@ -86,12 +95,30 @@ export const Navigation = ({ isTransparent = false }: NavigationProps) => {
             >
               Inicio
             </Link>
-            <Link 
-              to="/productos" 
-              className={`transition-all duration-300 px-3 py-2 rounded-md ${getTextClasses(true)}`}
-            >
-              Productos
-            </Link>
+            
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button
+                  variant="ghost"
+                  className={`transition-all duration-300 px-3 py-2 rounded-md ${getTextClasses(true)} flex items-center gap-1`}
+                >
+                  Productos
+                  <ChevronDown className="h-4 w-4" />
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="start" className="w-48">
+                {categories.map((category) => (
+                  <DropdownMenuItem
+                    key={category}
+                    onClick={() => handleCategorySelect(category)}
+                    className="cursor-pointer"
+                  >
+                    {category}
+                  </DropdownMenuItem>
+                ))}
+              </DropdownMenuContent>
+            </DropdownMenu>
+            
             <a 
               href="#contacto" 
               onClick={scrollToContact}
@@ -126,13 +153,23 @@ export const Navigation = ({ isTransparent = false }: NavigationProps) => {
                   >
                     Inicio
                   </Link>
-                  <Link
-                    to="/productos"
-                    className="flex items-center px-3 py-2 text-lg font-medium hover:bg-muted rounded-md transition-colors"
-                    onClick={() => setIsMenuOpen(false)}
-                  >
-                    Productos
-                  </Link>
+                  <div className="space-y-2">
+                    <div className="px-3 py-2 text-lg font-medium text-muted-foreground">
+                      Productos
+                    </div>
+                    {categories.map((category) => (
+                      <button
+                        key={category}
+                        onClick={() => {
+                          handleCategorySelect(category);
+                          setIsMenuOpen(false);
+                        }}
+                        className="flex items-center px-6 py-2 text-base hover:bg-muted rounded-md transition-colors w-full text-left"
+                      >
+                        {category}
+                      </button>
+                    ))}
+                  </div>
                   <a
                     href="#contacto"
                     onClick={(e) => {

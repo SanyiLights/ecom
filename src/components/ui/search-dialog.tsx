@@ -10,7 +10,7 @@ import { Input } from "@/components/ui/input";
 import { Search, X } from "lucide-react";
 import { useState } from "react";
 import { ProductCard } from "./product-card";
-import { searchProducts } from "@/data/products";
+import { searchProducts } from "@/lib/product-utils";
 
 export const SearchDialog = () => {
   const [open, setOpen] = useState(false);

@@ -4,20 +4,29 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Filter, Search, Grid, List } from "lucide-react";
+import { Grid, List } from "lucide-react";
 import { useState, useEffect } from "react";
+import { useLocation } from "react-router-dom";
 import { Footer } from "@/components/ui/footer";
-import { products, categories, filterProducts } from "@/data/products";
+import { products, categories} from "@/data/products";
+import { filterProducts } from "@/lib/product-utils";
 
 const Products = () => {
+  const location = useLocation();
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedCategory, setSelectedCategory] = useState<string>("");
   const [viewMode, setViewMode] = useState<"grid" | "list">("grid");
 
-  // Scroll al principio cuando se carga la página
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
+
+  useEffect(() => {
+    if (location.state?.selectedCategory) {
+      setSelectedCategory(location.state.selectedCategory);
+      window.history.replaceState({}, document.title);
+    }
+  }, [location.state]);
 
   const filteredProducts = filterProducts(products, searchQuery, selectedCategory);
 
@@ -27,7 +36,6 @@ const Products = () => {
       
       <div className="pt-20">
         <div className="container mx-auto px-4 py-8">
-          {/* Header */}
           <div className="mb-8">
             <h1 className="text-4xl font-bold mb-4">Nuestros Productos</h1>
             <p className="text-xl text-muted-foreground">
@@ -35,7 +43,6 @@ const Products = () => {
             </p>
           </div>
 
-          {/* Filters */}
           <div className="flex flex-col md:flex-row gap-4 mb-8">
             <div className="flex-1">
               <Input
@@ -81,14 +88,17 @@ const Products = () => {
             </div>
           </div>
 
-          {/* Results */}
           <div className="mb-4">
             <p className="text-muted-foreground">
               {filteredProducts.length} productos encontrados
+              {selectedCategory && selectedCategory !== "Todos" && (
+                <span className="ml-2">
+                  en <Badge variant="secondary">{selectedCategory}</Badge>
+                </span>
+              )}
             </p>
           </div>
 
-          {/* Products Grid */}
           <div className={`grid gap-6 ${
             viewMode === "grid" 
               ? "grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4" 

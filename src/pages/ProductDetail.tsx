@@ -1,11 +1,10 @@
 import { Navigation } from "@/components/ui/navigation";
 import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
 import { ArrowLeft, Play, FileText } from "lucide-react";
 import { useEffect } from "react";
 import { useParams, Link, useNavigate } from "react-router-dom";
 import { Footer } from "@/components/ui/footer";
-import { getProductById } from "@/data/products";
+import { getProductById } from "@/lib/product-utils";
 
 const ProductDetail = () => {
   const { id } = useParams<{ id: string }>();
@@ -64,9 +63,6 @@ const ProductDetail = () => {
 
             <div className="space-y-6">
               <div>
-                <div className="flex items-center gap-2 mb-2">
-                  <Badge variant="outline">{product.category}</Badge>
-                </div>
                 
                 <h1 className="text-3xl font-bold mb-2">{product.name}</h1>
 
