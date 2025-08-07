@@ -97,7 +97,7 @@ const ProductDetail = () => {
               )}
               
               <div>
-                <h3 className="text-lg font-semibold mb-3">Manual de Usuario</h3>
+                <h3 className="text-lg font-semibold mb-3">Manual de Equipo</h3>
                 <Button 
                   onClick={openUserManual}
                   variant="outline"
@@ -105,7 +105,7 @@ const ProductDetail = () => {
                   className="group w-full text-base py-4"
                 >
                   <FileText className="mr-2 h-5 w-5 group-hover:scale-110 transition-transform" />
-                  Manual de Usuario
+                  Manual de Equipo
                 </Button>
               </div>
             </div>

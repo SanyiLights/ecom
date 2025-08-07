@@ -20,148 +20,31 @@ export const products: Product[] = [
     "manual": "https://drive.google.com/drive/folders/1Mwy_dEh4BRHwg796YIAIJakaYM3hVNLM?usp=drive_link"
   },
   {
-    "id": "3",
-    "name": "LIMONA UPLIGHT 618",
-    "image": "",
-    "category": "Uncategorized",
-    "description": "LIMONA UPLIGHT 618 - Professional lighting equipment",
-    "video": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
-    "manual": "https://example.com/manual-3.pdf"
-  },
-  {
-    "id": "4",
-    "name": "COLOR SPECTRUM STROBE T3240",
-    "image": "",
-    "category": "Uncategorized",
-    "description": "COLOR SPECTRUM STROBE T3240 - Professional lighting equipment",
-    "video": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
-    "manual": "https://example.com/manual-4.pdf"
-  },
-  {
-    "id": "5",
-    "name": "SOLSTICE 616HEX",
-    "image": "",
-    "category": "Uncategorized",
-    "description": "SOLSTICE 616HEX - Professional lighting equipment",
-    "video": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
-    "manual": "https://example.com/manual-5.pdf"
-  },
-  {
-    "id": "6",
-    "name": "HUEWAVE PL 1810",
-    "image": "",
-    "category": "Uncategorized",
-    "description": "HUEWAVE PL 1810 - Professional lighting equipment",
-    "video": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
-    "manual": "https://example.com/manual-6.pdf"
-  },
-  {
-    "id": "7",
-    "name": "HUEWAVE PL 910IP",
-    "image": "",
-    "category": "Uncategorized",
-    "description": "HUEWAVE PL 910IP - Professional lighting equipment",
-    "video": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
-    "manual": "https://example.com/manual-7.pdf"
-  },
-  {
-    "id": "8",
-    "name": "HUEWAVE PL 1210",
-    "image": "",
-    "category": "Uncategorized",
-    "description": "HUEWAVE PL 1210 - Professional lighting equipment",
-    "video": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
-    "manual": "https://example.com/manual-8.pdf"
-  },
-  {
     "id": "9",
     "name": "HUEWAVE PL 2410IP",
-    "image": "",
-    "category": "Uncategorized",
+    "image": "https://static.wixstatic.com/media/4f23bc_e9e30e2603b3422aa50bdb46aabc2cd3~mv2.jpg/v1/crop/x_1192,y_186,w_2997,h_2961/fill/w_130,h_128,fp_0.50_0.50,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/%E6%AD%A3.jpg",
+    "category": "Static Lights",
     "description": "HUEWAVE PL 2410IP - Professional lighting equipment",
-    "video": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
-    "manual": "https://example.com/manual-9.pdf"
-  },
-  {
-    "id": "10",
-    "name": "HUEWAVE PL 1810IP",
-    "image": "",
-    "category": "Uncategorized",
-    "description": "HUEWAVE PL 1810IP - Professional lighting equipment",
-    "video": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
-    "manual": "https://example.com/manual-10.pdf"
-  },
-  {
-    "id": "11",
-    "name": "HUEWAVE PL 363",
-    "image": "",
-    "category": "Uncategorized",
-    "description": "HUEWAVE PL 363 - Professional lighting equipment",
-    "video": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
-    "manual": "https://example.com/manual-11.pdf"
-  },
-  {
-    "id": "12",
-    "name": "HUEWAVE RGBW 200 COB IP",
-    "image": "",
-    "category": "Uncategorized",
-    "description": "HUEWAVE RGBW 200 COB IP - Professional lighting equipment",
-    "video": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
-    "manual": "https://example.com/manual-12.pdf"
-  },
-  {
-    "id": "13",
-    "name": "DT 200W COB",
-    "image": "",
-    "category": "Uncategorized",
-    "description": "DT 200W COB - Professional lighting equipment",
-    "video": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
-    "manual": "https://example.com/manual-13.pdf"
+    "video": "",
+    "manual": "https://drive.google.com/drive/folders/15djbaU5U7XqhjfZRAghSCQ_BGZTfNMA0?usp=drive_link"
   },
   {
     "id": "14",
     "name": "DUALTONE PAR L450",
-    "image": "",
-    "category": "Uncategorized",
+    "image": "https://static.wixstatic.com/media/4f23bc_991272a3ae9c4595b2eafa4a4d715e13~mv2.jpg/v1/crop/x_1690,y_969,w_2981,h_2946/fill/w_130,h_128,fp_0.50_0.50,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/%E6%AD%A3.jpg",
+    "category": "Static Lights",
     "description": "DUALTONE PAR L450 - Professional lighting equipment",
-    "video": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
-    "manual": "https://example.com/manual-14.pdf"
+    "video": "",
+    "manual": "https://drive.google.com/drive/folders/1lLX4MsvEbfTO34p5R7DiZ9nuts5rPLYc?usp=drive_link"
   },
   {
     "id": "15",
     "name": "DUALTONE PAR L750",
-    "image": "",
-    "category": "Uncategorized",
+    "image": "https://static.wixstatic.com/media/030325_46b4627d8fbe442fa64ab58d337c6088~mv2.jpg/v1/fill/w_130,h_128,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/SPL-LED-P750%201_edited.jpg",
+    "category": "Static Lights",
     "description": "DUALTONE PAR L750 - Professional lighting equipment",
-    "video": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
-    "manual": "https://example.com/manual-15.pdf"
-  },
-  {
-    "id": "16",
-    "name": "HUEWAVE PL 2415IP",
-    "image": "",
-    "category": "Uncategorized",
-    "description": "HUEWAVE PL 2415IP - Professional lighting equipment",
-    "video": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
-    "manual": "https://example.com/manual-16.pdf"
-  },
-  {
-    "id": "17",
-    "name": "HUEWAVE PIXEL BAR IP",
-    "image": "",
-    "category": "Uncategorized",
-    "description": "HUEWAVE PIXEL BAR IP - Professional lighting equipment",
-    "video": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
-    "manual": "https://example.com/manual-17.pdf"
-  },
-  {
-    "id": "18",
-    "name": "PULSARIS 960B",
-    "image": "",
-    "category": "Uncategorized",
-    "description": "PULSARIS 960B - Professional lighting equipment",
-    "video": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
-    "manual": "https://example.com/manual-18.pdf"
+    "video": "",
+    "manual": "https://drive.google.com/drive/folders/1zLV5JqQy9XJuaRz26Q10RuqKUN0FA4Rr?usp=drive_link"
   },
   {
     "id": "19",
@@ -171,51 +54,6 @@ export const products: Product[] = [
     "description": "SOLSTICE DUO 616IP - Professional lighting equipment",
     "video": "",
     "manual": ""
-  },
-  {
-    "id": "20",
-    "name": "PULSARIS 960B II",
-    "image": "",
-    "category": "Uncategorized",
-    "description": "PULSARIS 960B II - Professional lighting equipment",
-    "video": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
-    "manual": "https://example.com/manual-20.pdf"
-  },
-  {
-    "id": "21",
-    "name": "PULSARIS BAR 720B",
-    "image": "",
-    "category": "Uncategorized",
-    "description": "PULSARIS BAR 720B - Professional lighting equipment",
-    "video": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
-    "manual": "https://example.com/manual-21.pdf"
-  },
-  {
-    "id": "22",
-    "name": "HUEWAVE PIXEL BAR",
-    "image": "",
-    "category": "Uncategorized",
-    "description": "HUEWAVE PIXEL BAR - Professional lighting equipment",
-    "video": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
-    "manual": "https://example.com/manual-22.pdf"
-  },
-  {
-    "id": "23",
-    "name": "PULSARIS S960IP",
-    "image": "",
-    "category": "Uncategorized",
-    "description": "PULSARIS S960IP - Professional lighting equipment",
-    "video": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
-    "manual": "https://example.com/manual-23.pdf"
-  },
-  {
-    "id": "24",
-    "name": "COLOR SPECTRUM 4410IP",
-    "image": "",
-    "category": "Uncategorized",
-    "description": "COLOR SPECTRUM 4410IP - Professional lighting equipment",
-    "video": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
-    "manual": "https://example.com/manual-24.pdf"
   },
   {
     "id": "25",
@@ -416,15 +254,6 @@ export const products: Product[] = [
     "manual": "https://drive.google.com/drive/folders/17QXW4dobPIvFUBr4KKob1TZKUe2XL3s3?usp=drive_link"
   },
   {
-    "id": "47",
-    "name": "COLOR SPECTRUM STROBE T3240",
-    "image": "",
-    "category": "Static Lights",
-    "description": "COLOR SPECTRUM STROBE T3240 - Professional lighting equipment",
-    "video": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
-    "manual": "https://example.com/manual-47.pdf"
-  },
-  {
     "id": "49",
     "name": "LEVATIO BALL",
     "image": "https://static.wixstatic.com/media/4f23bc_7b70537b830e4e74894748e677b62e36~mv2.jpg/v1/fill/w_115,h_113,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/R201%E6%AD%A3_edited.jpg",
@@ -452,15 +281,6 @@ export const products: Product[] = [
     "manual": "https://drive.google.com/drive/folders/1I5PXT5uNtbNeaL4KHjfo8zYEJfLWySSI?usp=drive_link"
   },
   {
-    "id": "57",
-    "name": "LEVATIO BALL",
-    "image": "",
-    "category": "TV & Studio",
-    "description": "LEVATIO BALL - Professional lighting equipment",
-    "video": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
-    "manual": "https://example.com/manual-57.pdf"
-  },
-  {
     "id": "58",
     "name": "VINTAGE COLUMNA 6",
     "image": "https://static.wixstatic.com/media/4f23bc_6a066106d477424c9ba8c5122a5fcb94~mv2.png/v1/fill/w_115,h_113,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/SPL-VINT-COLM6%20(1)_edited.png",
@@ -468,15 +288,6 @@ export const products: Product[] = [
     "description": "VINTAGE COLUMNA 6 - Professional lighting equipment",
     "video": "",
     "manual": "https://drive.google.com/drive/folders/1XqeIQCynEr8yoaX0qnUL7U9hGx6hDVDq?usp=drive_link"
-  },
-  {
-    "id": "59",
-    "name": "VINTAGE CIRCULUS 7",
-    "image": "",
-    "category": "TV & Studio",
-    "description": "VINTAGE CIRCULUS 7 - Professional lighting equipment",
-    "video": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
-    "manual": "https://example.com/manual-59.pdf"
   },
   {
     "id": "61",
@@ -495,33 +306,6 @@ export const products: Product[] = [
     "description": "SOLSTICE QUAD 4100IP - Professional lighting equipment",
     "video": "",
     "manual": "https://drive.google.com/drive/folders/11zIU-qf_Mz07Npu9B2POQx1qOGL_CcrM?usp=drive_link"
-  },
-  {
-    "id": "63",
-    "name": "SOLSTICE QUAD 616F",
-    "image": "",
-    "category": "Automatic Lights",
-    "description": "SOLSTICE QUAD 616F - Professional lighting equipment",
-    "video": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
-    "manual": "https://example.com/manual-63.pdf"
-  },
-  {
-    "id": "64",
-    "name": "SOLSTICE DUO 616C",
-    "image": "",
-    "category": "Automatic Lights",
-    "description": "SOLSTICE DUO 616C - Professional lighting equipment",
-    "video": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
-    "manual": "https://example.com/manual-64.pdf"
-  },
-  {
-    "id": "65",
-    "name": "SOLSTICE DUO 616IP",
-    "image": "",
-    "category": "Automatic Lights",
-    "description": "SOLSTICE DUO 616IP - Professional lighting equipment",
-    "video": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
-    "manual": "https://example.com/manual-65.pdf"
   },
   {
     "id": "66",
@@ -623,130 +407,121 @@ export const products: Product[] = [
     "manual": "https://drive.google.com/drive/folders/15djbaU5U7XqhjfZRAghSCQ_BGZTfNMA0?usp=drive_link"
   },
   {
-    "id": "77",
-    "name": "HUEWAVE PL 1810IP",
-    "image": "",
-    "category": "Automatic Lights",
-    "description": "HUEWAVE PL 1810IP - Professional lighting equipment",
-    "video": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
-    "manual": "https://example.com/manual-77.pdf"
-  },
-  {
     "id": "78",
     "name": "LIMONA PAR 2415IP (RGBWA-UV)",
-    "image": "",
-    "category": "Automatic Lights",
+    "image": "https://static.wixstatic.com/media/4f23bc_90dae03585154855bc758d64b86f62f3~mv2.jpg/v1/crop/x_1571,y_473,w_3578,h_3535/fill/w_130,h_128,fp_0.50_0.50,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/%E6%AD%A3.jpg",
+    "category": "Static Lights",
     "description": "LIMONA PAR 2415IP (RGBWA-UV) - Professional lighting equipment",
-    "video": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
-    "manual": "https://example.com/manual-78.pdf"
+    "video": "",
+    "manual": "https://drive.google.com/drive/folders/1Rhuh_DqtDWanZxN2hgQz8_pQOyBY7X1l?usp=drive_link"
   },
   {
     "id": "79",
     "name": "HUEWAVE PL 363",
-    "image": "",
-    "category": "Automatic Lights",
+    "image": "https://static.wixstatic.com/media/4f23bc_6b828da988a64c2690e6091a07dd1f8d~mv2.jpg/v1/fill/w_130,h_128,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/363%E6%AD%A3_edited.jpg",
+    "category": "Static Lights",
     "description": "HUEWAVE PL 363 - Professional lighting equipment",
-    "video": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
-    "manual": "https://example.com/manual-79.pdf"
+    "video": "",
+    "manual": "https://drive.google.com/drive/folders/1N92uXEUPLzeaMxKAMzm1H3-XNcOGq221?usp=drive_link"
   },
   {
     "id": "80",
     "name": "COLOR SPECTRUM 4410IP",
-    "image": "",
-    "category": "Automatic Lights",
+    "image": "https://static.wixstatic.com/media/4f23bc_2af2dff4ed3847808106225f4af4eedd~mv2.jpg/v1/crop/x_1021,y_467,w_3022,h_2986/fill/w_130,h_128,fp_0.50_0.50,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/4410%E6%AD%A3.jpg",
+    "category": "Static Lights",
     "description": "COLOR SPECTRUM 4410IP - Professional lighting equipment",
-    "video": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
-    "manual": "https://example.com/manual-80.pdf"
+    "video": "",
+    "manual": "https://drive.google.com/drive/folders/19cnMcTPJwNondKpkC7aIz-5hJmd9v7r-?usp=drive_link"
   },
   {
     "id": "81",
     "name": "DT 200W COB",
-    "image": "",
-    "category": "Automatic Lights",
+    "image": "https://static.wixstatic.com/media/4f23bc_fb87dfcb2e07496eadeed2c0ecfabec1~mv2.jpg/v1/fill/w_130,h_128,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/200COB%E6%AD%A3_edited.jpg",
+    "category": "Static Lights",
     "description": "DT 200W COB - Professional lighting equipment",
-    "video": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
-    "manual": "https://example.com/manual-81.pdf"
+    "video": "",
+    "manual": "https://drive.google.com/drive/folders/1TmGGUEXIRLmj6ez_5YP9cOLyXhCKJ0m4?usp=drive_link"
   },
   {
     "id": "82",
     "name": "HUEWAVE RGBW200 COB IP",
-    "image": "",
-    "category": "Automatic Lights",
+    "image": "https://static.wixstatic.com/media/4f23bc_c37ef1a3aef3452083a8298b838f7999~mv2.jpg/v1/crop/x_396,y_1196,w_2856,h_2822/fill/w_130,h_128,fp_0.50_0.50,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/%E6%AD%A3.jpg",
+    "category": "Static Lights",
     "description": "HUEWAVE RGBW200 COB IP - Professional lighting equipment",
-    "video": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
-    "manual": "https://example.com/manual-82.pdf"
+    "video": "",
+    "manual": "https://drive.google.com/drive/folders/10v_vCpgxQG-j9FOLHjvuncPI6eUuvFUy?usp=drive_link"
   },
   {
     "id": "83",
     "name": "PULSARIS S960IP",
-    "image": "",
-    "category": "Automatic Lights",
+    "image": "https://static.wixstatic.com/media/4f23bc_62cf16f2545b4c5e9fa285b1f32b482d~mv2.png/v1/fill/w_130,h_128,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/S960IP%E6%AD%A3_edited_edited.png",
+    "category": "Static Lights",
     "description": "PULSARIS S960IP - Professional lighting equipment",
-    "video": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
-    "manual": "https://example.com/manual-83.pdf"
+    "video": "",
+    "manual": "https://drive.google.com/drive/folders/1WGNHaHMcNTbcBTw9Q262p168Z-UUnB0k?usp=drive_link"
   },
   {
     "id": "84",
     "name": "PULSARIS 960B II",
-    "image": "",
-    "category": "Automatic Lights",
+    "image": "https://static.wixstatic.com/media/4f23bc_5231e41ca9354b118540df84f39d2733~mv2.jpg/v1/fill/w_130,h_128,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/%E6%AD%A32.jpg",
+    "category": "Static Lights",
     "description": "PULSARIS 960B II - Professional lighting equipment",
-    "video": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
-    "manual": "https://example.com/manual-84.pdf"
+    "video": "",
+    "manual": "https://drive.google.com/drive/folders/1AB2kEmbnXt8dpwscZ4FbOsvM8PtFjXzD?usp=drive_link"
   },
   {
     "id": "85",
     "name": "PULSARIS 960B",
-    "image": "",
-    "category": "Automatic Lights",
+    "image": "https://static.wixstatic.com/media/4f23bc_8a8f934b780f4f129eec8854c3fe74c1~mv2.png/v1/crop/x_366,y_379,w_2269,h_2241/fill/w_130,h_128,fp_0.50_0.50,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/%E6%AD%A32_edited.png",
+    "category": "Static Lights",
     "description": "PULSARIS 960B - Professional lighting equipment",
-    "video": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
-    "manual": "https://example.com/manual-85.pdf"
+    "video": "",
+    "manual": "https://drive.google.com/drive/folders/1ddZTOiYArBVYDniZ06OV8dUC8bpoNfKd?usp=drive_link"
   },
   {
     "id": "86",
     "name": "PULSARIS BAR 720B",
-    "image": "",
-    "category": "Automatic Lights",
+    "image": "https://static.wixstatic.com/media/4f23bc_a7f219d4767f4d64ac682261a6443695~mv2.png/v1/fill/w_130,h_128,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/%E6%95%88%E6%9E%9C1_edited.png",
+    "category": "Static Lights",
     "description": "PULSARIS BAR 720B - Professional lighting equipment",
-    "video": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
-    "manual": "https://example.com/manual-86.pdf"
+    "video": "",
+    "manual": "https://drive.google.com/drive/folders/1T47YD3lgQHOLlmt2r_VvC9_YB172axjd?usp=drive_link"
   },
   {
     "id": "87",
     "name": "HUEWAVE PIXEL BAR(RGBLA-UV)",
-    "image": "",
-    "category": "Automatic Lights",
+    "image": "https://static.wixstatic.com/media/4f23bc_27b8f14d729a47d9b164b3c13c9824fe~mv2.png/v1/fill/w_130,h_128,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/1810R%E6%AD%A31_edited.png",
+    "category": "Static Lights",
     "description": "HUEWAVE PIXEL BAR(RGBLA-UV) - Professional lighting equipment",
-    "video": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
-    "manual": "https://example.com/manual-87.pdf"
+    "video": "",
+    "manual": "https://drive.google.com/drive/folders/15X3hbSZG9oSVtmyb6etRb9yJ6bp2vUUM?usp=drive_link"
   },
   {
     "id": "88",
     "name": "HUEWAVE PIXEL BAR (RGBWA-UV)",
-    "image": "",
-    "category": "Automatic Lights",
+    "image": "https://static.wixstatic.com/media/4f23bc_b0fcdda694384b74bd87a251ae66399a~mv2.png/v1/fill/w_130,h_128,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/1810R%E6%AD%A31_edited.png",
+    "category": "Static Lights",
     "description": "HUEWAVE PIXEL BAR (RGBWA-UV) - Professional lighting equipment",
-    "video": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
-    "manual": "https://example.com/manual-88.pdf"
+    "video": "",
+    "manual": "https://drive.google.com/drive/folders/1M4sN9SbCKg3bo0EOzmj9xD_IdudXfiTn?usp=drive_link"
   },
   {
     "id": "89",
     "name": "HUEWAVE PIXEL BAR IP",
-    "image": "",
-    "category": "Automatic Lights",
+    "image": "https://static.wixstatic.com/media/4f23bc_262d87699ce44d9aaa631e35f3e2b975~mv2.png/v1/fill/w_130,h_128,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/1810R%20IP%E6%AD%A31_edited.png",
+    "category": "Static Lights",
     "description": "HUEWAVE PIXEL BAR IP - Professional lighting equipment",
-    "video": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
-    "manual": "https://example.com/manual-89.pdf"
+    "video": "",
+    "manual": "https://drive.google.com/drive/folders/1B-VORGUsysYu6xHE8uNDLXGYXtJuHqiu?usp=drive_link"
   },
   {
     "id": "90",
     "name": "COLOR SPECTRUM STROBE T3240",
-    "image": "",
-    "category": "Automatic Lights",
+    "image": "https://static.wixstatic.com/media/4f23bc_4838e4d52af74cf79fd515745d3d269b~mv2.jpg/v1/fill/w_130,h_128,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/3240%E6%AD%A3.jpg",
+    "category": "Static Lights",
     "description": "COLOR SPECTRUM STROBE T3240 - Professional lighting equipment",
-    "video": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
-    "manual": "https://example.com/manual-90.pdf"
+    "video": "",
+    "manual": "https://drive.google.com/drive/folders/1mSZwfudTUhbPkj76JzxKj3yjf-Xqcfji?usp=drive_link"
   },
   {
     "id": "91",
