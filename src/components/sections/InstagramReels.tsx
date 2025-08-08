@@ -1,8 +1,9 @@
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Instagram, Play, ExternalLink } from "lucide-react";
+import { ArrowRight, Instagram, Play, ExternalLink, RefreshCw } from "lucide-react";
 import { Link } from "react-router-dom";
 import { getButtonClasses, colors } from "@/lib/colors";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import { fetchLatestReels, InstagramReel, formatReelDate, generateReelTitle, generateReelDescription } from "@/lib/instagram-api";
 
 declare global {
   interface Window {
