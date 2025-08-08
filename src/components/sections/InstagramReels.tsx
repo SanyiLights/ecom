@@ -212,7 +212,7 @@ export const InstagramReels = () => {
               <Button 
                 size="lg" 
                 className={`${getButtonClasses('primary')} shadow-elegant group`}
-                onClick={() => window.open('https://www.instagram.com/tuempresa', '_blank')}
+                onClick={() => window.open('https://www.instagram.com/sanyilightsar', '_blank')}
               >
                 <Instagram className="mr-2 h-5 w-5" />
                 Seguir en Instagram
