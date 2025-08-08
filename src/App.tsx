@@ -18,7 +18,7 @@ function App() {
     <QueryClientProvider client={queryClient}>
       <TooltipProvider>
         <Toaster />
-        <BrowserRouter basename="/ecom">
+        <BrowserRouter>
           <Routes>
             <Route path="/" element={<Index />} />
             <Route path="/productos" element={<Products />} />
