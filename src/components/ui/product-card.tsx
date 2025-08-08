@@ -46,12 +46,6 @@ export const ProductCard = ({
               }}
             />
           </div>
-          
-          <div className="absolute top-2 right-2">
-            <Badge variant="secondary" className="text-xs">
-              {category}
-            </Badge>
-          </div>
         </CardHeader>
         
         <CardContent className="p-4">
