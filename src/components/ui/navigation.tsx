@@ -61,13 +61,13 @@ export const Navigation = ({ isTransparent = false }: NavigationProps) => {
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-black backdrop-blur-md shadow-lg">
       <div className="container mx-auto px-4">
-        <div className="flex items-center justify-between h-16">
+        <div className="flex items-center justify-between h-20">
           <Link to="/" className="flex items-center space-x-4 hover:opacity-80 transition-opacity">
-            <div className="w-10 h-10 bg-white rounded-full flex items-center justify-center shadow-lg">
+            <div className="w-20 h-20 bg-black rounded-full flex items-center justify-center shadow-lg">
               <img 
                 src={logo}
                 alt="Sanyi Lights Argentina" 
-                className="w-8 h-8 object-contain"
+                className="w-16 h-16 object-contain"
               />
             </div>
             <div className="hidden sm:block">
