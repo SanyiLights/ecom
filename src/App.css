@@ -40,3 +40,26 @@
 .read-the-docs {
   color: #888;
 }
+
+/* Estilos para mejorar el zoom en móviles */
+.medium-zoom-overlay {
+  z-index: 9999 !important;
+}
+
+.medium-zoom-image {
+  max-width: 95vw !important;
+  max-height: 95vh !important;
+  object-fit: contain !important;
+}
+
+/* Mejorar la experiencia táctil en móviles */
+@media (max-width: 768px) {
+  .medium-zoom-overlay {
+    background-color: rgba(0, 0, 0, 0.9) !important;
+  }
+  
+  .medium-zoom-image {
+    max-width: 98vw !important;
+    max-height: 98vh !important;
+  }
+}

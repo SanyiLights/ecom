@@ -91,17 +91,22 @@ const ProductDetail = () => {
             <div className="grid grid-cols-1 gap-3 mt-2">
               <div className="space-y-4">
                 <div className="relative w-full max-w-6xl mx-auto bg-white rounded-lg overflow-hidden shadow-sm">
-                  <Zoom>
+                  <Zoom
+                    overlayBgColorStart="rgba(0, 0, 0, 0.8)"
+                    overlayBgColorEnd="rgba(0, 0, 0, 0.95)"
+                    zoomMargin={40}
+                  >
                     <img 
                       src={product.content} 
                       alt={product.description}
-                      className="w-full h-[300px] sm:h-[400px] md:h-[500px] lg:h-[600px] xl:h-[700px] 2xl:h-[800px] object-cover object-center bg-white"
+                      className="w-full h-[300px] sm:h-[400px] md:h-[500px] lg:h-[600px] xl:h-[700px] 2xl:h-[800px] object-contain bg-white cursor-zoom-in"
                       style={{
                         imageRendering: 'crisp-edges',
                         border: 'none',
                         outline: 'none',
                         boxShadow: 'none',
-                        filter: 'none'
+                        filter: 'none',
+                        touchAction: 'manipulation'
                       }}
                     />
                   </Zoom>

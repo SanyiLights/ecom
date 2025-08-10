@@ -87,11 +87,7 @@ const Products = () => {
             </p>
           </div>
 
-          <div className={`grid gap-3 sm:gap-4 ${
-            viewMode === "grid" 
-              ? "grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4" 
-              : "grid-cols-1"
-          }`}>
+          <div className="grid gap-3 sm:gap-4 grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
             {filteredProducts.map((product) => (
               <div key={product.model} className="w-full">
                 <ProductCard {...product} />
