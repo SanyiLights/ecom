@@ -393,12 +393,20 @@ export const SPL_RGB_510_CONTENT = "/images/products/SPL-RGB-510/content.png";
 export const SPL_RGB_660_IMAGE = "/images/products/SPL-RGB-660/image.png";
 export const SPL_RGB_660_CONTENT = "/images/products/SPL-RGB-660/content.png";
 
+// SPL-LED-T200RGBW IP
+export const SPL_LED_T200RGBW_IP_IMAGE = "/images/products/SPL-LED-T200RGBW IP/image.png";
+export const SPL_LED_T200RGBW_IP_CONTENT = "/images/products/SPL-LED-T200RGBW IP/content.png";
+
 // Helper function to get product images by model
 export const getProductImages = (model: string) => {
   const imageMap: Record<string, { image: string; content: string }> = {
     "LED dance floor": {
       image: LED_DANCE_FLOOR_IMAGE,
       content: LED_DANCE_FLOOR_CONTENT
+    },
+    "SPL-LED-T200RGBW IP": {
+      image: SPL_LED_T200RGBW_IP_IMAGE,
+      content: SPL_LED_T200RGBW_IP_CONTENT
     },
     "SPL-COB-200": {
       image: SPL_COB_200_IMAGE,

@@ -27,8 +27,8 @@ export const products: Product[] = [
     "category": Category.MOVING_HEAD,
     "image": getProductImages("SPL-LED-681").image,
     "content": getProductImages("SPL-LED-681").content,
-    "video": "",
-    "new": false
+    "video": "https://www.youtube.com/watch?v=6fQ1Ka-cATg",
+    "new": true
   },
   {
     "model": "SPL-LED-M600BSWF",
@@ -36,8 +36,7 @@ export const products: Product[] = [
     "category": Category.MOVING_HEAD,
     "image": getProductImages("SPL-LED-M600BSWF").image,
     "content": getProductImages("SPL-LED-M600BSWF").content,
-    "video": "",
-    "new": false
+    "new": true
   },
   {
     "model": "SPL-MHL-420 IP",
@@ -45,8 +44,8 @@ export const products: Product[] = [
     "category": Category.MOVING_HEAD,
     "image": getProductImages("SPL-MHL-420 IP").image,
     "content": getProductImages("SPL-MHL-420 IP").content,
-    "video": "",
-    "new": false
+    "video": "https://www.youtube.com/watch?v=uF_WQk1x_sA",
+    "new": true
   },
   {
     "model": "SPL-LED-M400B",
@@ -54,8 +53,7 @@ export const products: Product[] = [
     "category": Category.MOVING_HEAD,
     "image": getProductImages("SPL-LED-M400B").image,
     "content": getProductImages("SPL-LED-M400B").content,
-    "video": "",
-    "new": false
+    "new": true
   },
   {
     "model": "SPL-MHL-M251G YH",
@@ -63,8 +61,8 @@ export const products: Product[] = [
     "category": Category.MOVING_HEAD,
     "image": getProductImages("SPL-MHL-M251G YH").image,
     "content": getProductImages("SPL-MHL-M251G YH").content,
-    "video": "",
-    "new": false
+    "video": "https://www.youtube.com/watch?v=tJEyFmIrihc",
+    "new": true
   },
   {
     "model": "SPL-LED-800",
@@ -72,7 +70,7 @@ export const products: Product[] = [
     "category": Category.MOVING_HEAD,
     "image": getProductImages("SPL-LED-800").image,
     "content": getProductImages("SPL-LED-800").content,
-    "video": "",
+    "video": "https://www.youtube.com/watch?v=BS9_3pcHwnA",
     "new": false
   },
   {
@@ -81,7 +79,7 @@ export const products: Product[] = [
     "category": Category.MOVING_HEAD,
     "image": getProductImages("SPL-LED-481").image,
     "content": getProductImages("SPL-LED-481").content,
-    "video": "",
+    "video": "https://www.youtube.com/watch?v=OvKiEPaUNjM",
     "new": false
   },
   {
@@ -90,7 +88,7 @@ export const products: Product[] = [
     "category": Category.MOVING_HEAD,
     "image": getProductImages("SPL-MHL-380").image,
     "content": getProductImages("SPL-MHL-380").content,
-    "video": "",
+    "video": "https://www.youtube.com/watch?v=3AH2is8iU1U",
     "new": false
   },
   {
@@ -99,7 +97,7 @@ export const products: Product[] = [
     "category": Category.MOVING_HEAD,
     "image": getProductImages("SPL-MHL-380B IP").image,
     "content": getProductImages("SPL-MHL-380B IP").content,
-    "video": "",
+    "video": "https://www.youtube.com/watch?v=5rZ-uidFbL4",
     "new": false
   },
   {
@@ -108,7 +106,7 @@ export const products: Product[] = [
     "category": Category.MOVING_HEAD,
     "image": getProductImages("SPL-MHL-380B").image,
     "content": getProductImages("SPL-MHL-380B").content,
-    "video": "",
+    "video": "https://www.youtube.com/watch?v=MsQIGWNZJiY",
     "new": false
   },
   {
@@ -126,7 +124,7 @@ export const products: Product[] = [
     "category": Category.MOVING_HEAD,
     "image": getProductImages("SPL-MHL-251G").image,
     "content": getProductImages("SPL-MHL-251G").content,
-    "video": "",
+    "video": "https://www.youtube.com/watch?v=DmV1Tk9pi68",
     "new": false
   },
   {
@@ -135,7 +133,7 @@ export const products: Product[] = [
     "category": Category.MOVING_HEAD,
     "image": getProductImages("SPL-MHL-251").image,
     "content": getProductImages("SPL-MHL-251").content,
-    "video": "",
+    "video": "https://www.youtube.com/watch?v=x4ovKS7Vy24",
     "new": false
   },
   {
@@ -144,7 +142,7 @@ export const products: Product[] = [
     "category": Category.MOVING_HEAD,
     "image": getProductImages("SPL-MHL-M250B MINI").image,
     "content": getProductImages("SPL-MHL-M250B MINI").content,
-    "video": "",
+    "video": "https://www.youtube.com/watch?v=wfT18C9yGgw",
     "new": false
   },
   {
@@ -153,7 +151,7 @@ export const products: Product[] = [
     "category": Category.MOVING_HEAD,
     "image": getProductImages("SPL-MHL-M250G MINI").image,
     "content": getProductImages("SPL-MHL-M250G MINI").content,
-    "video": "",
+    "video": "https://www.youtube.com/watch?v=sP-KovHGIzI",
     "new": false
   },
   {
@@ -162,7 +160,6 @@ export const products: Product[] = [
     "category": Category.MOVING_HEAD,
     "image": getProductImages("SPL-LED-100S").image,
     "content": getProductImages("SPL-LED-100S").content,
-    "video": "",
     "new": false
   },
   {
@@ -171,7 +168,6 @@ export const products: Product[] = [
     "category": Category.MOVING_HEAD,
     "image": getProductImages("SPL-LED-60S").image,
     "content": getProductImages("SPL-LED-60S").content,
-    "video": "",
     "new": false
   },
   {
@@ -180,7 +176,6 @@ export const products: Product[] = [
     "category": Category.MOVING_HEAD,
     "image": getProductImages("SPL-LED-30S").image,
     "content": getProductImages("SPL-LED-30S").content,
-    "video": "",
     "new": false
   },
   {
@@ -189,8 +184,8 @@ export const products: Product[] = [
     "category": Category.WASH_LIGHT,
     "image": getProductImages("SPL-LED-M1940 EYE IP").image,
     "content": getProductImages("SPL-LED-M1940 EYE IP").content,
-    "video": "",
-    "new": false
+    "video": "https://www.youtube.com/watch?v=RFt90EgxTTk",
+    "new": true
   },
   {
     "model": "SPL-LED-1940",
@@ -198,8 +193,8 @@ export const products: Product[] = [
     "category": Category.WASH_LIGHT,
     "image": getProductImages("SPL-LED-1940").image,
     "content": getProductImages("SPL-LED-1940").content,
-    "video": "",
-    "new": false
+    "video": "https://www.youtube.com/watch?v=FD0iv5CjzwU",
+    "new": true
   },
   {
     "model": "SPL-LED-740",
@@ -207,8 +202,8 @@ export const products: Product[] = [
     "category": Category.WASH_LIGHT,
     "image": getProductImages("SPL-LED-740").image,
     "content": getProductImages("SPL-LED-740").content,
-    "video": "",
-    "new": false
+    "video": "https://www.youtube.com/watch?v=ynZm02BZ9AE",
+    "new": true
   },
   {
     "model": "SPL-LED-M1260YZ IP",
@@ -216,8 +211,8 @@ export const products: Product[] = [
     "category": Category.WASH_LIGHT,
     "image": getProductImages("SPL-LED-M1260YZ IP").image,
     "content": getProductImages("SPL-LED-M1260YZ IP").content,
-    "video": "",
-    "new": false
+    "video": "https://www.youtube.com/watch?v=vYeNbPc0vc4",
+    "new": true
   },
   {
     "model": "SPL-LED-1810R",
@@ -225,8 +220,17 @@ export const products: Product[] = [
     "category": Category.WASH_LIGHT,
     "image": getProductImages("SPL-LED-1810R").image,
     "content": getProductImages("SPL-LED-1810R").content,
-    "video": "",
+    "video": "https://www.youtube.com/watch?v=t6XcoTep58o",
     "new": false
+  },
+  {
+    "model": "SPL-LED-T200RGBW IP",
+    "description": "LED Wash light",
+    "category": Category.WASH_LIGHT,
+    "image": getProductImages("SPL-LED-1810R").image,
+    "content": getProductImages("SPL-LED-1810R").content,
+    "video": "https://www.youtube.com/watch?v=aTaaKwahx8Q",
+    "new": true
   },
   {
     "model": "SPL-LED-M1915Z QK",
@@ -234,7 +238,7 @@ export const products: Product[] = [
     "category": Category.WASH_LIGHT,
     "image": getProductImages("SPL-LED-M1915Z QK").image,
     "content": getProductImages("SPL-LED-M1915Z QK").content,
-    "video": "",
+    "video": "https://www.youtube.com/watch?v=mbOrPkKNElw",
     "new": false
   },
   {
@@ -243,7 +247,7 @@ export const products: Product[] = [
     "category": Category.WASH_LIGHT,
     "image": getProductImages("SPL-LED-663").image,
     "content": getProductImages("SPL-LED-663").content,
-    "video": "",
+    "video": "https://www.youtube.com/watch?v=B6BtofKd9GM",
     "new": false
   },
   {
@@ -252,7 +256,7 @@ export const products: Product[] = [
     "category": Category.WASH_LIGHT,
     "image": getProductImages("SPL-LED-663S").image,
     "content": getProductImages("SPL-LED-663S").content,
-    "video": "",
+    "video": "https://www.youtube.com/watch?v=zF8P4bCgbZI",
     "new": false
   },
   {
@@ -261,7 +265,6 @@ export const products: Product[] = [
     "category": Category.WASH_LIGHT,
     "image": getProductImages("SPL-LED-1260").image,
     "content": getProductImages("SPL-LED-1260").content,
-    "video": "",
     "new": false
   },
   {
@@ -270,7 +273,6 @@ export const products: Product[] = [
     "category": Category.WASH_LIGHT,
     "image": getProductImages("SPL-LED-M1240G YZ").image,
     "content": getProductImages("SPL-LED-M1240G YZ").content,
-    "video": "",
     "new": false
   },
   {
@@ -279,7 +281,7 @@ export const products: Product[] = [
     "category": Category.WASH_LIGHT,
     "image": getProductImages("SPL-LED-560").image,
     "content": getProductImages("SPL-LED-560").content,
-    "video": "",
+    "video": "https://www.youtube.com/watch?v=MhNi_5SC9aE",
     "new": false
   },
   {
@@ -288,7 +290,7 @@ export const products: Product[] = [
     "category": Category.WASH_LIGHT,
     "image": getProductImages("SPL-LED-1040").image,
     "content": getProductImages("SPL-LED-1040").content,
-    "video": "",
+    "video": "https://www.youtube.com/watch?v=SEY6qN7y6JI",
     "new": false
   },
   {
@@ -297,7 +299,7 @@ export const products: Product[] = [
     "category": Category.WASH_LIGHT,
     "image": getProductImages("SPL-LED-1810R IP").image,
     "content": getProductImages("SPL-LED-1810R IP").content,
-    "video": "",
+    "video": "https://www.youtube.com/watch?v=CGbpsPi6_8A",
     "new": false
   },
   {
@@ -306,7 +308,6 @@ export const products: Product[] = [
     "category": Category.WASH_LIGHT,
     "image": getProductImages("SPL-LED-3603").image,
     "content": getProductImages("SPL-LED-3603").content,
-    "video": "",
     "new": false
   },
   {
@@ -315,7 +316,7 @@ export const products: Product[] = [
     "category": Category.WASH_LIGHT,
     "image": getProductImages("SPL-LED-500IP").image,
     "content": getProductImages("SPL-LED-500IP").content,
-    "video": "",
+    "video": "https://www.youtube.com/watch?v=SEY6qN7y6JI",
     "new": false
   },
   {
@@ -324,8 +325,8 @@ export const products: Product[] = [
     "category": Category.LED_STROBE_LIGHT,
     "image": getProductImages("SPL-LED-960 IP").image,
     "content": getProductImages("SPL-LED-960 IP").content,
-    "video": "",
-    "new": false
+    "video": "https://www.youtube.com/watch?v=WIvSSkbW0AA",
+    "new": true
   },
   {
     "model": "SPL-LED-4410",
@@ -333,7 +334,7 @@ export const products: Product[] = [
     "category": Category.LED_STROBE_LIGHT,
     "image": getProductImages("SPL-LED-4410").image,
     "content": getProductImages("SPL-LED-4410").content,
-    "video": "",
+    "video": "https://www.youtube.com/watch?v=JdcPis6dX0o",
     "new": false
   },
   {
@@ -342,8 +343,8 @@ export const products: Product[] = [
     "category": Category.LED_STROBE_LIGHT,
     "image": getProductImages("SPL-LED-3240 IP").image,
     "content": getProductImages("SPL-LED-3240 IP").content,
-    "video": "",
-    "new": false
+    "video": "https://www.youtube.com/watch?v=VpzLbhEn8iA",
+    "new": true
   },
   {
     "model": "SPL-LED-P616C IP",
@@ -351,8 +352,8 @@ export const products: Product[] = [
     "category": Category.LED_STROBE_LIGHT,
     "image": getProductImages("SPL-LED-P616C IP").image,
     "content": getProductImages("SPL-LED-P616C IP").content,
-    "video": "",
-    "new": false
+    "video": "https://www.youtube.com/watch?v=6JcIWKWPm7c",
+    "new": true
   },
   {
     "model": "SPL-LED-3000IP",
@@ -360,7 +361,7 @@ export const products: Product[] = [
     "category": Category.LED_STROBE_LIGHT,
     "image": getProductImages("SPL-LED-3000IP").image,
     "content": getProductImages("SPL-LED-3000IP").content,
-    "video": "",
+    "video": "https://www.youtube.com/watch?v=xs0IbMVoNlg",
     "new": false
   },
   {
@@ -369,7 +370,7 @@ export const products: Product[] = [
     "category": Category.LED_STROBE_LIGHT,
     "image": getProductImages("SPL-LED-960B").image,
     "content": getProductImages("SPL-LED-960B").content,
-    "video": "",
+    "video": "https://www.youtube.com/watch?v=7kFHeCamGVA",
     "new": false
   },
   {
@@ -378,7 +379,7 @@ export const products: Product[] = [
     "category": Category.LED_STROBE_LIGHT,
     "image": getProductImages("SPL-LED-S960 II").image,
     "content": getProductImages("SPL-LED-S960 II").content,
-    "video": "",
+    "video": "https://www.youtube.com/watch?v=Fyivr4uGoP0",
     "new": false
   },
   {
