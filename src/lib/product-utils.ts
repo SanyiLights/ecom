@@ -9,7 +9,8 @@ export const getProductByModel = (model: string): Product | undefined => {
 export const filterProducts = (
   products: Product[],
   searchQuery: string = "",
-  selectedCategory: string = ""
+  selectedCategory: string = "",
+  showOnlyNew: boolean = false
 ) => {
   return products.filter(product => {
     const matchesQuery = 
@@ -23,7 +24,9 @@ export const filterProducts = (
       selectedCategory === "Todos" || 
       product.category === selectedCategory;
     
-    return matchesQuery && matchesCategory;
+    const matchesNewFilter = !showOnlyNew || product.new;
+    
+    return matchesQuery && matchesCategory && matchesNewFilter;
   });
 };
 

@@ -2,6 +2,8 @@ import { Navigation } from "@/components/ui/navigation";
 import { ProductCard } from "@/components/ui/product-card";
 import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
+import { Switch } from "@/components/ui/switch";
+import { Label } from "@/components/ui/label";
 import { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import { Footer } from "@/components/sections/Footer";
@@ -13,6 +15,7 @@ const Products = () => {
   const location = useLocation();
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedCategory, setSelectedCategory] = useState<string>("Todos");
+  const [showOnlyNew, setShowOnlyNew] = useState(false);
   const [viewMode, setViewMode] = useState<"grid" | "list">("grid");
 
   useEffect(() => {
@@ -26,7 +29,7 @@ const Products = () => {
     }
   }, [location.state]);
 
-  const filteredProducts = filterProducts(products, searchQuery, selectedCategory);
+  const filteredProducts = filterProducts(products, searchQuery, selectedCategory, showOnlyNew);
 
   const handleCategorySelect = (category: string) => {
     if (selectedCategory === category) {
@@ -59,6 +62,24 @@ const Products = () => {
               />
             </div>
             
+            {/* Filtro de productos nuevos */}
+            <div className="flex items-center space-x-3 p-3 bg-white border border-gray-200 rounded-lg shadow-sm">
+              <Switch
+                id="new-products"
+                checked={showOnlyNew}
+                onCheckedChange={setShowOnlyNew}
+                className="data-[state=checked]:bg-primary data-[state=unchecked]:bg-gray-300"
+              />
+              <Label htmlFor="new-products" className="text-sm font-medium text-gray-700 cursor-pointer">
+                Solo productos nuevos
+              </Label>
+              {showOnlyNew && (
+                <Badge variant="secondary" className="text-xs">
+                  Activo
+                </Badge>
+              )}
+            </div>
+            
             {/* Chips de categorías */}
             <div className="flex flex-wrap gap-2">
               {categories.map((category) => (
@@ -82,6 +103,11 @@ const Products = () => {
               {selectedCategory && selectedCategory !== "Todos" && (
                 <span className="ml-2">
                   en <Badge variant="secondary" className="text-xs sm:text-sm">{selectedCategory}</Badge>
+                </span>
+              )}
+              {showOnlyNew && (
+                <span className="ml-2">
+                  <Badge variant="secondary" className="text-xs sm:text-sm">Solo nuevos</Badge>
                 </span>
               )}
             </p>
