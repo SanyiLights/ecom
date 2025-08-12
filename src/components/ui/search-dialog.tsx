@@ -7,17 +7,20 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
-import { Search, X, Star } from "lucide-react";
+import { Search, X, Star, Eye } from "lucide-react";
 import { useState } from "react";
-import { ProductCard } from "./product-card";
+import { useNavigate } from "react-router-dom";
 import { searchProducts, getFeaturedProducts } from "@/lib/product-utils";
 import { Product } from "@/data/new-products";
+import { useQuoteList } from "@/hooks/use-quote-list";
 
 export const SearchDialog = () => {
   const [open, setOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
   const [searchResults, setSearchResults] = useState<Product[]>([]);
   const featuredProducts = getFeaturedProducts(8);
+  const navigate = useNavigate();
+  const { has, toggle } = useQuoteList();
 
   const handleSearch = (query: string) => {
     setSearchQuery(query);
@@ -36,6 +39,63 @@ export const SearchDialog = () => {
       setSearchResults([]);
     }
   };
+
+  const handleProductClick = (productModel: string) => {
+    setOpen(false);
+    setSearchQuery("");
+    setSearchResults([]);
+    navigate(`/producto/${encodeURIComponent(productModel)}`);
+  };
+
+  const ProductCardSearch = ({ product }: { product: Product }) => (
+    <div className="bg-white rounded-lg border border-gray-200 overflow-hidden hover:shadow-md transition-shadow">
+      <div className="aspect-square overflow-hidden relative">
+        <img 
+          src={product.image} 
+          alt={product.description}
+          className="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
+          loading="lazy"
+        />
+        {product.new && (
+          <div className="absolute top-2 right-2 bg-green-500 text-white text-xs px-2 py-1 rounded shadow-lg">
+            Nuevo
+          </div>
+        )}
+      </div>
+      
+      <div className="p-3">
+        <h3 className="font-semibold text-sm text-gray-800 line-clamp-1 mb-1">
+          {product.model}
+        </h3>
+        <p className="text-xs text-gray-600 line-clamp-2 mb-3">
+          {product.description}
+        </p>
+        
+        <div className="grid grid-cols-1 max-w-sm:grid-cols-2 gap-2">
+          <Button 
+            size="sm" 
+            className="w-full bg-gray-100 text-gray-700 hover:bg-red-500 hover:text-white transition-all duration-300 text-xs py-2"
+            onClick={() => handleProductClick(product.model)}
+          >
+            <Eye className="h-3 w-3 mr-1" />
+            Ver Detalles
+          </Button>
+          <Button 
+            size="sm"
+            variant={has(product.model) ? "secondary" : "default"}
+            className="w-full text-xs py-2"
+            onClick={(e) => {
+              e.preventDefault();
+              e.stopPropagation();
+              toggle(product.model);
+            }}
+          >
+            {has(product.model) ? "Quitar" : "Cotizar"}
+          </Button>
+        </div>
+      </div>
+    </div>
+  );
 
   return (
     <Dialog open={open} onOpenChange={handleOpenChange}>
@@ -84,7 +144,7 @@ export const SearchDialog = () => {
               <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4">
                 {featuredProducts.map((product) => (
                   <div key={product.model} className="w-full">
-                    <ProductCard {...product} />
+                    <ProductCardSearch product={product} />
                   </div>
                 ))}
               </div>
@@ -104,7 +164,7 @@ export const SearchDialog = () => {
                 <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4">
                   {searchResults.map((product) => (
                     <div key={product.model} className="w-full">
-                      <ProductCard {...product} />
+                      <ProductCardSearch product={product} />
                     </div>
                   ))}
                 </div>
