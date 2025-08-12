@@ -1,5 +1,5 @@
-import { Product } from "@/data/new-products";
-import { products } from "@/data/new-products";
+import { Product } from "@/data/products";
+import { products } from "@/data/products";
 
 export const getProductByModel = (model: string): Product | undefined => {
   const decoded = decodeURIComponent(model);

@@ -11,7 +11,7 @@ import { Search, X, Star, Eye } from "lucide-react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { searchProducts, getFeaturedProducts } from "@/lib/product-utils";
-import { Product } from "@/data/new-products";
+import { Product } from "@/data/products";
 import { useQuoteList } from "@/hooks/use-quote-list";
 
 export const SearchDialog = () => {

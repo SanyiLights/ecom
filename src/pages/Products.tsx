@@ -9,7 +9,7 @@ import { useLocation } from "react-router-dom";
 import { Footer } from "@/components/sections/Footer";
 import { categories } from "@/data/categories";
 import { filterProducts } from "@/lib/product-utils";
-import { products } from "@/data/new-products";
+import { products } from "@/data/products";
 
 const Products = () => {
   const location = useLocation();

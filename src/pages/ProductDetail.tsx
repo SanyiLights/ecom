@@ -6,7 +6,7 @@ import { useEffect } from "react";
 import { useParams, Link, useNavigate } from "react-router-dom";
 import { Footer } from "@/components/sections/Footer";
 import { getProductByModel } from "@/lib/product-utils";
-import { Product } from "@/data/new-products";
+import { Product } from "@/data/products";
 import Zoom from "react-medium-image-zoom";
 import "react-medium-image-zoom/dist/styles.css";
 import { useQuoteList } from "@/hooks/use-quote-list";

@@ -3,7 +3,7 @@ import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Eye } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
-import { Product } from "@/data/new-products";
+import { Product } from "@/data/products";
 import { useQuoteList } from "@/hooks/use-quote-list";
 
 export const ProductCard = (product: Product) => {
