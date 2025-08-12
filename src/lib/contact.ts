@@ -1,13 +1,13 @@
 export const openWhatsApp = () => {
   const phoneNumber = "5491171388885";
-  const message = "Hola! Me interesa conocer más sobre sus productos de iluminación profesional.";
+  const message = "Hola! Me interesa conocer más sobre sus productos de iluminación profesional.\n\nMuchas gracias!";
   const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
   window.open(url, '_blank');
 };
 
 export const openWhatsAppForModel = (model: string) => {
   const phoneNumber = "5491171388885";
-  const message = `Hola! Quisiera cotizar el modelo: ${model}`;
+  const message = `Hola! Quisiera cotizar el modelo: ${model}\n\nMuchas gracias!`;
   const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
   window.open(url, '_blank');
 };
@@ -15,7 +15,7 @@ export const openWhatsAppForModel = (model: string) => {
 export const openWhatsAppForModels = (models: string[]) => {
   const phoneNumber = "5491171388885";
   const pretty = models.map((m, i) => `${i + 1}. ${m}`).join("\n");
-  const message = `Hola! Quisiera cotizar los siguientes modelos:\n\n${pretty}`;
+  const message = `Hola! Quisiera cotizar los siguientes modelos:\n\n${pretty}\n\nMuchas gracias!`;
   const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
   window.open(url, '_blank');
 };
