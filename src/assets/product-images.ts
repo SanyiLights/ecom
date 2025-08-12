@@ -25,9 +25,9 @@ export const SPL_LED_048_RGBW_CONTENT = "/images/products/SPL-LED-048 RGBW/conte
 export const SPL_LED_070D_IMAGE = "/images/products/SPL-LED-070D/image.png";
 export const SPL_LED_070D_CONTENT = "/images/products/SPL-LED-070D/content.png";
 
-// SPL-LED-070G Power
-export const SPL_LED_070G_POWER_IMAGE = "/images/products/SPL-LED-070G Power/image.png";
-export const SPL_LED_070G_POWER_CONTENT = "/images/products/SPL-LED-070G Power/content.png";
+// SPL-LED-070G
+export const SPL_LED_070G_IMAGE = "/images/products/SPL-LED-070G/image.png";
+export const SPL_LED_070G_POWER_CONTENT = "/images/products/SPL-LED-070G/content.png";
 
 // SPL-LED-071 RGBW PRO
 export const SPL_LED_071_RGBW_PRO_IMAGE = "/images/products/SPL-LED-071 RGBW PRO/image.png";
@@ -100,6 +100,10 @@ export const SPL_LED_312F_CONTENT = "/images/products/SPL-LED-312F/content.png";
 // SPL-LED-316
 export const SPL_LED_316_IMAGE = "/images/products/SPL-LED-316/image.png";
 export const SPL_LED_316_CONTENT = "/images/products/SPL-LED-316/content.png";
+
+// SPL-LED-317
+export const SPL_LED_317_IMAGE = "/images/products/SPL-LED-317/image.png";
+export const SPL_LED_317_CONTENT = "/images/products/SPL-LED-317/content.png";
 
 // SPL-LED-3240 IP
 export const SPL_LED_3240_IP_IMAGE = "/images/products/SPL-LED-3240 IP/image.png";
@@ -397,12 +401,19 @@ export const SPL_RGB_660_CONTENT = "/images/products/SPL-RGB-660/content.png";
 export const SPL_LED_T200RGBW_IP_IMAGE = "/images/products/SPL-LED-T200RGBW IP/image.png";
 export const SPL_LED_T200RGBW_IP_CONTENT = "/images/products/SPL-LED-T200RGBW IP/content.png";
 
+export const SPL_LED_616_IMAGE = "/images/products/SPL-LED-616/image.png";
+export const SPL_LED_616_CONTENT = "/images/products/SPL-LED-616/content.png";
+
 // Helper function to get product images by model
 export const getProductImages = (model: string) => {
   const imageMap: Record<string, { image: string; content: string }> = {
     "LED dance floor": {
       image: LED_DANCE_FLOOR_IMAGE,
       content: LED_DANCE_FLOOR_CONTENT
+    },
+    "SPL-LED-616": {
+      image: SPL_LED_616_IMAGE,
+      content: SPL_LED_616_CONTENT
     },
     "SPL-LED-T200RGBW IP": {
       image: SPL_LED_T200RGBW_IP_IMAGE,
@@ -411,6 +422,10 @@ export const getProductImages = (model: string) => {
     "SPL-COB-200": {
       image: SPL_COB_200_IMAGE,
       content: SPL_COB_200_CONTENT
+    },
+    "SPL-LED-317": {
+      image: SPL_LED_317_IMAGE,
+      content: SPL_LED_317_CONTENT
     },
     "SPL-LED-011": {
       image: SPL_LED_011_IMAGE,
@@ -428,8 +443,8 @@ export const getProductImages = (model: string) => {
       image: SPL_LED_070D_IMAGE,
       content: SPL_LED_070D_CONTENT
     },
-    "SPL-LED-070G Power": {
-      image: SPL_LED_070G_POWER_IMAGE,
+    "SPL-LED-070G": {
+      image: SPL_LED_070G_IMAGE,
       content: SPL_LED_070G_POWER_CONTENT
     },
     "SPL-LED-071 RGBW PRO": {

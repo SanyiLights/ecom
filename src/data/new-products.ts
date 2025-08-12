@@ -404,26 +404,34 @@ export const products: Product[] = [
     "model": "SPL-LED-071D/071E",
     "description": "LED",
     "category": Category.LED_STROBE_LIGHT,
-    "image": getProductImages("SPL-LED-071D/071E").image,
-    "content": getProductImages("SPL-LED-071D/071E").content,
-    "video": "",
+    "image": getProductImages("SPL-LED-071D").image,
+    "content": getProductImages("SPL-LED-071D").content,
     "new": false
   },
   {
     "model": "SPL-LED-070D/070E",
     "description": "LED",
     "category": Category.LED_STROBE_LIGHT,
-    "image": getProductImages("SPL-LED-070D/070E").image,
-    "content": getProductImages("SPL-LED-070D/070E").content,
+    "image": getProductImages("SPL-LED-070D").image,
+    "content": getProductImages("SPL-LED-070D").content,
     "video": "",
     "new": false
   },
   {
-    "model": "SPL-LED-070G Power",
+    "model": "SPL-LED-070G",
     "description": "9*3W UV flood light",
     "category": Category.LED_STROBE_LIGHT,
-    "image": getProductImages("SPL-LED-070G Power").image,
-    "content": getProductImages("SPL-LED-070G Power").content,
+    "image": getProductImages("SPL-LED-070G").image,
+    "content": getProductImages("SPL-LED-070G").content,
+    "video": "",
+    "new": false
+  },
+  {
+    "model": "SPL-LED-616",
+    "description": "2*100W dual white LED blinder",
+    "category": Category.LED_STROBE_LIGHT,
+    "image": getProductImages("SPL-LED-616").image,
+    "content": getProductImages("SPL-LED-616").content,
     "video": "",
     "new": false
   },
@@ -433,7 +441,7 @@ export const products: Product[] = [
     "category": Category.LED_STROBE_LIGHT,
     "image": getProductImages("SPL-LED-616B").image,
     "content": getProductImages("SPL-LED-616B").content,
-    "video": "",
+    "video": "https://www.youtube.com/watch?v=i_LLUgPUNaE",
     "new": false
   },
   {
@@ -442,7 +450,7 @@ export const products: Product[] = [
     "category": Category.LED_STROBE_LIGHT,
     "image": getProductImages("SPL-LED-616C").image,
     "content": getProductImages("SPL-LED-616C").content,
-    "video": "",
+    "video": "https://www.youtube.com/watch?v=6JcIWKWPm7c",
     "new": false
   },
   {
@@ -451,7 +459,7 @@ export const products: Product[] = [
     "category": Category.LED_STROBE_LIGHT,
     "image": getProductImages("SPL-LED-616F").image,
     "content": getProductImages("SPL-LED-616F").content,
-    "video": "",
+    "video": "https://www.youtube.com/watch?v=PHGPwOyD0kY",
     "new": false
   },
   {
@@ -460,7 +468,7 @@ export const products: Product[] = [
     "category": Category.LED_STROBE_LIGHT,
     "image": getProductImages("SPL-COB-200").image,
     "content": getProductImages("SPL-COB-200").content,
-    "video": "",
+    "video": "https://www.youtube.com/watch?v=1_VbuO0UnYw",
     "new": false
   },
   {
@@ -469,8 +477,8 @@ export const products: Product[] = [
     "category": Category.LED_PAR_LIGHT,
     "image": getProductImages("SPL-LED-P2415 IP").image,
     "content": getProductImages("SPL-LED-P2415 IP").content,
-    "video": "",
-    "new": false
+    "video": "https://www.youtube.com/watch?v=egXyWy9tpXE",
+    "new": true
   },
   {
     "model": "SPL-LED-P2015 IP",
@@ -478,8 +486,8 @@ export const products: Product[] = [
     "category": Category.LED_PAR_LIGHT,
     "image": getProductImages("SPL-LED-P2015 IP").image,
     "content": getProductImages("SPL-LED-P2015 IP").content,
-    "video": "",
-    "new": false
+    "video": "https://www.youtube.com/watch?v=wcGFlGy_7vA",
+    "new": true
   },
   {
     "model": "SPL-LED-P1220 IP",
@@ -487,8 +495,8 @@ export const products: Product[] = [
     "category": Category.LED_PAR_LIGHT,
     "image": getProductImages("SPL-LED-P1220 IP").image,
     "content": getProductImages("SPL-LED-P1220 IP").content,
-    "video": "",
-    "new": false
+    "video": "https://www.youtube.com/watch?v=daGXOHN7D0c",
+    "new": true
   },
   {
     "model": "SPL-LED-P750 IP",
@@ -496,8 +504,7 @@ export const products: Product[] = [
     "category": Category.LED_PAR_LIGHT,
     "image": getProductImages("SPL-LED-P750 IP").image,
     "content": getProductImages("SPL-LED-P750 IP").content,
-    "video": "",
-    "new": false
+    "new": true
   },
   {
     "model": "SPL-LED-450 II IP",
@@ -505,8 +512,8 @@ export const products: Product[] = [
     "category": Category.LED_PAR_LIGHT,
     "image": getProductImages("SPL-LED-450 II IP").image,
     "content": getProductImages("SPL-LED-450 II IP").content,
-    "video": "",
-    "new": false
+    "video": "https://www.youtube.com/watch?v=GAJYHSLrNpk",
+    "new": true
   },
   {
     "model": "SPL-LED-P1815IP",
@@ -514,8 +521,8 @@ export const products: Product[] = [
     "category": Category.LED_PAR_LIGHT,
     "image": getProductImages("SPL-LED-P1815IP").image,
     "content": getProductImages("SPL-LED-P1815IP").content,
-    "video": "",
-    "new": false
+    "video": "https://www.youtube.com/watch?v=-0E4bCJp2pc",
+    "new": true
   },
   {
     "model": "SPL-LED-1810",
@@ -523,7 +530,7 @@ export const products: Product[] = [
     "category": Category.LED_PAR_LIGHT,
     "image": getProductImages("SPL-LED-1810").image,
     "content": getProductImages("SPL-LED-1810").content,
-    "video": "",
+    "video": "https://www.youtube.com/watch?v=wL2ahZX2cGc",
     "new": false
   },
   {
@@ -532,7 +539,6 @@ export const products: Product[] = [
     "category": Category.LED_PAR_LIGHT,
     "image": getProductImages("SPL-LED-316").image,
     "content": getProductImages("SPL-LED-316").content,
-    "video": "",
     "new": false
   },
   {
@@ -541,7 +547,7 @@ export const products: Product[] = [
     "category": Category.LED_PAR_LIGHT,
     "image": getProductImages("SPL-LED-200Z").image,
     "content": getProductImages("SPL-LED-200Z").content,
-    "video": "",
+    "video": "https://www.youtube.com/watch?v=PLLYJxoyyR8&pp=0gcJCa0JAYcqIYzv",
     "new": false
   },
   {
@@ -550,7 +556,7 @@ export const products: Product[] = [
     "category": Category.LED_PAR_LIGHT,
     "image": getProductImages("SPL-LED-615").image,
     "content": getProductImages("SPL-LED-615").content,
-    "video": "",
+    "video": "https://www.youtube.com/watch?v=LfEN84e2RyU",
     "new": false
   },
   {
@@ -559,7 +565,6 @@ export const products: Product[] = [
     "category": Category.LED_PAR_LIGHT,
     "image": getProductImages("SPL-LED-630").image,
     "content": getProductImages("SPL-LED-630").content,
-    "video": "",
     "new": false
   },
   {
@@ -568,7 +573,7 @@ export const products: Product[] = [
     "category": Category.LED_PAR_LIGHT,
     "image": getProductImages("SPL-LED-631").image,
     "content": getProductImages("SPL-LED-631").content,
-    "video": "",
+    "video": "https://www.youtube.com/watch?v=PLLYJxoyyR8",
     "new": false
   },
   {
@@ -577,15 +582,14 @@ export const products: Product[] = [
     "category": Category.LED_PAR_LIGHT,
     "image": getProductImages("SPL-LED-079").image,
     "content": getProductImages("SPL-LED-079").content,
-    "video": "",
     "new": false
   },
   {
     "model": "SPL-LED-316/317",
     "description": "LED Battery light",
     "category": Category.LED_PAR_LIGHT,
-    "image": getProductImages("SPL-LED-316/317").image,
-    "content": getProductImages("SPL-LED-316/317").content,
+    "image": getProductImages("SPL-LED-317").image,
+    "content": getProductImages("SPL-LED-317").content,
     "video": "",
     "new": false
   },
@@ -595,7 +599,6 @@ export const products: Product[] = [
     "category": Category.LED_PAR_LIGHT,
     "image": getProductImages("SPL-LED-011").image,
     "content": getProductImages("SPL-LED-011").content,
-    "video": "",
     "new": false
   },
   {
@@ -604,7 +607,7 @@ export const products: Product[] = [
     "category": Category.LED_PAR_LIGHT,
     "image": getProductImages("SPL-LED-750").image,
     "content": getProductImages("SPL-LED-750").content,
-    "video": "",
+    "video": "https://www.youtube.com/watch?v=KMUPxpzxImU",
     "new": false
   },
   {
@@ -613,7 +616,7 @@ export const products: Product[] = [
     "category": Category.LED_PAR_LIGHT,
     "image": getProductImages("SPL-LED-450").image,
     "content": getProductImages("SPL-LED-450").content,
-    "video": "",
+    "video": "https://www.youtube.com/watch?v=Ghpk7hvQZ3o&pp=0gcJCa0JAYcqIYzv",
     "new": false
   },
   {
@@ -622,7 +625,6 @@ export const products: Product[] = [
     "category": Category.LED_PAR_LIGHT,
     "image": getProductImages("SPL-LED-P2010").image,
     "content": getProductImages("SPL-LED-P2010").content,
-    "video": "",
     "new": false
   },
   {
@@ -631,7 +633,6 @@ export const products: Product[] = [
     "category": Category.LED_PAR_LIGHT,
     "image": getProductImages("SPL-LED-1210").image,
     "content": getProductImages("SPL-LED-1210").content,
-    "video": "",
     "new": false
   },
   {
@@ -640,7 +641,6 @@ export const products: Product[] = [
     "category": Category.LED_PAR_LIGHT,
     "image": getProductImages("SPL-LED-312F").image,
     "content": getProductImages("SPL-LED-312F").content,
-    "video": "",
     "new": false
   },
   {
@@ -649,7 +649,6 @@ export const products: Product[] = [
     "category": Category.LED_PAR_LIGHT,
     "image": getProductImages("SPL-LED-312D").image,
     "content": getProductImages("SPL-LED-312D").content,
-    "video": "",
     "new": false
   },
   {
@@ -658,7 +657,6 @@ export const products: Product[] = [
     "category": Category.LASER_LIGHT,
     "image": getProductImages("SPL-RGB-286").image,
     "content": getProductImages("SPL-RGB-286").content,
-    "video": "",
     "new": false
   },
   {
@@ -667,7 +665,6 @@ export const products: Product[] = [
     "category": Category.LASER_LIGHT,
     "image": getProductImages("SPL-RGB-130").image,
     "content": getProductImages("SPL-RGB-130").content,
-    "video": "",
     "new": false
   },
   {
@@ -676,7 +673,6 @@ export const products: Product[] = [
     "category": Category.LASER_LIGHT,
     "image": getProductImages("SPL-RGB-115").image,
     "content": getProductImages("SPL-RGB-115").content,
-    "video": "",
     "new": false
   },
   {
@@ -685,7 +681,6 @@ export const products: Product[] = [
     "category": Category.LASER_LIGHT,
     "image": getProductImages("SPL-RGB-119").image,
     "content": getProductImages("SPL-RGB-119").content,
-    "video": "",
     "new": false
   },
   {
@@ -694,15 +689,14 @@ export const products: Product[] = [
     "category": Category.LASER_LIGHT,
     "image": getProductImages("SPL-RGB-246").image,
     "content": getProductImages("SPL-RGB-246").content,
-    "video": "",
     "new": false
   },
   {
     "model": "SPL-RGB-110/105",
     "description": "5/10W RGB full color animation laser light",
     "category": Category.LASER_LIGHT,
-    "image": getProductImages("SPL-RGB-110/105").image,
-    "content": getProductImages("SPL-RGB-110/105").content,
+    "image": getProductImages("SPL-RGB-110").image,
+    "content": getProductImages("SPL-RGB-110").content,
     "video": "",
     "new": false
   },
@@ -712,8 +706,7 @@ export const products: Product[] = [
     "category": Category.LASER_LIGHT,
     "image": getProductImages("SPL-RGB-510").image,
     "content": getProductImages("SPL-RGB-510").content,
-    "video": "",
-    "new": false
+    "new": false 
   },
   {
     "model": "SPL-RGB-256",
@@ -721,16 +714,14 @@ export const products: Product[] = [
     "category": Category.LASER_LIGHT,
     "image": getProductImages("SPL-RGB-256").image,
     "content": getProductImages("SPL-RGB-256").content,
-    "video": "",
     "new": false
   },
   {
     "model": "SPL-RGB-252/253",
     "description": "400mW/1W Mini RGB full color laser light",
     "category": Category.LASER_LIGHT,
-    "image": getProductImages("SPL-RGB-252/253").image,
-    "content": getProductImages("SPL-RGB-252/253").content,
-    "video": "",
+    "image": getProductImages("SPL-RGB-252").image,
+    "content": getProductImages("SPL-RGB-252").content,
     "new": false
   },
   {
@@ -739,7 +730,7 @@ export const products: Product[] = [
     "category": Category.LASER_LIGHT,
     "image": getProductImages("SPL-RGB-508").image,
     "content": getProductImages("SPL-RGB-508").content,
-    "video": "",
+    "video": "https://www.youtube.com/watch?v=VQaUTyxf-e8&pp=0gcJCa0JAYcqIYzv",
     "new": false
   },
   {
@@ -748,7 +739,7 @@ export const products: Product[] = [
     "category": Category.LASER_LIGHT,
     "image": getProductImages("SPL-R-507").image,
     "content": getProductImages("SPL-R-507").content,
-    "video": "",
+    "video": "https://www.youtube.com/watch?v=rvYt85462ok",
     "new": false
   },
   {
@@ -757,24 +748,22 @@ export const products: Product[] = [
     "category": Category.LASER_LIGHT,
     "image": getProductImages("SPL-RGB-660").image,
     "content": getProductImages("SPL-RGB-660").content,
-    "video": "",
     "new": false
   },
   {
     "model": "SPL-R/G/B-506A",
     "description": "Fat beam red laser bar",
     "category": Category.LASER_LIGHT,
-    "image": getProductImages("SPL-R/G/B-506A").image,
-    "content": getProductImages("SPL-R/G/B-506A").content,
-    "video": "",
+    "image": getProductImages("SPL-R").image,
+    "content": getProductImages("SPL-R").content,
     "new": false
   },
   {
     "model": "SPL-RGB/R/G-506",
     "description": "Laser Beam Light",
     "category": Category.LASER_LIGHT,
-    "image": getProductImages("SPL-RGB/R/G-506").image,
-    "content": getProductImages("SPL-RGB/R/G-506").content,
+    "image": getProductImages("SPL-RGB").image,
+    "content": getProductImages("SPL-RGB").content,
     "video": "",
     "new": false
   },
@@ -829,7 +818,6 @@ export const products: Product[] = [
     "category": Category.EFFECT_LIGHT,
     "image": getProductImages("SPL-LED-613").image,
     "content": getProductImages("SPL-LED-613").content,
-    "video": "",
     "new": false
   },
   {
@@ -838,7 +826,7 @@ export const products: Product[] = [
     "category": Category.EFFECT_LIGHT,
     "image": getProductImages("SPL-RG-305A").image,
     "content": getProductImages("SPL-RG-305A").content,
-    "video": "",
+    "video": "https://www.youtube.com/watch?v=Izoszt03yGI",
     "new": false
   },
   {
@@ -865,7 +853,7 @@ export const products: Product[] = [
     "category": Category.EFFECT_LIGHT,
     "image": getProductImages("SPL-LED-020M-A3").image,
     "content": getProductImages("SPL-LED-020M-A3").content,
-    "video": "",
+    "video": "https://www.youtube.com/watch?v=uNGhhmi-BhA&t=40s",
     "new": false
   },
   {
