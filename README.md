@@ -1,6 +1,6 @@
-# Ecom - Sitio Web de Iluminación Profesional
+# Sitio Web de Sanyi Lights Argentina 
 
-Este es un sitio web de comercio electrónico que muestra equipos de iluminación profesional, incluyendo cabezas móviles, luces de lavado, luces LED estroboscópicas, luces LED PAR, luces láser y luces de efectos.
+Este es un sitio web de Sanyi Lights Argentina que muestra equipos de iluminación profesional, incluyendo cabezas móviles, luces de lavado, luces LED estroboscópicas, luces LED PAR, luces láser y luces de efectos.
 
 ## 🚀 Cómo Empezar
 
