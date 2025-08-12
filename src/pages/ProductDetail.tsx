@@ -78,14 +78,6 @@ const ProductDetail = () => {
                 >
                   {has(product.model) ? "Quitar de lista" : "Agregar a lista"}
                 </Button>
-                {items.length > 0 && (
-                  <Button
-                    size="lg"
-                    onClick={() => openWhatsAppForModels(items)}
-                  >
-                    Cotizar lista ({items.length})
-                  </Button>
-                )}
               </div>
 
             <div className="grid grid-cols-1 gap-3 mt-2">

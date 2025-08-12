@@ -7,16 +7,17 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
-import { Search, X } from "lucide-react";
+import { Search, X, Star } from "lucide-react";
 import { useState } from "react";
 import { ProductCard } from "./product-card";
-import { searchProducts } from "@/lib/product-utils";
+import { searchProducts, getFeaturedProducts } from "@/lib/product-utils";
 import { Product } from "@/data/new-products";
 
 export const SearchDialog = () => {
   const [open, setOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
   const [searchResults, setSearchResults] = useState<Product[]>([]);
+  const featuredProducts = getFeaturedProducts(8);
 
   const handleSearch = (query: string) => {
     setSearchQuery(query);
@@ -47,7 +48,7 @@ export const SearchDialog = () => {
           <Search className="h-4 w-4 sm:h-5 sm:w-5" />
         </Button>
       </DialogTrigger>
-      <DialogContent className="w-[95vw] max-w-[90vw] sm:max-w-[600px] md:max-w-[700px] lg:max-w-[800px] max-h-[90vh] sm:max-h-[80vh] overflow-y-auto p-4 sm:p-6">
+      <DialogContent className="w-[95vw] max-w-[90vw] sm:max-w-[600px] md:max-w-[700px] lg:max-w-[800px] max-h-[90vh] sm:max-h-[80vh] overflow-y-auto p-4 sm:p-6 rounded-2xl sm:rounded-xl">
         <DialogHeader className="pb-4">
           <DialogTitle className="text-lg sm:text-xl">Buscar Productos</DialogTitle>
         </DialogHeader>
@@ -73,6 +74,24 @@ export const SearchDialog = () => {
             )}
           </div>
 
+          {/* Mostrar productos destacados cuando no hay búsqueda */}
+          {!searchQuery && (
+            <div className="space-y-4 sm:space-y-6">
+              <div className="flex items-center gap-2 text-primary">
+                <Star className="h-5 w-5" />
+                <h3 className="text-lg font-semibold">Productos Destacados</h3>
+              </div>
+              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4">
+                {featuredProducts.map((product) => (
+                  <div key={product.model} className="w-full">
+                    <ProductCard {...product} />
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {/* Mostrar resultados de búsqueda */}
           {searchQuery && (
             <div className="space-y-4 sm:space-y-6">
               <div className="flex items-center justify-between">

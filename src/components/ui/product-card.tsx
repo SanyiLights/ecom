@@ -43,7 +43,7 @@ export const ProductCard = (product: Product) => {
             <p className="text-sm text-muted-foreground line-clamp-2 flex-1">
               {product.description}
             </p>
-            <div className="pt-3 grid grid-cols-1 sm:grid-cols-2 gap-2 mt-auto">
+            <div className="pt-3 grid grid-cols-1 max-w-sm:grid-cols-2 gap-2 mt-auto">
               <Button 
                 size="sm" 
                 className="w-full bg-gray-100 text-gray-700 hover:bg-red-500 hover:text-white transition-all duration-300 text-xs sm:text-sm px-2 sm:px-3 py-2"

@@ -97,32 +97,32 @@ export const Navigation = ({ isTransparent = false }: NavigationProps) => {
               Inicio
             </Link>
             
-            <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <Button
-                  variant="ghost"
-                  className={`transition-all duration-300 px-4 py-2 rounded-md flex items-center gap-1 ${
-                    isActiveLink('/productos') 
-                      ? 'bg-primary text-white' 
-                      : 'text-white hover:bg-white/20'
-                  }`}
-                >
-                  Productos
-                  <ChevronDown className="h-4 w-4" />
-                </Button>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent align="start" className="w-48">
+            <div className="group relative">
+              <Button
+                variant="ghost"
+                className={`transition-all duration-300 px-4 py-2 rounded-md flex items-center gap-1 ${
+                  isActiveLink('/productos') 
+                    ? 'bg-primary text-white' 
+                    : 'text-white hover:bg-white/20'
+                }`}
+              >
+                Productos
+                <ChevronDown className="h-4 w-4" />
+              </Button>
+              
+              {/* Dropdown que aparece con hover */}
+              <div className="absolute top-full left-0 mt-1 w-48 bg-white rounded-md shadow-lg border border-gray-200 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
                 {categories.map((category) => (
-                  <DropdownMenuItem
+                  <button
                     key={category}
                     onClick={() => handleCategorySelect(category)}
-                    className="cursor-pointer"
+                    className="w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition-colors first:rounded-t-md last:rounded-b-md"
                   >
                     {category}
-                  </DropdownMenuItem>
+                  </button>
                 ))}
-              </DropdownMenuContent>
-            </DropdownMenu>
+              </div>
+            </div>
             
             <Link 
               to="/about" 
