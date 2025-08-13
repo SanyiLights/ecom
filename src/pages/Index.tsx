@@ -2,6 +2,7 @@ import { Navigation } from "@/components/ui/navigation";
 import { HeroSection } from "@/components/sections/HeroSection";
 import { Testimonials } from "@/components/sections/Testimonials";
 import { FeaturedProducts } from "@/components/sections/FeaturedProducts";
+import { WhyChooseUs } from "@/components/sections/WhyChooseUs";
 import { Footer } from "@/components/sections/Footer";
 import { useEffect } from "react";
 
@@ -16,6 +17,7 @@ const Index = () => {
       <Navigation isTransparent={true} />
       <HeroSection />
       <FeaturedProducts />
+      <WhyChooseUs />
       <Testimonials />
       <Footer />
     </div>
