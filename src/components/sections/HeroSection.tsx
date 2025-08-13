@@ -159,7 +159,7 @@ export const HeroSection = () => {
   };
 
   return (
-    <section className="relative min-h-[100vh] sm:min-h-[90vh] overflow-hidden">
+    <section className="relative h-screen w-full overflow-hidden">
       <div 
         className="absolute inset-0"
         ref={carouselRef}
@@ -206,7 +206,7 @@ export const HeroSection = () => {
         ))}
       </div>
 
-      <div className="relative z-10 container mx-auto px-4 h-[100vh] sm:h-[90vh] flex items-center">
+      <div className="relative z-10 container mx-auto px-4 h-screen flex items-center">
         <div className="w-full">
           <div className="max-w-4xl text-white mb-8 sm:mb-12 mx-auto text-center">
             <div className="animate-fade-in">
