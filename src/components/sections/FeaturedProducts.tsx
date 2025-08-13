@@ -16,7 +16,7 @@ export const FeaturedProducts = () => {
       <div className="container mx-auto px-4 max-w-6xl">
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl text-primary font-bold mb-4">
-            Productos Nuevos
+            Descubrí las novedades
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
             Los equipos más populares y solicitados de nuestro catálogo profesional. 

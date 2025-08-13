@@ -5,6 +5,7 @@ import { MapPin, Phone, Mail, Globe, Users, Award, Truck, Shield } from "lucide-
 import { Footer } from "@/components/sections/Footer";
 import { Link } from "react-router-dom";
 import { useEffect } from "react";
+import mapImage from "@/assets/map.jpeg";
 
 
 
@@ -78,7 +79,7 @@ const About = () => {
           {/* Por qué elegirnos */}
           <div className="mb-16">
             <h2 className="text-3xl font-bold text-center mb-12">¿Por qué elegir Sanyi Lights?</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
               <div className="text-center">
                 <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
                   <Award className="h-8 w-8 text-primary" />
@@ -115,39 +116,30 @@ const About = () => {
                   Iluminación de alto rendimiento y tecnología avanzada
                 </p>
               </div>
+              <div className="text-center">
+                <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <Shield className="h-8 w-8 text-primary" />
+                </div>
+                <h3 className="text-xl font-semibold mb-2">Garantía</h3>
+                <p className="text-muted-foreground">
+                  Respaldamos todos nuestros productos con garantía oficial
+                </p>
+              </div>
             </div>
           </div>
 
           {/* Presencia Global */}
-          <div className="mb-16">
-            <h2 className="text-3xl font-bold text-center mb-12">Nuestra Presencia Global</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              <div className="bg-card border rounded-lg p-6">
-                <div className="flex items-center gap-3 mb-4">
-                  <MapPin className="h-5 w-5 text-primary" />
-                  <h3 className="font-semibold">Argentina</h3>
-                </div>
-                <p className="text-sm text-muted-foreground mb-2">Chile 1380, C.A.B.A</p>
-                <p className="text-sm text-muted-foreground mb-2">(+54 9) 11 7138-8885</p>
-                <p className="text-sm text-muted-foreground">ventas@sanyilights.com</p>
-              </div>
-              <div className="bg-card border rounded-lg p-6">
-                <div className="flex items-center gap-3 mb-4">
-                  <MapPin className="h-5 w-5 text-primary" />
-                  <h3 className="font-semibold">Estados Unidos</h3>
-                </div>
-                <p className="text-sm text-muted-foreground mb-2">2446 Merced Ave, South El Monte, CA</p>
-                <p className="text-sm text-muted-foreground mb-2">+1(626) 601-1887</p>
-                <p className="text-sm text-muted-foreground">sanyilightsusa@gmail.com</p>
-              </div>
-              <div className="bg-card border rounded-lg p-6">
-                <div className="flex items-center gap-3 mb-4">
-                  <MapPin className="h-5 w-5 text-primary" />
-                  <h3 className="font-semibold">China</h3>
-                </div>
-                <p className="text-sm text-muted-foreground mb-2">Building 29, Jiayichuangxin Industry Zone</p>
-                <p className="text-sm text-muted-foreground mb-2">Qingyuan City, Guangdong Province</p>
-                <p className="text-sm text-muted-foreground">info@sparklaser.com</p>
+          <div className="mb-20">
+            <h2 className="text-4xl lg:text-5xl font-bold text-center mb-16">Nuestra Presencia Global</h2>
+            
+            {/* Mapa */}
+            <div className="mb-16 -mx-4 lg:-mx-8">
+              <div className="w-full h-96 lg:h-[600px] xl:h-[700px]">
+                <img 
+                  src={mapImage} 
+                  alt="Mapa de Presencia Global de Sanyi Lights" 
+                  className="w-full h-full object-contain object-center"
+                />
               </div>
             </div>
           </div>
