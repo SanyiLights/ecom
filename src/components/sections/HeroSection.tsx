@@ -1,23 +1,15 @@
 import { Button } from "@/components/ui/button";
 import { ChevronLeft, ChevronRight, ArrowRight} from "lucide-react";
 import { useState, useEffect, useRef } from "react";
+import { Link } from "react-router-dom";
 
 const professionalVideos = [
   {
     src: "/videos/video1.mp4",
     title: "SPL-LED-1260",
-    subtitle: "12*60W LED moving bar zoom"
+    subtitle: "12*60W LED moving bar zoom",
+    productRoute: "/producto/SPL-LED-1260"
   },
-  {
-    src: "/videos/tecnologia-avanzada.mp4", 
-    title: "Tecnología Avanzada",
-    subtitle: "Cabezal movil LED, LED displays y consolas DMX"
-  },
-  {
-    src: "/videos/asesoramiento.mp4",
-    title: "Solicita Asesoramiento",
-    subtitle: "Te ayudamos a elegir la mejor iluminación para tu evento"
-  }
 ];
 
 export const HeroSection = () => {
@@ -152,10 +144,12 @@ export const HeroSection = () => {
               </p>
 
               <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4">
-                <Button size="lg" className={`${getButtonClasses('primary')} shadow-elegant group w-auto text-base sm:text-lg lg:text-xl px-6 sm:px-8 py-6 sm:py-8 font-bold tracking-wide hover:scale-105 transition-all duration-300`}>
-                  DESCUBRILO
-                  <ArrowRight className="ml-3 h-5 w-5 sm:h-6 sm:w-6 group-hover:translate-x-2 transition-transform duration-300" />
-                </Button>
+                <Link to={professionalVideos[currentImageIndex].productRoute} onClick={() => window.scrollTo(0, 0)}>
+                  <Button size="lg" className={`${getButtonClasses('primary')} shadow-elegant group w-auto text-base sm:text-lg lg:text-xl px-6 sm:px-8 py-6 sm:py-8 font-bold tracking-wide hover:scale-105 transition-all duration-300`}>
+                    DESCUBRILO
+                    <ArrowRight className="ml-3 h-5 w-5 sm:h-6 sm:w-6 group-hover:translate-x-2 transition-transform duration-300" />
+                  </Button>
+                </Link>
               </div>
             </div>
           </div>
