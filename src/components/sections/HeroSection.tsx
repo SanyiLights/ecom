@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { ChevronLeft, ChevronRight, ArrowRight} from "lucide-react";
+import { ArrowRight} from "lucide-react";
 import { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 
@@ -119,10 +119,10 @@ export const HeroSection = () => {
             variant="ghost"
             size="icon"
             onClick={() => goToImage(index)}
-            className={`w-8 h-8 rounded-full p-0 transition-all duration-300 font-bold text-sm ${
+            className={`w-7 h-7 rounded-lg p-0 transition-all duration-500 font-medium text-xs backdrop-blur-sm border ${
               index === currentImageIndex
-                ? 'bg-white text-black scale-110 shadow-lg'
-                : 'bg-white/20 text-white hover:bg-white/40 hover:scale-105'
+                ? 'bg-white/80 text-black scale-110 shadow-lg border-white/40'
+                : 'bg-black/10 text-white/60 hover:bg-white/15 hover:text-white/80 hover:scale-105 border-white/10 hover:border-white/20'
             }`}
           >
             {index + 1}
