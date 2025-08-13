@@ -7,8 +7,26 @@ const professionalVideos = [
   {
     src: "/videos/video1.mp4",
     title: "SPL-LED-1260",
-    subtitle: "LED MOVING BAR ZOOM DE ALTO IMPACTO VISUAL",
-    productRoute: "/producto/SPL-LED-1260"
+    subtitle: "12*60W LED MOVING BAR ZOOM",
+    productRoute: "/producto/SPL-LED-1260",
+    type: "local",
+    new: false
+  },
+  {
+    src: "https://www.youtube.com/watch?v=J5wAKFQtPNs&t=9s",
+    title: "SPL-LED-700",
+    subtitle: "700W LED Profile",
+    productRoute: "/producto/SPL-LED-700",
+    type: "youtube",
+    new: true
+  },
+  {
+    src: "https://www.youtube.com/watch?v=RFt90EgxTTk&t=1m16s",
+    title: "LED WASH MOVING HEAD ZOOM + BEE EYE",
+    subtitle: "SPL-LED-M1940 EYE IP",
+    productRoute: "/producto/SPL-LED-M1940-EYE-IP",
+    type: "youtube",
+    new: true
   }
 ];
 
@@ -24,7 +42,7 @@ export const HeroSection = () => {
       setCurrentImageIndex((prevIndex) => 
         prevIndex === professionalVideos.length - 1 ? 0 : prevIndex + 1
       );
-    }, oneSecond * 5);
+    }, oneSecond * 10);
 
     return () => clearInterval(interval);
   }, []);
@@ -76,6 +94,69 @@ export const HeroSection = () => {
     return 'border-white text-white bg-white/10 backdrop-blur-sm hover:bg-white/20 hover:border-white/80';
   };
 
+  const getYouTubeVideoId = (url: string) => {
+    const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/;
+    const match = url.match(regExp);
+    return (match && match[2].length === 11) ? match[2] : null;
+  };
+
+  const getYouTubeStartTime = (url: string) => {
+    // Extraer tiempo de inicio de la URL (ej: &t=9s, &t=1m30s, &t=90)
+    const timeMatch = url.match(/[?&]t=([^&]+)/);
+    if (!timeMatch) return 0;
+    
+    const timeStr = timeMatch[1];
+    
+    // Si termina en 's' (segundos)
+    if (timeStr.endsWith('s')) {
+      return parseInt(timeStr.slice(0, -1));
+    }
+    
+    // Si termina en 'm' (minutos)
+    if (timeStr.endsWith('m')) {
+      return parseInt(timeStr.slice(0, -1)) * 60;
+    }
+    
+    // Si termina en 'h' (horas)
+    if (timeStr.endsWith('h')) {
+      return parseInt(timeStr.slice(0, -1)) * 3600;
+    }
+    
+    // Si es solo un número (segundos)
+    return parseInt(timeStr) || 0;
+  };
+
+  const renderVideoContent = (video: typeof professionalVideos[0]) => {
+    if (video.type === "youtube") {
+      const videoId = getYouTubeVideoId(video.src);
+      const startTime = getYouTubeStartTime(video.src);
+      
+      if (videoId) {
+        return (
+          <iframe
+            src={`https://www.youtube.com/embed/${videoId}?autoplay=1&mute=1&loop=1&playlist=${videoId}&controls=0&showinfo=0&rel=0&modestbranding=1&playsinline=1&start=${startTime}`}
+            title={video.title}
+            className="w-full h-full object-cover"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowFullScreen
+          />
+        );
+      }
+    }
+    
+    // Video local
+    return (
+      <video
+        src={video.src}
+        autoPlay
+        muted
+        loop
+        playsInline
+        className="w-full h-full object-cover"
+      />
+    );
+  };
+
   return (
     <section className="relative min-h-[100vh] sm:min-h-[90vh] overflow-hidden">
       <div 
@@ -85,20 +166,14 @@ export const HeroSection = () => {
         onTouchMove={onTouchMove}
         onTouchEnd={onTouchEnd}
       >
-        {professionalVideos.map((image, index) => (
+        {professionalVideos.map((video, index) => (
           <div
             key={index}
             className={`absolute inset-0 transition-opacity duration-1000 ${
               index === currentImageIndex ? 'opacity-100' : 'opacity-0'
             }`}
           >
-            <video
-              src={image.src}
-              autoPlay
-              muted
-              loop
-              className="w-full h-full object-cover"
-            />
+            {renderVideoContent(video)}
             <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-black/40 to-black/20" />
           </div>
         ))}
@@ -129,6 +204,15 @@ export const HeroSection = () => {
         <div className="w-full">
           <div className="max-w-4xl text-white mb-8 sm:mb-12 mx-auto text-center">
             <div className="animate-fade-in">
+              {/* Chip de NUEVO para productos nuevos */}
+              {professionalVideos[currentImageIndex].new && (
+                <div className="mb-4">
+                  <span className="inline-block bg-red-600 text-white font-bold text-sm sm:text-base px-4 py-2 rounded-full shadow-lg border-2 border-white/20">
+                    NUEVO
+                  </span>
+                </div>
+              )}
+              
               <h1 
                 key={currentImageIndex} 
                 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold mb-3 sm:mb-4 md:mb-6 leading-tight animate-in slide-in-from-bottom-4 duration-700"
@@ -137,14 +221,17 @@ export const HeroSection = () => {
               </h1>
               <p 
                 key={`subtitle-${currentImageIndex}`}
-                className="text-base sm:text-lg md:text-xl lg:text-2xl mb-4 sm:mb-6 md:mb-8 max-w-3xl mx-auto opacity-90 leading-relaxed animate-in slide-in-from-bottom-4 duration-700 delay-200"
+                className="text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl mb-4 sm:mb-6 md:mb-8 max-w-3xl mx-auto opacity-90 leading-relaxed animate-in slide-in-from-bottom-4 duration-700 delay-200"
               >
                 {professionalVideos[currentImageIndex].subtitle}
               </p>
 
               <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4">
                 <Link to={professionalVideos[currentImageIndex].productRoute} onClick={() => window.scrollTo(0, 0)}>
-                  <Button size="lg" className="bg-white text-black hover:bg-primary hover:text-white shadow-elegant group w-auto text-base sm:text-lg lg:text-xl px-6 sm:px-8 py-6 sm:py-8 font-bold tracking-wide hover:scale-105 transition-all duration-300">
+                  <Button 
+                    size="lg" 
+                    className="bg-white text-black hover:bg-red-600 hover:text-white shadow-elegant group w-auto text-base sm:text-lg lg:text-xl px-6 sm:px-8 py-6 sm:py-8 font-bold tracking-wide hover:scale-105 transition-all duration-300"
+                  >
                     DESCUBRILO
                     <ArrowRight className="ml-3 h-5 w-5 sm:h-6 sm:w-6 group-hover:translate-x-2 transition-transform duration-300" />
                   </Button>
