@@ -13,18 +13,32 @@ export const ProductCard = (product: Product) => {
   const handleViewDetails = (e: React.MouseEvent) => {
     e.preventDefault();
     e.stopPropagation();
+    
+    // Hacer scroll al top antes de navegar
+    window.scrollTo(0, 0);
+    
+    // Navegar al producto
     navigate(`/producto/${encodeURIComponent(product.model)}`);
   };
 
+  const handleCardClick = () => {
+    // Hacer scroll al top antes de navegar
+    window.scrollTo(0, 0);
+  };
+
   return (
-    <Link to={`/producto/${encodeURIComponent(product.model)}`} className="block group h-full">
-      <Card className="overflow-hidden transition-all duration-300 hover:shadow-lg hover:scale-[1.02] cursor-pointer h-full flex flex-col max-h-[500px]">
+    <Link 
+      to={`/producto/${encodeURIComponent(product.model)}`} 
+      className="block group h-full"
+      onClick={handleCardClick}
+    >
+      <Card className="overflow-hidden transition-all duration-300 hover:shadow-lg hover:scale-[1.02] cursor-pointer h-full flex flex-col">
         <CardHeader className="p-0 relative flex-shrink-0">
           <div className="aspect-square overflow-hidden">
             <img 
               src={product.image} 
               alt={product.description}
-              className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105 product-image"
+              className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
               loading="lazy"
             />
             {product.new && (
@@ -36,26 +50,26 @@ export const ProductCard = (product: Product) => {
         </CardHeader>
         
         <CardContent className="p-4 flex-1 flex flex-col">
-          <div className="space-y-1 flex-1 flex flex-col">
-            <h3 className="font-semibold text-base line-clamp-1 group-hover:text-primary transition-colors">
+          <div className="space-y-2 flex-1 flex flex-col">
+            <h3 className="font-semibold text-base leading-tight group-hover:text-primary transition-colors">
               {product.model}
             </h3>
-            <p className="text-sm text-muted-foreground line-clamp-2 flex-1">
+            <p className="text-sm text-muted-foreground leading-relaxed flex-1">
               {product.description}
             </p>
-            <div className="pt-3 grid grid-cols-1 max-w-sm:grid-cols-2 gap-2 mt-auto">
+            <div className="pt-3 grid grid-cols-2 gap-2 mt-auto">
               <Button 
                 size="sm" 
-                className="w-full bg-gray-100 text-gray-700 hover:bg-red-500 hover:text-white transition-all duration-300 text-xs sm:text-sm px-2 sm:px-3 py-2"
+                className="w-full bg-gray-100 text-gray-700 hover:bg-red-500 hover:text-white transition-all duration-300 text-xs px-2 py-2"
                 onClick={handleViewDetails}
               >
-                <Eye className="h-3 w-3 sm:h-4 sm:w-4 mr-1" />
+                <Eye className="h-3 w-3 mr-1" />
                 Detalles
               </Button>
               <Button 
                 size="sm"
                 variant={has(product.model) ? "secondary" : "default"}
-                className="w-full text-xs sm:text-sm px-2 sm:px-3 py-2"
+                className="w-full text-xs px-2 py-2"
                 onClick={(e) => {
                   e.preventDefault();
                   e.stopPropagation();

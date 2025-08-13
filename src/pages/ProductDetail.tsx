@@ -5,12 +5,11 @@ import { ArrowLeft } from "lucide-react";
 import { useEffect } from "react";
 import { useParams, Link, useNavigate } from "react-router-dom";
 import { Footer } from "@/components/sections/Footer";
-import { getProductByModel } from "@/lib/product-utils";
+import { getProductByModel, getProductsByCategory } from "@/lib/product-utils";
 import { Product } from "@/data/products";
-import Zoom from "react-medium-image-zoom";
-import "react-medium-image-zoom/dist/styles.css";
 import { useQuoteList } from "@/hooks/use-quote-list";
 import { openWhatsAppForModel, openWhatsAppForModels } from "@/lib/contact";
+import { ProductCard } from "@/components/ui/product-card";
 
 const ProductDetail = () => {
   const { model } = useParams<{ model: string }>();
@@ -18,6 +17,9 @@ const ProductDetail = () => {
 
   const product: Product = getProductByModel(model || "");
   const { add, has, toggle, items } = useQuoteList();
+
+  // Obtener productos relacionados de la misma categoría
+  const relatedProducts = getProductsByCategory(product?.category || "", 3, product?.model || "");
 
   useEffect(() => {
     if (!product) {
@@ -36,6 +38,8 @@ const ProductDetail = () => {
   };
 
   const videoId = getYouTubeVideoId(product.video || "");
+
+  if (!product) return null;
 
   return (
     <div className="min-h-screen bg-background">
@@ -83,25 +87,19 @@ const ProductDetail = () => {
             <div className="grid grid-cols-1 gap-3 mt-2">
               <div className="space-y-4">
                 <div className="relative w-full max-w-6xl mx-auto bg-white rounded-lg overflow-hidden shadow-sm">
-                  <Zoom
-                    overlayBgColorStart="rgba(0, 0, 0, 0.8)"
-                    overlayBgColorEnd="rgba(0, 0, 0, 0.95)"
-                    zoomMargin={40}
-                  >
-                    <img 
-                      src={product.content} 
-                      alt={product.description}
-                      className="w-full h-[300px] sm:h-[400px] md:h-[500px] lg:h-[600px] xl:h-[700px] 2xl:h-[800px] object-contain bg-white cursor-zoom-in"
-                      style={{
-                        imageRendering: 'crisp-edges',
-                        border: 'none',
-                        outline: 'none',
-                        boxShadow: 'none',
-                        filter: 'none',
-                        touchAction: 'manipulation'
-                      }}
-                    />
-                  </Zoom>
+                  {/* Imagen del producto sin zoom */}
+                  <img 
+                    src={product.content} 
+                    alt={product.description}
+                    className="w-full h-[300px] sm:h-[400px] md:h-[500px] lg:h-[600px] xl:h-[700px] 2xl:h-[800px] object-contain bg-white"
+                    style={{
+                      imageRendering: 'crisp-edges',
+                      border: 'none',
+                      outline: 'none',
+                      boxShadow: 'none',
+                      filter: 'none'
+                    }}
+                  />
                 </div>
               </div>
         
@@ -121,6 +119,22 @@ const ProductDetail = () => {
                 </div>
               )}
             </div>
+
+            {/* Productos Relacionados */}
+            {relatedProducts.length > 0 && (
+              <div className="mt-16">
+                <h2 className="text-4xl lg:text-5xl font-bold mb-12 text-center text-primary">Productos Relacionados</h2>
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl mx-auto">
+                  {relatedProducts.map((relatedProduct) => (
+                    <div key={relatedProduct.model} className="flex justify-center">
+                      <div className="w-full max-w-sm">
+                        <ProductCard {...relatedProduct} />
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
           </div>
         </div>
       </div>

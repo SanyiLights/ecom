@@ -156,20 +156,23 @@ const About = () => {
               </div>
 
               {/* Navigation Buttons - Bottom Right */}
-              <div className="absolute bottom-6 right-6 z-20 flex flex-col gap-2">
+              <div className="absolute bottom-6 right-6 z-20 flex flex-col gap-3">
                 {professionalImages.map((_, index) => (
                   <Button
                     key={index}
                     variant="ghost"
                     size="icon"
                     onClick={() => goToImage(index)}
-                    className={`w-7 h-7 rounded-lg p-0 transition-all duration-500 font-medium text-xs backdrop-blur-sm border ${
+                    className={`w-8 h-8 rounded-full p-0 transition-all duration-700 font-bold text-sm relative overflow-hidden group ${
                       index === currentImageIndex
-                        ? 'bg-white/80 text-black scale-110 shadow-lg border-white/40'
-                        : 'bg-black/10 text-white/60 hover:bg-white/15 hover:text-white/80 hover:scale-105 border-white/10 hover:border-white/20'
+                        ? 'bg-gradient-to-br from-white via-white to-gray-100 text-black scale-125 shadow-2xl shadow-white/50 border-2 border-white/60 hover:scale-110'
+                        : 'bg-gradient-to-br from-black/30 via-black/20 to-transparent text-white/90 hover:scale-110 hover:bg-gradient-to-br hover:from-white/20 hover:via-white/15 hover:to-transparent hover:text-white border border-white/20 hover:border-white/40'
                     }`}
                   >
-                    {index + 1}
+                    <span className="relative z-10">{index + 1}</span>
+                    {index === currentImageIndex && (
+                      <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent animate-pulse" />
+                    )}
                   </Button>
                 ))}
               </div>

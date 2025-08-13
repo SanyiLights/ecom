@@ -58,4 +58,16 @@ export const searchProducts = (query: string) => {
     product.category.toLowerCase().includes(searchTerm) ||
     product.description.toLowerCase().includes(searchTerm)
   );
+};
+
+export const getProductsByCategory = (category: string, count: number = 3, excludeModel?: string) => {
+  if (!category || category === "Todos") return [];
+  
+  const categoryProducts = products.filter(product => 
+    product.category === category && product.model !== excludeModel
+  );
+  
+  // Mezclar aleatoriamente y tomar los primeros 'count' productos
+  const shuffled = categoryProducts.sort(() => 0.5 - Math.random());
+  return shuffled.slice(0, count);
 }; 

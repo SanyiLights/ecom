@@ -7,9 +7,9 @@ const professionalVideos = [
   {
     src: "/videos/video1.mp4",
     title: "SPL-LED-1260",
-    subtitle: "12*60W LED moving bar zoom",
+    subtitle: "LED MOVING BAR ZOOM DE ALTO IMPACTO VISUAL",
     productRoute: "/producto/SPL-LED-1260"
-  },
+  }
 ];
 
 export const HeroSection = () => {
@@ -76,13 +76,6 @@ export const HeroSection = () => {
     return 'border-white text-white bg-white/10 backdrop-blur-sm hover:bg-white/20 hover:border-white/80';
   };
 
-  const openWhatsApp = () => {
-    const phoneNumber = '5491133333333'; // Replace with your actual WhatsApp number
-    const message = 'Hola, me gustaría saber más sobre el producto.';
-    const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
-    window.open(url, '_blank');
-  };
-
   return (
     <section className="relative min-h-[100vh] sm:min-h-[90vh] overflow-hidden">
       <div 
@@ -111,41 +104,47 @@ export const HeroSection = () => {
         ))}
       </div>
 
-      {/* Navigation Buttons - Bottom Right */}
-      <div className="absolute bottom-6 right-6 z-20 flex flex-col gap-2">
+      <div className="absolute bottom-6 right-6 z-20 flex flex-col gap-3">
         {professionalVideos.map((_, index) => (
           <Button
             key={index}
             variant="ghost"
             size="icon"
             onClick={() => goToImage(index)}
-            className={`w-7 h-7 rounded-lg p-0 transition-all duration-500 font-medium text-xs backdrop-blur-sm border ${
+            className={`w-8 h-8 rounded-full p-0 transition-all duration-700 font-bold text-sm relative overflow-hidden group ${
               index === currentImageIndex
-                ? 'bg-white/80 text-black scale-110 shadow-lg border-white/40'
-                : 'bg-black/10 text-white/60 hover:bg-white/15 hover:text-white/80 hover:scale-105 border-white/10 hover:border-white/20'
+                ? 'bg-gradient-to-br from-white via-white to-gray-100 text-black scale-125 shadow-2xl shadow-white/50 border-2 border-white/60 hover:scale-110'
+                : 'bg-gradient-to-br from-black/30 via-black/20 to-transparent text-white/90 hover:scale-110 hover:bg-gradient-to-br hover:from-white/20 hover:via-white/15 hover:to-transparent hover:text-white border border-white/20 hover:border-white/40'
             }`}
           >
-            {index + 1}
+            <span className="relative z-10">{index + 1}</span>
+            {index === currentImageIndex && (
+              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent animate-pulse" />
+            )}
           </Button>
         ))}
       </div>
-
-      {/* Dots Indicator - Remove old one */}
 
       <div className="relative z-10 container mx-auto px-4 h-[100vh] sm:h-[90vh] flex items-center">
         <div className="w-full">
           <div className="max-w-4xl text-white mb-8 sm:mb-12 mx-auto text-center">
             <div className="animate-fade-in">
-              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold mb-3 sm:mb-4 md:mb-6 leading-tight">
+              <h1 
+                key={currentImageIndex} 
+                className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold mb-3 sm:mb-4 md:mb-6 leading-tight animate-in slide-in-from-bottom-4 duration-700"
+              >
                 {professionalVideos[currentImageIndex].title}
               </h1>
-              <p className="text-base sm:text-lg md:text-xl lg:text-2xl mb-4 sm:mb-6 md:mb-8 max-w-3xl mx-auto opacity-90 leading-relaxed">
+              <p 
+                key={`subtitle-${currentImageIndex}`}
+                className="text-base sm:text-lg md:text-xl lg:text-2xl mb-4 sm:mb-6 md:mb-8 max-w-3xl mx-auto opacity-90 leading-relaxed animate-in slide-in-from-bottom-4 duration-700 delay-200"
+              >
                 {professionalVideos[currentImageIndex].subtitle}
               </p>
 
               <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4">
                 <Link to={professionalVideos[currentImageIndex].productRoute} onClick={() => window.scrollTo(0, 0)}>
-                  <Button size="lg" className={`${getButtonClasses('primary')} shadow-elegant group w-auto text-base sm:text-lg lg:text-xl px-6 sm:px-8 py-6 sm:py-8 font-bold tracking-wide hover:scale-105 transition-all duration-300`}>
+                  <Button size="lg" className="bg-white text-black hover:bg-primary hover:text-white shadow-elegant group w-auto text-base sm:text-lg lg:text-xl px-6 sm:px-8 py-6 sm:py-8 font-bold tracking-wide hover:scale-105 transition-all duration-300">
                     DESCUBRILO
                     <ArrowRight className="ml-3 h-5 w-5 sm:h-6 sm:w-6 group-hover:translate-x-2 transition-transform duration-300" />
                   </Button>
