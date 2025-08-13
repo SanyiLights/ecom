@@ -407,9 +407,18 @@ export const SPL_LED_T200RGBW_IP_CONTENT = "/images/products/SPL-LED-T200RGBW IP
 export const SPL_LED_616_IMAGE = "/images/products/SPL-LED-616/image.png";
 export const SPL_LED_616_CONTENT = "/images/products/SPL-LED-616/content.png";
 
-// Helper function to get product images by model
+export const SPL_LED_M700W_IMAGE = "/images/products/SPL-LED-M700W Profile IP/image.png";
+export const SPL_LED_M700W_CONTENT = "/images/products/SPL-LED-M700W Profile IP/content.png";
+export const SPL_LED_M700W_CONTENT2 = "/images/products/SPL-LED-M700W Profile IP/content2.png";
+
+export interface ProductImageSet {
+  image: string;
+  content: string;
+  content2?: string;
+}
+
 export const getProductImages = (model: string) => {
-  const imageMap: Record<string, { image: string; content: string }> = {
+  const imageMap: Record<string, ProductImageSet> = {
     "LED dance floor": {
       image: LED_DANCE_FLOOR_IMAGE,
       content: LED_DANCE_FLOOR_CONTENT
@@ -417,6 +426,11 @@ export const getProductImages = (model: string) => {
     "SPL-LED-616": {
       image: SPL_LED_616_IMAGE,
       content: SPL_LED_616_CONTENT
+    },
+    "SPL-LED-M700W Profile IP": {
+      image: SPL_LED_M700W_IMAGE,
+      content: SPL_LED_M700W_CONTENT,
+      content2: SPL_LED_M700W_CONTENT2
     },
     "SPL-LED-1260S": {
       image: SPL_LED_1260S_IMAGE,

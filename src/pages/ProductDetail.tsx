@@ -90,10 +90,10 @@ const ProductDetail = () => {
 
             <div className="grid grid-cols-1 gap-3 mt-2">
               <div className="space-y-4">
+                {/* Primera imagen del producto */}
                 <div className="relative w-full max-w-6xl mx-auto bg-white rounded-lg overflow-hidden shadow-sm">
-                  {/* Imagen del producto sin zoom */}
                   <img 
-                    src={product.content} 
+                    src={product.image} 
                     alt={product.description}
                     className="w-full h-[300px] sm:h-[400px] md:h-[500px] lg:h-[600px] xl:h-[700px] 2xl:h-[800px] object-contain bg-white"
                     style={{
@@ -105,6 +105,23 @@ const ProductDetail = () => {
                     }}
                   />
                 </div>
+
+                {product.content2 && (
+                  <div className="relative w-full max-w-6xl mx-auto bg-white rounded-lg overflow-hidden shadow-sm">
+                    <img 
+                      src={product.content2} 
+                      alt={`${product.description} - Vista adicional`}
+                      className="w-full h-[300px] sm:h-[400px] md:h-[500px] lg:h-[600px] xl:h-[700px] 2xl:h-[800px] object-contain bg-white"
+                      style={{
+                        imageRendering: 'crisp-edges',
+                        border: 'none',
+                        outline: 'none',
+                        boxShadow: 'none',
+                        filter: 'none'
+                      }}
+                    />
+                  </div>
+                )}
               </div>
         
             <div className="space-y-2">

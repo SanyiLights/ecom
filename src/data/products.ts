@@ -7,6 +7,7 @@ export interface Product {
   category: Category;
   image: string;
   content: string;
+  content2?: string; 
   video?: string;
   new: boolean;
 };
@@ -203,6 +204,16 @@ export const products: Product[] = [
     "image": getProductImages("SPL-LED-740").image,
     "content": getProductImages("SPL-LED-740").content,
     "video": "https://www.youtube.com/watch?v=ynZm02BZ9AE",
+    "new": true
+  },
+  {
+    "model": "SPL-LED-M700W Profile IP",
+    "description": "LED Moving Head Lights",
+    "category": Category.MOVING_HEAD,
+    "image": getProductImages("SPL-LED-M700W Profile IP").image,
+    "content": getProductImages("SPL-LED-M700W Profile IP").content,
+    "content2": getProductImages("SPL-LED-M700W Profile IP").content2,
+    "video": "/videos/video3.mp4",
     "new": true
   },
   {

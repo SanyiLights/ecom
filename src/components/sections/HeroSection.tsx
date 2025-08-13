@@ -6,9 +6,9 @@ import { Link } from "react-router-dom";
 const professionalVideos = [
   {
     src: "/videos/video1.mp4",
-    title: "SPL-LED-1260",
+    title: "SPL-LED-1260S",
     subtitle: "12*60W LED MOVING BAR ZOOM",
-    productRoute: "/producto/SPL-LED-1260",
+    productRoute: "/producto/SPL-LED-1260S",
     type: "local",
     new: false
   },
@@ -21,10 +21,10 @@ const professionalVideos = [
     new: true
   },
   {
-    src: "https://www.youtube.com/watch?v=RFt90EgxTTk&t=1m16s",
-    title: "LED WASH MOVING HEAD ZOOM + BEE EYE",
-    subtitle: "SPL-LED-M1940 EYE IP",
-    productRoute: "/producto/SPL-LED-M1940-EYE-IP",
+    src: "/videos/video3.mp4",
+    title: "SPL-LED-M700W Profile IP",
+    subtitle: "LED Moving Head Lights",
+    productRoute: "/producto/SPL-LED-M700W Profile IP",
     type: "youtube",
     new: true
   }
@@ -170,12 +170,17 @@ export const HeroSection = () => {
         {professionalVideos.map((video, index) => (
           <div
             key={index}
-            className={`absolute inset-0 transition-opacity duration-500 ${
-              index === currentImageIndex ? 'opacity-100' : 'opacity-0'
+            className={`absolute inset-0 transition-all duration-2000 ease-in-out ${
+              index === currentImageIndex 
+                ? 'opacity-100 scale-100 translate-x-0' 
+                : index < currentImageIndex
+                ? 'opacity-0 scale-105 -translate-x-1/6'
+                : 'opacity-0 scale-105 translate-x-1/6'
             }`}
           >
             {renderVideoContent(video)}
-            <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-black/40 to-black/20" />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-r from-black/30 via-transparent to-black/30" />
           </div>
         ))}
       </div>
@@ -216,14 +221,14 @@ export const HeroSection = () => {
               
               <h1 
                 key={currentImageIndex} 
-                className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold mb-3 sm:mb-4 md:mb-6 leading-tight"
+                className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold mb-3 sm:mb-4 md:mb-6 leading-tight animate-in slide-in-from-bottom-8 duration-1500 ease-out"
               >
                 {professionalVideos[currentImageIndex].title}
               </h1>
               
               <p
                 key={`subtitle-${currentImageIndex}`}
-                className="text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl mb-4 sm:mb-6 md:mb-8 max-w-3xl mx-auto opacity-90 leading-relaxed"
+                className="text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl mb-4 sm:mb-6 md:mb-8 max-w-3xl mx-auto opacity-90 leading-relaxed animate-in slide-in-from-bottom-8 duration-1500 ease-out delay-300"
               >
                 {professionalVideos[currentImageIndex].subtitle}
               </p>
