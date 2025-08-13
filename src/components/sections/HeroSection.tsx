@@ -13,10 +13,10 @@ const professionalVideos = [
     new: false
   },
   {
-    src: "https://www.youtube.com/watch?v=J5wAKFQtPNs&t=9s",
-    title: "SPL-LED-700",
-    subtitle: "700W LED Profile",
-    productRoute: "/producto/SPL-LED-700",
+    src: "https://www.youtube.com/watch?v=vYeNbPc0vc4&t=12s",
+    title: "SPL-LED-M1260YZ IP",
+    subtitle: "12*60W LED moving bar zoom",
+    productRoute: "/producto/SPL-LED-M1260YZ IP",
     type: "youtube",
     new: true
   },
@@ -32,36 +32,37 @@ const professionalVideos = [
 
 export const HeroSection = () => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [isTransitioning, setIsTransitioning] = useState(false);
   const [touchStart, setTouchStart] = useState<number | null>(null);
   const [touchEnd, setTouchEnd] = useState<number | null>(null);
   const carouselRef = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
-    const oneSecond = 1000;
-    const interval = setInterval(() => {
-      setCurrentImageIndex((prevIndex) => 
-        prevIndex === professionalVideos.length - 1 ? 0 : prevIndex + 1
-      );
-    }, oneSecond * 10);
+  const oneSecond = 1000;
 
-    return () => clearInterval(interval);
-  }, []);
+  const goToImage = (index: number) => {
+    if (index === currentImageIndex) return;
+    setCurrentImageIndex(index);
+  };
 
-  const nextImage = () => {
-    setCurrentImageIndex((prevIndex) => 
+  const goToNextImage = () => {
+    setCurrentImageIndex((prevIndex) =>
       prevIndex === professionalVideos.length - 1 ? 0 : prevIndex + 1
     );
   };
 
-  const prevImage = () => {
-    setCurrentImageIndex((prevIndex) => 
+  const goToPrevImage = () => {
+    setCurrentImageIndex((prevIndex) =>
       prevIndex === 0 ? professionalVideos.length - 1 : prevIndex - 1
     );
   };
 
-  const goToImage = (index: number) => {
-    setCurrentImageIndex(index);
-  };
+  useEffect(() => {
+    const interval = setInterval(() => {
+      goToNextImage();
+    }, oneSecond * 10);
+
+    return () => clearInterval(interval);
+  }, [currentImageIndex]);
 
   const onTouchStart = (e: React.TouchEvent) => {
     setTouchEnd(null);
@@ -80,10 +81,10 @@ export const HeroSection = () => {
     const isRightSwipe = distance < -50;
 
     if (isLeftSwipe) {
-      nextImage();
+      goToNextImage();
     }
     if (isRightSwipe) {
-      prevImage();
+      goToPrevImage();
     }
   };
 
@@ -169,7 +170,7 @@ export const HeroSection = () => {
         {professionalVideos.map((video, index) => (
           <div
             key={index}
-            className={`absolute inset-0 transition-opacity duration-1000 ${
+            className={`absolute inset-0 transition-opacity duration-500 ${
               index === currentImageIndex ? 'opacity-100' : 'opacity-0'
             }`}
           >
@@ -204,10 +205,10 @@ export const HeroSection = () => {
         <div className="w-full">
           <div className="max-w-4xl text-white mb-8 sm:mb-12 mx-auto text-center">
             <div className="animate-fade-in">
-              {/* Chip de NUEVO para productos nuevos */}
+              {/* Chip de Nuevo Producto */}
               {professionalVideos[currentImageIndex].new && (
-                <div className="mb-4">
-                  <span className="inline-block bg-red-600 text-white font-bold text-sm sm:text-base px-4 py-2 rounded-full shadow-lg border-2 border-white/20">
+                <div className="mb-6">
+                  <span className="inline-block bg-gradient-to-br from-red-500 via-red-600 to-red-700 text-white font-bold text-base sm:text-lg px-6 py-3 rounded-full shadow-2xl border-2 border-white/20 animate-pulse">
                     NUEVO
                   </span>
                 </div>
@@ -215,13 +216,14 @@ export const HeroSection = () => {
               
               <h1 
                 key={currentImageIndex} 
-                className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold mb-3 sm:mb-4 md:mb-6 leading-tight animate-in slide-in-from-bottom-4 duration-700"
+                className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold mb-3 sm:mb-4 md:mb-6 leading-tight"
               >
                 {professionalVideos[currentImageIndex].title}
               </h1>
-              <p 
+              
+              <p
                 key={`subtitle-${currentImageIndex}`}
-                className="text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl mb-4 sm:mb-6 md:mb-8 max-w-3xl mx-auto opacity-90 leading-relaxed animate-in slide-in-from-bottom-4 duration-700 delay-200"
+                className="text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl mb-4 sm:mb-6 md:mb-8 max-w-3xl mx-auto opacity-90 leading-relaxed"
               >
                 {professionalVideos[currentImageIndex].subtitle}
               </p>

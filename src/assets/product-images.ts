@@ -5,6 +5,9 @@
 export const LED_DANCE_FLOOR_IMAGE = "/images/products/LED dance floor/image.png";
 export const LED_DANCE_FLOOR_CONTENT = "/images/products/LED dance floor/content.png";
 
+export const SPL_LED_1260S_IMAGE = "/images/products/SPL-LED-1260S/image.png";
+export const SPL_LED_1260S_CONTENT = "/images/products/SPL-LED-1260S/content.png";
+
 // SPL-COB-200
 export const SPL_COB_200_IMAGE = "/images/products/SPL-COB-200/image.png";
 export const SPL_COB_200_CONTENT = "/images/products/SPL-COB-200/content.png";
@@ -414,6 +417,10 @@ export const getProductImages = (model: string) => {
     "SPL-LED-616": {
       image: SPL_LED_616_IMAGE,
       content: SPL_LED_616_CONTENT
+    },
+    "SPL-LED-1260S": {
+      image: SPL_LED_1260S_IMAGE,
+      content: SPL_LED_1260S_CONTENT
     },
     "SPL-LED-T200RGBW IP": {
       image: SPL_LED_T200RGBW_IP_IMAGE,

@@ -268,6 +268,15 @@ export const products: Product[] = [
     "new": false
   },
   {
+    "model": "SPL-LED-1260S",
+    "description": "Advanced Pixel-Controlled Moving Head Light with Versatile Beam and Wash Effects for Concerts, Nightclubs, Bars, and Stage Productions",
+    "category": Category.WASH_LIGHT,
+    "image": getProductImages("SPL-LED-1260S").image,
+    "content": getProductImages("SPL-LED-1260S").content,
+    "video": "/videos/video2.mp4",
+    "new": false
+  },
+  {
     "model": "SPL-LED-M1240G YZ",
     "description": "LED Wash light bar",
     "category": Category.WASH_LIGHT,

@@ -37,6 +37,10 @@ const ProductDetail = () => {
     return (match && match[2].length === 11) ? match[2] : null;
   };
 
+  const isYouTubeVideo = (url: string) => {
+    return url.includes('youtube.com') || url.includes('youtu.be');
+  };
+
   const videoId = getYouTubeVideoId(product.video || "");
 
   if (!product) return null;
@@ -104,17 +108,28 @@ const ProductDetail = () => {
               </div>
         
             <div className="space-y-2">
-              {videoId && (
+              {product.video && (
                 <div className="max-w-6xl mx-auto">
                   <h3 className="text-lg font-semibold mb-4">Video del {product.model}</h3>
                   <div className="relative aspect-video bg-muted rounded-lg overflow-hidden">
-                    <iframe
-                      src={`https://www.youtube.com/embed/${videoId}`}
-                      title={`Video de ${product.model}`}
-                      className="w-full h-full"
-                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                      allowFullScreen
-                    />
+                    {isYouTubeVideo(product.video) ? (
+                      <iframe
+                        src={`https://www.youtube.com/embed/${videoId}`}
+                        title={`Video de ${product.model}`}
+                        className="w-full h-full"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowFullScreen
+                      />
+                    ) : (
+                      <video
+                        src={product.video}
+                        controls
+                        className="w-full h-full object-cover"
+                        preload="metadata"
+                      >
+                        Tu navegador no soporta el elemento de video.
+                      </video>
+                    )}
                   </div>
                 </div>
               )}
