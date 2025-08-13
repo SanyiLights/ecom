@@ -127,7 +127,7 @@ export const HeroSection = () => {
     return parseInt(timeStr) || 0;
   };
 
-  const renderVideoContent = (video: typeof professionalVideos[0]) => {
+  const renderVideoContent = (video: typeof professionalVideos[0], isActive: boolean = false) => {
     if (video.type === "youtube") {
       const videoId = getYouTubeVideoId(video.src);
       const startTime = getYouTubeStartTime(video.src);
@@ -135,7 +135,7 @@ export const HeroSection = () => {
       if (videoId) {
         return (
           <iframe
-            src={`https://www.youtube.com/embed/${videoId}?autoplay=1&mute=1&loop=1&playlist=${videoId}&controls=0&showinfo=0&rel=0&modestbranding=1&playsinline=1&start=${startTime}`}
+            src={`https://www.youtube.com/embed/${videoId}?autoplay=${isActive ? 1 : 0}&mute=1&loop=1&playlist=${videoId}&controls=0&showinfo=0&rel=0&modestbranding=1&playsinline=1&start=${startTime}`}
             title={video.title}
             className="w-full h-full object-cover"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
@@ -148,12 +148,21 @@ export const HeroSection = () => {
     // Video local
     return (
       <video
+        key={`${video.src}-${isActive}`}
         src={video.src}
-        autoPlay
+        autoPlay={isActive}
         muted
-        loop
+        loop={isActive}
         playsInline
         className="w-full h-full object-cover"
+        onLoadStart={() => {
+          if (isActive) {
+            const videoElement = document.querySelector(`video[src="${video.src}"]`) as HTMLVideoElement;
+            if (videoElement) {
+              videoElement.currentTime = 0;
+            }
+          }
+        }}
       />
     );
   };
@@ -169,7 +178,7 @@ export const HeroSection = () => {
       >
         {professionalVideos.map((video, index) => (
           <div
-            key={index}
+            key={`${video.src}-${index}-${currentImageIndex}`}
             className={`absolute inset-0 transition-all duration-2000 ease-in-out ${
               index === currentImageIndex 
                 ? 'opacity-100 scale-100 translate-x-0' 
@@ -178,7 +187,7 @@ export const HeroSection = () => {
                 : 'opacity-0 scale-105 translate-x-1/6'
             }`}
           >
-            {renderVideoContent(video)}
+            {renderVideoContent(video, index === currentImageIndex)}
             <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
             <div className="absolute inset-0 bg-gradient-to-r from-black/30 via-transparent to-black/30" />
           </div>
