@@ -64,7 +64,6 @@ export const databaseToProduct = (dbProduct: DatabaseProduct): Product => ({
 // Funciones para autenticación con usuarios personalizados
 export const authenticateUser = async (username: string, password: string) => {
   try {
-    console.log('🔐 Intentando autenticar usuario:', username);
     
     const { data, error } = await supabase
       .from('users')
@@ -73,7 +72,6 @@ export const authenticateUser = async (username: string, password: string) => {
       .single();
     
     if (error) {
-      console.log('❌ Error en consulta:', error);
       if (error.code === 'PGRST116') {
         throw new Error('Usuario no encontrado');
       }
@@ -81,16 +79,10 @@ export const authenticateUser = async (username: string, password: string) => {
     }
     
     if (!data) {
-      console.log('❌ No se encontró el usuario');
       throw new Error('Usuario no encontrado');
     }
     
-    console.log('✅ Usuario encontrado:', data.username, 'Role:', data.role);
-    console.log('🔑 Comparando contraseñas...');
-    
-    // Comparar contraseña (en producción usar bcrypt)
     if (data.password_hash === password) {
-      console.log('✅ Contraseña correcta');
       return data;
     } else {
       console.log('❌ Contraseña incorrecta');

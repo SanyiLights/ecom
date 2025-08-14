@@ -4,7 +4,7 @@ import { CategoryManager } from '@/components/ui/category-manager';
 import { AdminStats } from '@/components/ui/admin-stats';
 import { Category, categories } from '@/data/categories';
 import { Product } from '@/data/products';
-import { toast } from 'sonner';
+import { useToast } from '@/hooks/use-toast';
 import { useProducts } from '@/hooks/use-products';
 import { DatabaseUser } from '@/lib/supabase';
 import { LoginForm } from '@/components/admin/LoginForm';
@@ -13,6 +13,7 @@ import { ProductsTab } from '@/components/admin/ProductsTab';
 import { ProductStats } from '@/components/admin/ProductStats';
 
 const Admin: React.FC = () => {
+  const { toast } = useToast();
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
@@ -34,29 +35,30 @@ const Admin: React.FC = () => {
   } = useProducts();
 
   useEffect(() => {
-    const savedUser = localStorage.getItem('admin_user');
-    if (savedUser) {
-      try {
-        const user = JSON.parse(savedUser);
-        setCurrentUser(user);
-        setIsAuthenticated(true);
-      } catch (error) {
-        localStorage.removeItem('admin_user');
-      }
+    if (currentUser) {
+      setIsAuthenticated(true);
     }
-  }, []);
+  }, [currentUser]);
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
     
     try {
       if (!username.trim()) {
-        toast.error('❌ Por favor ingresa el nombre de usuario');
+        toast({
+          variant: "destructive",
+          title: "Error",
+          description: "❌ Por favor ingresa el nombre de usuario"
+        });
         return;
       }
       
       if (!password.trim()) {
-        toast.error('❌ Por favor ingresa la contraseña');
+        toast({
+          variant: "destructive",
+          title: "Error",
+          description: "❌ Por favor ingresa la contraseña"
+        });
         return;
       }
       
@@ -69,12 +71,22 @@ const Admin: React.FC = () => {
       if (user && user.role === 'admin') {
         setCurrentUser(user);
         setIsAuthenticated(true);
-        localStorage.setItem('admin_user', JSON.stringify(user));
-        toast.success(`✅ ¡Bienvenido ${user.username}!`);
+        toast({
+          title: "¡Bienvenido!",
+          description: `✅ ¡Bienvenido ${user.username}!`
+        });
       } else if (user && user.role !== 'admin') {
-        toast.error('❌ Acceso denegado. Solo administradores pueden acceder.');
+        toast({
+          variant: "destructive",
+          title: "Acceso denegado",
+          description: "❌ Solo administradores pueden acceder."
+        });
       } else {
-        toast.error('❌ Error inesperado en la autenticación');
+        toast({
+          variant: "destructive",
+          title: "Error",
+          description: "❌ Error inesperado en la autenticación"
+        });
       }
       
     } catch (error) {
@@ -83,17 +95,12 @@ const Admin: React.FC = () => {
       if (error instanceof Error) {
         const errorMessage = error.message;
         
-        if (errorMessage.includes('Usuario no encontrado')) {
-          toast.error('❌ Usuario no encontrado. Verifica el nombre de usuario.');
-        } else if (errorMessage.includes('Contraseña incorrecta')) {
-          toast.error('❌ Contraseña incorrecta. Verifica tu contraseña.');
-        } else if (errorMessage.includes('fetch')) {
-          toast.error('❌ Error de conexión. Verifica tu conexión a internet.');
-        } else {
-          toast.error(`❌ Error de autenticación: ${errorMessage}`);
-        }
-      } else {
-        toast.error('❌ Error inesperado. Intenta de nuevo.');
+        // Mensaje de error genérico para no revelar información específica
+        toast({
+          variant: "destructive",
+          title: "Error de autenticación",
+          description: "❌ Usuario o contraseña incorrectos. Verifica tus credenciales."
+        });
       }
     } finally {
       setIsLoggingIn(false);
@@ -105,8 +112,10 @@ const Admin: React.FC = () => {
     setUsername('');
     setPassword('');
     setCurrentUser(null);
-    localStorage.removeItem('admin_user');
-    toast.success('Sesión cerrada');
+    toast({
+      title: "Sesión cerrada",
+      description: "Sesión cerrada exitosamente"
+    });
   };
 
   const handleAddProduct = () => {
@@ -122,15 +131,26 @@ const Admin: React.FC = () => {
   const handleDeleteProduct = async (productToDelete: Product) => {
     if (confirm(`¿Estás seguro de que quieres eliminar el producto "${productToDelete.model}"?`)) {
       try {
-        if (productToDelete.id) {
-          await deleteProduct(productToDelete.id);
-          toast.success(`🗑️ Producto "${productToDelete.model}" eliminado exitosamente`);
-        } else {
-          toast.error('No se puede eliminar el producto: ID no encontrado');
+                  if (productToDelete.id) {
+            await deleteProduct(productToDelete.id);
+            toast({
+              title: "Éxito",
+              description: `🗑️ Producto "${productToDelete.model}" eliminado exitosamente`
+            });
+          } else {
+            toast({
+              variant: "destructive",
+              title: "Error",
+              description: "No se puede eliminar el producto: ID no encontrado"
+            });
+          }
+        } catch (error) {
+          toast({
+            variant: "destructive",
+            title: "Error",
+            description: `Error eliminando producto: ${error instanceof Error ? error.message : 'Error desconocido'}`
+          });
         }
-      } catch (error) {
-        toast.error(`Error eliminando producto: ${error instanceof Error ? error.message : 'Error desconocido'}`);
-      }
     }
   };
 
@@ -139,14 +159,24 @@ const Admin: React.FC = () => {
       if (editingProduct && editingProduct.id) {
         await updateProduct(editingProduct.id, productData);
         setEditingProduct(null);
-        toast.success(`🔄 Producto "${productData.model}" actualizado exitosamente`);
+        toast({
+          title: "Éxito",
+          description: `🔄 Producto "${productData.model}" actualizado exitosamente`
+        });
       } else {
         await createProduct(productData);
         setIsAddingProduct(false);
-        toast.success(`✅ Producto "${productData.model}" agregado exitosamente`);
+        toast({
+          title: "Éxito",
+          description: `✅ Producto "${productData.model}" agregado exitosamente`
+        });
       }
     } catch (error) {
-      toast.error(`❌ Error guardando producto: ${error instanceof Error ? error.message : 'Error desconocido'}`);
+      toast({
+        variant: "destructive",
+        title: "Error",
+        description: `❌ Error guardando producto: ${error instanceof Error ? error.message : 'Error desconocido'}`
+      });
     }
   };
 
@@ -203,7 +233,10 @@ const Admin: React.FC = () => {
           <TabsContent value="categories" className="space-y-6">
             <CategoryManager
               onCategoryChange={(newCategories) => {
-                toast.success('Categorías actualizadas');
+                toast({
+                  title: "Éxito",
+                  description: "Categorías actualizadas"
+                });
               }}
             />
           </TabsContent>
