@@ -1,0 +1,130 @@
+import { createClient } from '@supabase/supabase-js'
+import { Product } from '@/data/products'
+import { Category } from '@/data/categories'
+
+// Configuración de Supabase
+const supabaseUrl = import.meta.env.VITE_PUBLIC_SUPABASE_URL
+const supabaseAnonKey = import.meta.env.VITE_PUBLIC_SUPABASE_ANON_KEY
+
+if (!supabaseUrl || !supabaseAnonKey) {
+  throw new Error('Faltan las variables de entorno de Supabase. Verifica tu archivo .env.local')
+}
+
+// Crear cliente de Supabase
+export const supabase = createClient(supabaseUrl, supabaseAnonKey)
+
+// Tipos para la base de datos - Nueva estructura simplificada
+export interface DatabaseProduct {
+  id: number
+  model: string
+  description: string
+  category: string
+  images: string[] | null        // Array de URLs de imágenes
+  contents: string[] | null      // Array de URLs de contenidos
+  videos: string[] | null        // Array de URLs de videos
+  new: boolean
+  created_at: string
+  updated_at: string
+}
+
+// Tipos para usuarios
+export interface DatabaseUser {
+  id: string
+  username: string
+  password_hash: string
+  role: 'admin' | 'user'
+  created_at: string
+  updated_at: string
+}
+
+// Función para convertir Product a DatabaseProduct
+export const productToDatabase = (product: Product): Omit<DatabaseProduct, 'id' | 'created_at' | 'updated_at'> => ({
+  model: product.model,
+  description: product.description,
+  category: product.category,
+  images: product.images || [],
+  contents: product.contents || [],
+  videos: product.videos || [],
+  new: product.new
+})
+
+// Función para convertir DatabaseProduct a Product
+export const databaseToProduct = (dbProduct: DatabaseProduct): Product => ({
+  model: dbProduct.model,
+  description: dbProduct.description,
+  category: dbProduct.category as Category,
+  images: dbProduct.images || [],
+  contents: dbProduct.contents || [],
+  videos: dbProduct.videos || [],
+  new: dbProduct.new,
+  created_at: dbProduct.created_at,
+  updated_at: dbProduct.updated_at
+})
+
+// Funciones para autenticación con usuarios personalizados
+export const authenticateUser = async (username: string, password: string) => {
+  try {
+    console.log('🔐 Intentando autenticar usuario:', username);
+    
+    const { data, error } = await supabase
+      .from('users')
+      .select('*')
+      .eq('username', username)
+      .single();
+    
+    if (error) {
+      console.log('❌ Error en consulta:', error);
+      if (error.code === 'PGRST116') {
+        throw new Error('Usuario no encontrado');
+      }
+      throw error;
+    }
+    
+    if (!data) {
+      console.log('❌ No se encontró el usuario');
+      throw new Error('Usuario no encontrado');
+    }
+    
+    console.log('✅ Usuario encontrado:', data.username, 'Role:', data.role);
+    console.log('🔑 Comparando contraseñas...');
+    
+    // Comparar contraseña (en producción usar bcrypt)
+    if (data.password_hash === password) {
+      console.log('✅ Contraseña correcta');
+      return data;
+    } else {
+      console.log('❌ Contraseña incorrecta');
+      throw new Error('Contraseña incorrecta');
+    }
+    
+  } catch (error) {
+    console.error('🚨 Error en authenticateUser:', error);
+    throw error;
+  }
+};
+
+export const createUser = async (username: string, password: string, role: 'admin' | 'user' = 'user') => {
+  const { data, error } = await supabase
+    .from('users')
+    .insert({
+      username,
+      password_hash: password, // En producción, hashear la contraseña
+      role
+    })
+    .select()
+    .single();
+  
+  if (error) throw error;
+  return data;
+};
+
+export const getUserByUsername = async (username: string) => {
+  const { data, error } = await supabase
+    .from('users')
+    .select('*')
+    .eq('username', username)
+    .single();
+  
+  if (error) throw error;
+  return data;
+};

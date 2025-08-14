@@ -1,7 +1,6 @@
 import { Product } from "@/data/products";
-import { products } from "@/data/products";
 
-export const getProductByModel = (model: string): Product | undefined => {
+export const getProductByModel = (products: Product[], model: string): Product | undefined => {
   const decoded = decodeURIComponent(model);
   return products.find(product => product.model === decoded);
 };
@@ -12,6 +11,12 @@ export const filterProducts = (
   selectedCategory: string = "",
   showOnlyNew: boolean = false
 ) => {
+  // Validar que products sea un array
+  if (!Array.isArray(products)) {
+    console.warn('filterProducts: products no es un array, retornando array vacío');
+    return [];
+  }
+
   return products.filter(product => {
     const matchesQuery = 
       product.model.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -30,7 +35,13 @@ export const filterProducts = (
   });
 };
 
-export const getFeaturedProducts = (count: number = 6) => {
+export const getFeaturedProducts = (products: Product[], count: number = 6) => {
+  // Validar que products sea un array
+  if (!Array.isArray(products)) {
+    console.warn('getFeaturedProducts: products no es un array, retornando array vacío');
+    return [];
+  }
+
   const featuredModels = [
     "SPL-LED-700",
     "SPL-LED-681",
@@ -50,7 +61,7 @@ export const getFeaturedProducts = (count: number = 6) => {
   return [...prioritized, ...remaining].slice(0, count);
 };
 
-export const searchProducts = (query: string) => {
+export const searchProducts = (products: Product[], query: string) => {
   const searchTerm = query.toLowerCase();
   return products.filter(product => 
     product.model.toLowerCase().includes(searchTerm) ||
@@ -60,7 +71,7 @@ export const searchProducts = (query: string) => {
   );
 };
 
-export const getProductsByCategory = (category: string, count: number = 3, excludeModel?: string) => {
+export const getProductsByCategory = (products: Product[], category: string, count: number = 3, excludeModel?: string) => {
   if (!category || category === "Todos") return [];
   
   const categoryProducts = products.filter(product => 

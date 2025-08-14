@@ -8,6 +8,8 @@ import { Category } from '@/data/categories';
 interface AdminStatsProps {
   products: Product[];
   categories: Category[];
+  isSaving?: boolean;
+  lastSaved?: Date | null;
 }
 
 export const AdminStats: React.FC<AdminStatsProps> = ({ products, categories }) => {
@@ -29,7 +31,7 @@ export const AdminStats: React.FC<AdminStatsProps> = ({ products, categories }) 
   return (
     <div className="space-y-6">
       {/* Métricas principales */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6">
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium">Total Productos</CardTitle>
@@ -78,6 +80,37 @@ export const AdminStats: React.FC<AdminStatsProps> = ({ products, categories }) 
             <div className="text-2xl font-bold">{categories.length - 1}</div>
             <p className="text-xs text-muted-foreground">
               Activas
+            </p>
+          </CardContent>
+        </Card>
+
+        <Card>
+          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+            <CardTitle className="text-sm font-medium">Estado de Guardado</CardTitle>
+            <div className="h-4 w-4 text-muted-foreground">
+              {isSaving ? (
+                <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-blue-600"></div>
+              ) : lastSaved ? (
+                <div className="w-3 h-3 bg-green-500 rounded-full"></div>
+              ) : (
+                <div className="w-3 h-3 bg-gray-400 rounded-full"></div>
+              )}
+            </div>
+          </CardHeader>
+          <CardContent>
+            <div className="text-sm font-medium">
+              {isSaving ? (
+                <span className="text-blue-600">Guardando...</span>
+              ) : lastSaved ? (
+                <span className="text-green-600">
+                  Guardado: {lastSaved.toLocaleTimeString()}
+                </span>
+              ) : (
+                <span className="text-gray-600">No guardado</span>
+              )}
+            </div>
+            <p className="text-xs text-muted-foreground">
+              {isSaving ? 'Procesando cambios...' : lastSaved ? 'Última actualización' : 'Sin cambios recientes'}
             </p>
           </CardContent>
         </Card>

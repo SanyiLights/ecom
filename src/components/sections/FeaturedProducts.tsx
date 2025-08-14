@@ -6,10 +6,12 @@ import { Link } from "react-router-dom";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { getFeaturedProducts } from "@/lib/product-utils";
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
+import { useSupabaseProducts } from "@/hooks/use-supabase-products";
 
 export const FeaturedProducts = () => {
   const isMobile = useIsMobile();
-  const featuredProducts = getFeaturedProducts(8); // Más productos para el carousel
+  const { products, isLoaded } = useSupabaseProducts();
+  const featuredProducts = getFeaturedProducts(products, 8); // Más productos para el carousel
 
   return (
     <section className="py-16 bg-gradient-to-b from-background to-muted/30">
@@ -24,50 +26,61 @@ export const FeaturedProducts = () => {
           </p>
         </div>
 
-        {/* Vista móvil: Grid normal */}
-        {isMobile && (
-          <div className="grid grid-cols-2 gap-3 sm:gap-4 mb-10">
-            {featuredProducts.slice(0, 4).map((product, index) => (
-              <div 
-                key={product.model}
-                className="animate-fade-in w-full"
-                style={{ animationDelay: `${index * 0.1}s` }}
-              >
-                <ProductCard {...product} />
-              </div>
-            ))}
+        {!isLoaded ? (
+          <div className="text-center py-8">
+            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mx-auto mb-4"></div>
+            <p className="text-muted-foreground text-lg">
+              Cargando productos destacados...
+            </p>
           </div>
-        )}
-
-        {/* Vista desktop: Carousel */}
-        {!isMobile && (
-          <div className="relative mb-10">
-            <Carousel
-              opts={{
-                align: "start",
-                loop: false,
-              }}
-              className="w-full"
-            >
-              <CarouselContent className="-ml-4">
-                {featuredProducts.map((product, index) => (
-                  <CarouselItem key={product.model} className="pl-4 basis-1/4">
-                    <div className="animate-fade-in" style={{ animationDelay: `${index * 0.1}s` }}>
-                      <ProductCard {...product} />
-                    </div>
-                  </CarouselItem>
+        ) : (
+          <>
+            {/* Vista móvil: Grid normal */}
+            {isMobile && (
+              <div className="grid grid-cols-2 gap-3 sm:gap-4 mb-10">
+                {featuredProducts.slice(0, 4).map((product, index) => (
+                  <div 
+                    key={product.model}
+                    className="animate-fade-in w-full"
+                    style={{ animationDelay: `${index * 0.1}s` }}
+                  >
+                    <ProductCard {...product} />
+                  </div>
                 ))}
-              </CarouselContent>
-              
-              <CarouselPrevious className="absolute -left-12 top-1/2 -translate-y-1/2 bg-white hover:bg-gray-50 border-2 border-gray-200 hover:border-primary shadow-lg">
-                <ChevronLeft className="h-5 w-5" />
-              </CarouselPrevious>
-              
-              <CarouselNext className="absolute -right-12 top-1/2 -translate-y-1/2 bg-white hover:bg-gray-50 border-2 border-gray-200 hover:border-primary shadow-lg">
-                <ChevronRight className="h-5 w-5" />
-              </CarouselNext>
-            </Carousel>
-          </div>
+              </div>
+            )}
+
+            {/* Vista desktop: Carousel */}
+            {!isMobile && (
+              <div className="relative mb-10">
+                <Carousel
+                  opts={{
+                    align: "start",
+                    loop: false,
+                  }}
+                  className="w-full"
+                >
+                  <CarouselContent className="-ml-4">
+                    {featuredProducts.map((product, index) => (
+                      <CarouselItem key={product.model} className="pl-4 basis-1/4">
+                        <div className="animate-fade-in" style={{ animationDelay: `${index * 0.1}s` }}>
+                          <ProductCard {...product} />
+                        </div>
+                      </CarouselItem>
+                    ))}
+                  </CarouselContent>
+                  
+                  <CarouselPrevious className="absolute -left-12 top-1/2 -translate-y-1/2 bg-white hover:bg-gray-50 border-2 border-gray-200 hover:border-primary shadow-lg">
+                    <ChevronLeft className="h-5 w-5" />
+                  </CarouselPrevious>
+                  
+                  <CarouselNext className="absolute -right-12 top-1/2 -translate-y-1/2 bg-white hover:bg-gray-50 border-2 border-gray-200 hover:border-primary shadow-lg">
+                    <ChevronRight className="h-5 w-5" />
+                  </CarouselNext>
+                </Carousel>
+              </div>
+            )}
+          </>
         )}
 
         <div className="text-center">

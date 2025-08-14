@@ -9,11 +9,13 @@ import { cn } from '@/lib/utils';
 interface FileUploadProps {
   label: string;
   value: string;
-  onChange: (value: string) => void;
+  onChange: (value: string, type?: 'url' | 'file', fileName?: string) => void;
   accept?: string;
   placeholder?: string;
   className?: string;
   type?: 'image' | 'video' | 'file';
+  fileType?: 'url' | 'file';
+  fileName?: string;
 }
 
 export const FileUpload: React.FC<FileUploadProps> = ({
@@ -65,7 +67,9 @@ export const FileUpload: React.FC<FileUploadProps> = ({
       // Simulamos la subida y obtenemos una URL
       // En producción, esto sería la URL del servidor
       const simulatedUrl = type === 'video' ? `/videos/${file.name}` : `/images/products/${file.name}`;
-      onChange(simulatedUrl);
+      
+      // Llamar onChange con el tipo 'file' y el nombre del archivo
+      onChange(simulatedUrl, 'file', file.name);
       
       toast.success(`Archivo "${file.name}" preparado para subida`);
     }
@@ -100,7 +104,7 @@ export const FileUpload: React.FC<FileUploadProps> = ({
 
   const handleUrlChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const url = e.target.value;
-    onChange(url);
+    onChange(url, 'url');
     setPreview(url);
   };
 

@@ -9,7 +9,7 @@ import { useLocation } from "react-router-dom";
 import { Footer } from "@/components/sections/Footer";
 import { categories } from "@/data/categories";
 import { filterProducts } from "@/lib/product-utils";
-import { products } from "@/data/products";
+import { useSupabaseProducts } from "@/hooks/use-supabase-products";
 
 const Products = () => {
   const location = useLocation();
@@ -17,6 +17,9 @@ const Products = () => {
   const [selectedCategory, setSelectedCategory] = useState<string>("Todos");
   const [showOnlyNew, setShowOnlyNew] = useState(false);
   const [viewMode, setViewMode] = useState<"grid" | "list">("grid");
+  
+  // Usar productos desde Supabase
+  const { products, isLoaded } = useSupabaseProducts();
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -99,34 +102,51 @@ const Products = () => {
 
           <div className="mb-4 sm:mb-6">
             <p className="text-sm sm:text-base text-muted-foreground">
-              {filteredProducts.length} productos encontrados
-              {selectedCategory && selectedCategory !== "Todos" && (
-                <span className="ml-2">
-                  en <Badge variant="secondary" className="text-xs sm:text-sm">{selectedCategory}</Badge>
-                </span>
-              )}
-              {showOnlyNew && (
-                <span className="ml-2">
-                  <Badge variant="secondary" className="text-xs sm:text-sm">Solo nuevos</Badge>
-                </span>
+              {isLoaded ? (
+                <>
+                  {filteredProducts.length} productos encontrados
+                  {selectedCategory && selectedCategory !== "Todos" && (
+                    <span className="ml-2">
+                      en <Badge variant="secondary" className="text-xs sm:text-sm">{selectedCategory}</Badge>
+                    </span>
+                  )}
+                  {showOnlyNew && (
+                    <span className="ml-2">
+                      <Badge variant="secondary" className="text-xs sm:text-sm">Solo nuevos</Badge>
+                    </span>
+                  )}
+                </>
+              ) : (
+                'Cargando productos desde la base de datos...'
               )}
             </p>
           </div>
 
-          <div className="grid gap-3 sm:gap-4 grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-            {filteredProducts.map((product) => (
-              <div key={product.model} className="w-full">
-                <ProductCard {...product} />
-              </div>
-            ))}
-          </div>
-
-          {filteredProducts.length === 0 && (
+          {!isLoaded ? (
             <div className="text-center py-8 sm:py-12">
+              <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mx-auto mb-4"></div>
               <p className="text-muted-foreground text-base sm:text-lg">
-                No se encontraron productos que coincidan con tu búsqueda.
+                Cargando productos desde la base de datos...
               </p>
             </div>
+          ) : (
+            <>
+              <div className="grid gap-3 sm:gap-4 grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+                {filteredProducts.map((product) => (
+                  <div key={product.model} className="w-full">
+                    <ProductCard {...product} />
+                  </div>
+                ))}
+              </div>
+
+              {filteredProducts.length === 0 && (
+                <div className="text-center py-8 sm:py-12">
+                  <p className="text-muted-foreground text-base sm:text-lg">
+                    No se encontraron productos que coincidan con tu búsqueda.
+                  </p>
+                </div>
+              )}
+            </>
           )}
         </div>
       </div>

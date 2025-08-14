@@ -2,7 +2,7 @@ import { Navigation } from "@/components/ui/navigation";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { ArrowLeft } from "lucide-react";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useParams, Link, useNavigate } from "react-router-dom";
 import { Footer } from "@/components/sections/Footer";
 import { getProductByModel, getProductsByCategory } from "@/lib/product-utils";
@@ -10,16 +10,18 @@ import { Product } from "@/data/products";
 import { useQuoteList } from "@/hooks/use-quote-list";
 import { openWhatsAppForModel, openWhatsAppForModels } from "@/lib/contact";
 import { ProductCard } from "@/components/ui/product-card";
+import { useSupabaseProducts } from "@/hooks/use-supabase-products";
 
 const ProductDetail = () => {
   const { model } = useParams<{ model: string }>();
   const navigate = useNavigate();
+  const { products, isLoaded } = useSupabaseProducts();
 
-  const product: Product = getProductByModel(model || "");
+  const product: Product | undefined = getProductByModel(products, model || "");
   const { add, has, toggle, items } = useQuoteList();
 
   // Obtener productos relacionados de la misma categoría
-  const relatedProducts = getProductsByCategory(product?.category || "", 3, product?.model || "");
+  const relatedProducts = getProductsByCategory(products, product?.category || "", 3, product?.model || "");
 
   useEffect(() => {
     if (!product) {
@@ -42,6 +44,24 @@ const ProductDetail = () => {
   };
 
   const videoId = getYouTubeVideoId(product.video || "");
+
+  if (!isLoaded) {
+    return (
+      <div className="min-h-screen bg-background">
+        <Navigation isTransparent={false} />
+        <div className="pt-20">
+          <div className="container mx-auto px-4 py-8">
+            <div className="text-center">
+              <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mx-auto mb-4"></div>
+              <p className="text-muted-foreground text-lg">
+                Cargando producto...
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   if (!product) return null;
 
