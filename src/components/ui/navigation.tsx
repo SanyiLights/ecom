@@ -9,7 +9,7 @@ import { categories } from "@/data/categories";
 import logo from "/src/assets/logo.png";
 import { useQuoteList } from "@/hooks/use-quote-list";
 import { openWhatsAppForModels } from "@/lib/contact";
-import { getProductByModel } from "@/lib/product-utils";
+import { useSupabaseProducts } from "@/hooks/use-supabase-products";
 
 interface NavigationProps {
   isTransparent?: boolean;
@@ -22,6 +22,7 @@ export const Navigation = ({ isTransparent = false }: NavigationProps) => {
   const navigate = useNavigate();
   const location = useLocation();
   const { items, remove, clear } = useQuoteList();
+  const { products } = useSupabaseProducts();
 
   useEffect(() => {
     if (!isTransparent) {
@@ -172,14 +173,14 @@ export const Navigation = ({ isTransparent = false }: NavigationProps) => {
                   </SheetHeader>
                   <div className="flex-1 overflow-y-auto py-4 space-y-3">
                     {items.map((model) => {
-                      const product = getProductByModel(model);
+                      const product = products.find(p => p.model === model);
                       return (
                         <div
                           key={model}
                           className="flex items-center gap-3 p-3 rounded-md border bg-background"
                         >
                           <img
-                            src={product?.image || ''}
+                            src={product?.images?.[0] || ''}
                             alt={product?.description || model}
                             className="w-16 h-16 rounded object-contain bg-muted"
                             onError={(e) => {

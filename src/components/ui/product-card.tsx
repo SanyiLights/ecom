@@ -10,17 +10,6 @@ export const ProductCard = (product: Product) => {
   const navigate = useNavigate();
   const { has, toggle } = useQuoteList();
 
-  const handleViewDetails = (e: React.MouseEvent) => {
-    e.preventDefault();
-    e.stopPropagation();
-    
-    // Hacer scroll al top antes de navegar
-    window.scrollTo(0, 0);
-    
-    // Navegar al producto
-    navigate(`/producto/${encodeURIComponent(product.model)}`);
-  };
-
   const handleCardClick = () => {
     // Hacer scroll al top antes de navegar
     window.scrollTo(0, 0);
@@ -36,7 +25,7 @@ export const ProductCard = (product: Product) => {
         <CardHeader className="p-0 relative flex-shrink-0">
           <div className="aspect-square overflow-hidden">
             <img 
-              src={product.image} 
+              src={product.images?.[0]} 
               alt={product.description}
               className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
               loading="lazy"
@@ -61,7 +50,7 @@ export const ProductCard = (product: Product) => {
               <Button 
                 size="sm" 
                 className="w-full bg-gray-100 text-gray-700 hover:bg-red-500 hover:text-white transition-all duration-300 text-xs px-2 py-2"
-                onClick={handleViewDetails}
+                onClick={handleCardClick}
               >
                 <Eye className="h-3 w-3 mr-1" />
                 Detalles

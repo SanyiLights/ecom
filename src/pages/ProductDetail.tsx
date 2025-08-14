@@ -17,17 +17,12 @@ const ProductDetail = () => {
   const navigate = useNavigate();
   const { products, isLoaded } = useSupabaseProducts();
 
+
   const product: Product | undefined = getProductByModel(products, model || "");
+  
   const { add, has, toggle, items } = useQuoteList();
 
-  // Obtener productos relacionados de la misma categoría
   const relatedProducts = getProductsByCategory(products, product?.category || "", 3, product?.model || "");
-
-  useEffect(() => {
-    if (!product) {
-      navigate('/productos');
-    }
-  }, [product, navigate]);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -43,7 +38,7 @@ const ProductDetail = () => {
     return url.includes('youtube.com') || url.includes('youtu.be');
   };
 
-  if (!isLoaded) {
+  if (!isLoaded || !products || products.length === 0) {
     return (
       <div className="min-h-screen bg-background">
         <Navigation isTransparent={false} />
@@ -52,7 +47,7 @@ const ProductDetail = () => {
             <div className="text-center">
               <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mx-auto mb-4"></div>
               <p className="text-muted-foreground text-lg">
-                Cargando producto...
+                {!isLoaded ? 'Cargando producto...' : 'Cargando productos...'}
               </p>
             </div>
           </div>
@@ -61,7 +56,26 @@ const ProductDetail = () => {
     );
   }
 
-  if (!product) return null;
+  if (!product) {
+    return (
+      <div className="min-h-screen bg-background">
+        <Navigation isTransparent={false} />
+        <div className="pt-20">
+          <div className="container mx-auto px-4 py-8">
+            <div className="text-center">
+              <h1 className="text-2xl font-bold mb-4">Producto no encontrado</h1>
+              <p className="text-muted-foreground mb-4">
+                El producto "{model}" no esta disponible.
+              </p>
+              <Button onClick={() => navigate('/productos')}>
+                Volver a Productos
+              </Button>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   const videoId = getYouTubeVideoId(product.videos?.[0] || "");
 
