@@ -66,7 +66,6 @@ export const useSupabaseStorage = () => {
     return uploadFile(file, 'product-videos', path);
   };
 
-  // Eliminar archivo de Supabase Storage
   const deleteFile = async (bucket: string, path: string): Promise<boolean> => {
     try {
       const { error } = await supabase.storage
