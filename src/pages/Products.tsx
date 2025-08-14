@@ -4,22 +4,27 @@ import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
 import { Switch } from "@/components/ui/switch";
 import { Label } from "@/components/ui/label";
+import { Button } from "@/components/ui/button";
 import { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import { Footer } from "@/components/sections/Footer";
 import { categories } from "@/data/categories";
 import { filterProducts } from "@/lib/product-utils";
 import { useSupabaseProducts } from "@/hooks/use-supabase-products";
+import { ChevronLeft, ChevronRight, ChevronsLeft, ChevronsRight } from "lucide-react";
 
 const Products = () => {
   const location = useLocation();
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedCategory, setSelectedCategory] = useState<string>("Todos");
   const [showOnlyNew, setShowOnlyNew] = useState(false);
-  const [viewMode, setViewMode] = useState<"grid" | "list">("grid");
+  const [currentPage, setCurrentPage] = useState(1);
   
   // Usar productos desde Supabase
   const { products, isLoaded } = useSupabaseProducts();
+  
+  // Configuración de paginación
+  const PRODUCTS_PER_PAGE = 20;
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -33,6 +38,28 @@ const Products = () => {
   }, [location.state]);
 
   const filteredProducts = filterProducts(products, searchQuery, selectedCategory, showOnlyNew);
+  
+  // Calcular paginación
+  const totalPages = Math.ceil(filteredProducts.length / PRODUCTS_PER_PAGE);
+  const startIndex = (currentPage - 1) * PRODUCTS_PER_PAGE;
+  const endIndex = startIndex + PRODUCTS_PER_PAGE;
+  const currentProducts = filteredProducts.slice(startIndex, endIndex);
+  
+  // Resetear a la primera página cuando cambien los filtros
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [searchQuery, selectedCategory, showOnlyNew]);
+  
+  // Funciones de paginación
+  const goToPage = (page: number) => {
+    setCurrentPage(page);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+  
+  const goToFirstPage = () => goToPage(1);
+  const goToLastPage = () => goToPage(totalPages);
+  const goToNextPage = () => goToPage(currentPage + 1);
+  const goToPreviousPage = () => goToPage(currentPage - 1);
 
   const handleCategorySelect = (category: string) => {
     if (selectedCategory === category) {
@@ -115,6 +142,13 @@ const Products = () => {
                       <Badge variant="secondary" className="text-xs sm:text-sm">Solo nuevos</Badge>
                     </span>
                   )}
+                  {totalPages > 1 && (
+                    <span className="ml-2">
+                      <Badge variant="outline" className="text-xs sm:text-sm">
+                        Página {currentPage} de {totalPages}
+                      </Badge>
+                    </span>
+                  )}
                 </>
               ) : (
                 'Cargando productos desde la base de datos...'
@@ -132,7 +166,7 @@ const Products = () => {
           ) : (
             <>
               <div className="grid gap-3 sm:gap-4 grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-                {filteredProducts.map((product) => (
+                {currentProducts.map((product) => (
                   <div key={product.model} className="w-full">
                     <ProductCard {...product} />
                   </div>
@@ -144,6 +178,85 @@ const Products = () => {
                   <p className="text-muted-foreground text-base sm:text-lg">
                     No se encontraron productos que coincidan con tu búsqueda.
                   </p>
+                </div>
+              )}
+
+              {/* Controles de paginación */}
+              {totalPages > 1 && (
+                <div className="mt-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+                  <div className="text-sm text-muted-foreground">
+                    Mostrando {startIndex + 1}-{Math.min(endIndex, filteredProducts.length)} de {filteredProducts.length} productos
+                  </div>
+                  
+                  <div className="flex items-center gap-2">
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      onClick={goToFirstPage}
+                      disabled={currentPage === 1}
+                      className="h-8 w-8 p-0"
+                    >
+                      <ChevronsLeft className="h-4 w-4" />
+                    </Button>
+                    
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      onClick={goToPreviousPage}
+                      disabled={currentPage === 1}
+                      className="h-8 w-8 p-0"
+                    >
+                      <ChevronLeft className="h-4 w-4" />
+                    </Button>
+                    
+                    {/* Números de página */}
+                    <div className="flex items-center gap-1">
+                      {Array.from({ length: Math.min(5, totalPages) }, (_, i) => {
+                        let pageNumber;
+                        if (totalPages <= 5) {
+                          pageNumber = i + 1;
+                        } else if (currentPage <= 3) {
+                          pageNumber = i + 1;
+                        } else if (currentPage >= totalPages - 2) {
+                          pageNumber = totalPages - 4 + i;
+                        } else {
+                          pageNumber = currentPage - 2 + i;
+                        }
+                        
+                        return (
+                          <Button
+                            key={pageNumber}
+                            variant={currentPage === pageNumber ? "default" : "outline"}
+                            size="sm"
+                            onClick={() => goToPage(pageNumber)}
+                            className="h-8 w-8 p-0 text-xs"
+                          >
+                            {pageNumber}
+                          </Button>
+                        );
+                      })}
+                    </div>
+                    
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      onClick={goToNextPage}
+                      disabled={currentPage === totalPages}
+                      className="h-8 w-8 p-0"
+                    >
+                      <ChevronRight className="h-4 w-4" />
+                    </Button>
+                    
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      onClick={goToLastPage}
+                      disabled={currentPage === totalPages}
+                      className="h-8 w-8 p-0"
+                    >
+                      <ChevronsRight className="h-4 w-4" />
+                    </Button>
+                  </div>
                 </div>
               )}
             </>

@@ -2,13 +2,13 @@ import { Category } from "./categories";
 import { getProductImages } from "../assets/product-images";
 
 export interface Product {
-  id?: number;              // ID opcional para productos existentes
+  id?: number;
   model: string;
   description: string;
   category: Category;
-  images?: string[];       // Array de URLs de imágenes (opcional)
-  contents?: string[];     // Array de URLs de contenidos (opcional)
-  videos?: string[];       // Array de URLs de videos (opcional)
+  images?: string[];
+  contents?: string[];
+  videos?: string[];
   new: boolean;
   created_at?: string;
   updated_at?: string;

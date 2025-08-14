@@ -12,25 +12,22 @@ interface AdminStatsProps {
   lastSaved?: Date | null;
 }
 
-export const AdminStats: React.FC<AdminStatsProps> = ({ products, categories }) => {
+export const AdminStats: React.FC<AdminStatsProps> = ({ products, categories, isSaving, lastSaved }) => {
   const totalProducts = products.length;
   const newProducts = products.filter(p => p.new).length;
-  const productsWithVideo = products.filter(p => p.video).length;
-  const productsWithSecondaryImage = products.filter(p => p.content2).length;
+  const productsWithVideo = products.filter(p => p.videos && p.videos.length > 0).length;
+  const productsWithSecondaryImage = products.filter(p => p.contents && p.contents.length > 1).length;
 
-  // Estadísticas por categoría
   const categoryStats = categories.slice(1).map(category => ({
     name: category,
     count: products.filter(p => p.category === category).length,
     percentage: totalProducts > 0 ? (products.filter(p => p.category === category).length / totalProducts) * 100 : 0
   }));
 
-  // Top 5 productos más recientes (simulado)
   const recentProducts = products.slice(0, 5);
 
   return (
     <div className="space-y-6">
-      {/* Métricas principales */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6">
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
@@ -167,12 +164,12 @@ export const AdminStats: React.FC<AdminStatsProps> = ({ products, categories }) 
                       Nuevo
                     </Badge>
                   )}
-                  {product.video && (
+                  {product.videos && product.videos.length > 0 && (
                     <Badge variant="outline" className="text-xs">
                       Video
                     </Badge>
                   )}
-                  {product.content2 && (
+                  {product.contents && product.contents.length > 1 && (
                     <Badge variant="outline" className="text-xs">
                       +1 Img
                     </Badge>
@@ -203,13 +200,13 @@ export const AdminStats: React.FC<AdminStatsProps> = ({ products, categories }) 
                 <div className="flex justify-between text-sm">
                   <span>Con imagen principal</span>
                   <span className="text-green-600 font-medium">
-                    {products.filter(p => p.image && p.image !== '/placeholder.svg').length}/{totalProducts}
+                    {products.filter(p => p.images && p.images.length > 0).length}/{totalProducts}
                   </span>
                 </div>
                 <div className="flex justify-between text-sm">
                   <span>Con imagen de contenido</span>
                   <span className="text-green-600 font-medium">
-                    {products.filter(p => p.content && p.content !== '/placeholder.svg').length}/{totalProducts}
+                    {products.filter(p => p.contents && p.contents.length > 0).length}/{totalProducts}
                   </span>
                 </div>
               </div>
