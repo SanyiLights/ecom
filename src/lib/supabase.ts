@@ -2,7 +2,6 @@ import { createClient } from '@supabase/supabase-js'
 import { Product } from '@/data/products'
 import { Category } from '@/data/categories'
 
-// Configuración de Supabase
 const supabaseUrl = import.meta.env.VITE_PUBLIC_SUPABASE_URL
 const supabaseAnonKey = import.meta.env.VITE_PUBLIC_SUPABASE_ANON_KEY
 
@@ -10,24 +9,21 @@ if (!supabaseUrl || !supabaseAnonKey) {
   throw new Error('Faltan las variables de entorno de Supabase. Verifica tu archivo .env.local')
 }
 
-// Crear cliente de Supabase
 export const supabase = createClient(supabaseUrl, supabaseAnonKey)
 
-// Tipos para la base de datos - Nueva estructura simplificada
 export interface DatabaseProduct {
   id: number
   model: string
   description: string
   category: string
-  images: string[] | null        // Array de URLs de imágenes
-  contents: string[] | null      // Array de URLs de contenidos
-  videos: string[] | null        // Array de URLs de videos
+  images: string[] | null
+  contents: string[] | null
+  videos: string[] | null
   new: boolean
   created_at: string
   updated_at: string
 }
 
-// Tipos para usuarios
 export interface DatabaseUser {
   id: string
   username: string

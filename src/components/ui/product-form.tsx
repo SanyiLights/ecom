@@ -7,6 +7,8 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '.
 import { Product } from '@/data/products'
 import { Category } from '@/data/categories'
 import { X, Plus, Upload, FileText, Image, Video, Trash2 } from 'lucide-react'
+import { useSupabaseStorage } from '@/hooks/use-supabase-storage'
+import { toast } from 'sonner'
 
 interface ProductFormProps {
   product?: Product
@@ -30,6 +32,8 @@ export const ProductForm: React.FC<ProductFormProps> = ({
   onCancel,
   loading = false
 }) => {
+  const { uploadProductImage, uploadProductContent, uploadProductVideo, isUploading } = useSupabaseStorage()
+  
   const [formData, setFormData] = useState({
     model: product?.model || '',
     description: product?.description || '',
@@ -53,14 +57,126 @@ export const ProductForm: React.FC<ProductFormProps> = ({
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     
-    const submitData = {
-      ...formData,
-      imageFiles: imageFiles.map(item => item.file),
-      contentFiles: contentFiles.map(item => item.file),
-      videoFiles: videoFiles.map(item => item.file)
+    if (!formData.model.trim()) {
+      toast.error('El modelo del producto es obligatorio')
+      return
     }
-    
-    await onSubmit(submitData)
+
+    try {
+      console.log('🚀 Iniciando subida de archivos para producto:', formData.model)
+      console.log('📁 Archivos a subir:', {
+        images: imageFiles.length,
+        contents: contentFiles.length,
+        videos: videoFiles.length
+      })
+
+      // Subir archivos de imagen
+      const uploadedImageUrls: string[] = []
+      if (imageFiles.length > 0) {
+        toast.info(`Subiendo ${imageFiles.length} imagen(es)...`)
+        for (let i = 0; i < imageFiles.length; i++) {
+          const fileItem = imageFiles[i]
+          console.log(`📷 Subiendo imagen ${i + 1}/${imageFiles.length}:`, fileItem.file.name)
+          
+          try {
+            const imageUrl = await uploadProductImage(fileItem.file, formData.model)
+            if (imageUrl) {
+              uploadedImageUrls.push(imageUrl)
+              console.log(`✅ Imagen subida exitosamente:`, imageUrl)
+            } else {
+              console.error(`❌ Error al subir imagen:`, fileItem.file.name)
+              toast.error(`Error al subir imagen: ${fileItem.file.name}`)
+            }
+          } catch (error) {
+            console.error(`❌ Error al subir imagen ${fileItem.file.name}:`, error)
+            toast.error(`Error al subir imagen: ${fileItem.file.name}`)
+          }
+        }
+      }
+
+      // Subir archivos de contenido
+      const uploadedContentUrls: string[] = []
+      if (contentFiles.length > 0) {
+        toast.info(`Subiendo ${contentFiles.length} contenido(s)...`)
+        for (let i = 0; i < contentFiles.length; i++) {
+          const fileItem = contentFiles[i]
+          console.log(`📄 Subiendo contenido ${i + 1}/${contentFiles.length}:`, fileItem.file.name)
+          
+          try {
+            const contentUrl = await uploadProductContent(fileItem.file, formData.model)
+            if (contentUrl) {
+              uploadedContentUrls.push(contentUrl)
+              console.log(`✅ Contenido subido exitosamente:`, contentUrl)
+            } else {
+              console.error(`❌ Error al subir contenido:`, fileItem.file.name)
+              toast.error(`Error al subir contenido: ${fileItem.file.name}`)
+            }
+          } catch (error) {
+            console.error(`❌ Error al subir contenido ${fileItem.file.name}:`, error)
+            toast.error(`Error al subir contenido: ${fileItem.file.name}`)
+          }
+        }
+      }
+
+      // Subir archivos de video
+      const uploadedVideoUrls: string[] = []
+      if (videoFiles.length > 0) {
+        toast.info(`Subiendo ${videoFiles.length} video(s)...`)
+        for (let i = 0; i < videoFiles.length; i++) {
+          const fileItem = videoFiles[i]
+          console.log(`🎥 Subiendo video ${i + 1}/${videoFiles.length}:`, fileItem.file.name)
+          
+          try {
+            const videoUrl = await uploadProductVideo(fileItem.file, formData.model)
+            if (videoUrl) {
+              uploadedVideoUrls.push(videoUrl)
+              console.log(`✅ Video subido exitosamente:`, videoUrl)
+            } else {
+              console.error(`❌ Error al subir video:`, fileItem.file.name)
+              toast.error(`Error al subir video: ${fileItem.file.name}`)
+            }
+          } catch (error) {
+            console.error(`❌ Error al subir video ${fileItem.file.name}:`, error)
+            toast.error(`Error al subir video: ${fileItem.file.name}`)
+          }
+        }
+      }
+
+      console.log('📊 Resumen de archivos subidos:', {
+        images: uploadedImageUrls.length,
+        contents: uploadedContentUrls.length,
+        videos: uploadedVideoUrls.length
+      })
+
+      // Combinar URLs existentes con las nuevas subidas
+      const finalImages = [...(formData.images || []), ...uploadedImageUrls]
+      const finalContents = [...(formData.contents || []), ...uploadedContentUrls]
+      const finalVideos = [...(formData.videos || []), ...uploadedVideoUrls]
+
+      // Crear datos finales del producto
+      const finalProductData = {
+        ...formData,
+        images: finalImages,
+        contents: finalContents,
+        videos: finalVideos
+      }
+
+      console.log('📦 Datos finales del producto:', finalProductData)
+
+      // Enviar datos del producto
+      await onSubmit(finalProductData)
+      
+      // Limpiar archivos después del envío exitoso
+      setImageFiles([])
+      setContentFiles([])
+      setVideoFiles([])
+      
+      toast.success('Producto guardado exitosamente')
+      
+    } catch (error) {
+      console.error('🚨 Error al guardar el producto:', error)
+      toast.error('Error al guardar el producto')
+    }
   }
 
   // Funciones para manejar URLs
@@ -500,6 +616,8 @@ export const ProductForm: React.FC<ProductFormProps> = ({
           <Label htmlFor="new">Producto nuevo</Label>
         </div>
 
+
+
         {/* Resumen de archivos */}
         {(imageFiles.length > 0 || contentFiles.length > 0 || videoFiles.length > 0) && (
           <div className="p-4 bg-blue-50 border border-blue-200 rounded-lg">
@@ -523,8 +641,8 @@ export const ProductForm: React.FC<ProductFormProps> = ({
           <Button type="button" variant="outline" onClick={onCancel}>
             Cancelar
           </Button>
-          <Button type="submit" disabled={loading}>
-            {loading ? 'Guardando...' : product ? 'Actualizar Producto' : 'Crear Producto'}
+          <Button type="submit" disabled={loading || isUploading}>
+            {loading || isUploading ? 'Guardando...' : product ? 'Actualizar Producto' : 'Crear Producto'}
           </Button>
         </div>
       </form>
