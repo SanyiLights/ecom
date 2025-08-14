@@ -43,8 +43,6 @@ const ProductDetail = () => {
     return url.includes('youtube.com') || url.includes('youtu.be');
   };
 
-  const videoId = getYouTubeVideoId(product.video || "");
-
   if (!isLoaded) {
     return (
       <div className="min-h-screen bg-background">
@@ -64,6 +62,8 @@ const ProductDetail = () => {
   }
 
   if (!product) return null;
+
+  const videoId = getYouTubeVideoId(product.videos?.[0] || "");
 
   return (
     <div className="min-h-screen bg-background">
@@ -113,7 +113,7 @@ const ProductDetail = () => {
                 {/* Primera imagen del producto */}
                 <div className="relative w-full max-w-6xl mx-auto bg-white rounded-lg overflow-hidden shadow-sm">
                   <img 
-                    src={product.image} 
+                    src={product.images?.[0] || ""} 
                     alt={product.description}
                     className="w-full h-[300px] sm:h-[400px] md:h-[500px] lg:h-[600px] xl:h-[700px] 2xl:h-[800px] object-contain bg-white"
                     style={{
@@ -126,10 +126,10 @@ const ProductDetail = () => {
                   />
                 </div>
 
-                {product.content2 && (
+                {product.contents?.[1] && (
                   <div className="relative w-full max-w-6xl mx-auto bg-white rounded-lg overflow-hidden shadow-sm">
                     <img 
-                      src={product.content2} 
+                      src={product.contents[1]} 
                       alt={`${product.description} - Vista adicional`}
                       className="w-full h-[300px] sm:h-[400px] md:h-[500px] lg:h-[600px] xl:h-[700px] 2xl:h-[800px] object-contain bg-white"
                       style={{
@@ -145,11 +145,11 @@ const ProductDetail = () => {
               </div>
         
             <div className="space-y-2">
-              {product.video && (
+              {product.videos?.[0] && (
                 <div className="max-w-6xl mx-auto">
                   <h3 className="text-lg font-semibold mb-4">Video del {product.model}</h3>
                   <div className="relative aspect-video bg-muted rounded-lg overflow-hidden">
-                    {isYouTubeVideo(product.video) ? (
+                    {isYouTubeVideo(product.videos[0]) ? (
                       <iframe
                         src={`https://www.youtube.com/embed/${videoId}`}
                         title={`Video de ${product.model}`}
@@ -159,7 +159,7 @@ const ProductDetail = () => {
                       />
                     ) : (
                       <video
-                        src={product.video}
+                        src={product.videos[0]}
                         controls
                         className="w-full h-full object-cover"
                         preload="metadata"

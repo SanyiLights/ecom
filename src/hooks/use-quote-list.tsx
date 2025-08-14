@@ -24,7 +24,6 @@ export const QuoteListProvider: React.FC<{ children: React.ReactNode }> = ({ chi
         if (Array.isArray(parsed)) setItems(parsed.filter((x) => typeof x === "string"));
       }
     } catch (err) {
-      // ignore storage errors
       console.warn("Failed to read quote list from storage", err);
     }
   }, []);

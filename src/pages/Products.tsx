@@ -128,7 +128,7 @@ const Products = () => {
           </div>
 
           <div className="mb-4 sm:mb-6">
-            <p className="text-sm sm:text-base text-muted-foreground">
+            <div className="text-sm sm:text-base text-muted-foreground">
               {isLoaded ? (
                 <>
                   {filteredProducts.length} productos encontrados
@@ -153,7 +153,7 @@ const Products = () => {
               ) : (
                 'Cargando productos desde la base de datos...'
               )}
-            </p>
+            </div>
           </div>
 
           {!isLoaded ? (

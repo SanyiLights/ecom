@@ -13,19 +13,21 @@ import { useNavigate } from "react-router-dom";
 import { searchProducts, getFeaturedProducts } from "@/lib/product-utils";
 import { Product } from "@/data/products";
 import { useQuoteList } from "@/hooks/use-quote-list";
+import { useSupabaseProducts } from "@/hooks/use-supabase-products";
 
 export const SearchDialog = () => {
   const [open, setOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
   const [searchResults, setSearchResults] = useState<Product[]>([]);
-  const featuredProducts = getFeaturedProducts(8);
+  const { products, isLoaded } = useSupabaseProducts();
+  const featuredProducts = getFeaturedProducts(products, 8);
   const navigate = useNavigate();
   const { has, toggle } = useQuoteList();
 
   const handleSearch = (query: string) => {
     setSearchQuery(query);
     if (query.trim()) {
-      const results = searchProducts(query);
+      const results = searchProducts(products, query);
       setSearchResults(results);
     } else {
       setSearchResults([]);
@@ -51,7 +53,7 @@ export const SearchDialog = () => {
     <div className="bg-white rounded-lg border border-gray-200 overflow-hidden hover:shadow-md transition-shadow">
       <div className="aspect-square overflow-hidden relative">
         <img 
-          src={product.image} 
+          src={product.images?.[0] || ""} 
           alt={product.description}
           className="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
           loading="lazy"

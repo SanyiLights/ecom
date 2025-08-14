@@ -31,7 +31,6 @@ export const useSupabaseProducts = () => {
       }
 
       const loadedProducts = data?.map(databaseToProduct) || []
-      console.log(`📁 Productos cargados desde Supabase: ${loadedProducts.length}`)
       return loadedProducts
     } catch (error) {
       console.error('Error cargando productos:', error)
