@@ -38,35 +38,64 @@ export const ProductCard = (product: Product) => {
           </div>
         </CardHeader>
         
-        <CardContent className="p-4 flex-1 flex flex-col">
+        <CardContent className="p-3 sm:p-4 flex-1 flex flex-col">
           <div className="space-y-2 flex-1 flex flex-col">
-            <h3 className="font-semibold text-base leading-tight group-hover:text-primary transition-colors">
+            <h3 className="font-semibold text-sm sm:text-base leading-tight group-hover:text-primary transition-colors line-clamp-2">
               {product.model}
             </h3>
-            <p className="text-sm text-muted-foreground leading-relaxed flex-1">
+            <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed flex-1 line-clamp-3">
               {product.description}
             </p>
-            <div className="pt-3 grid grid-cols-2 gap-2 mt-auto">
-              <Button 
-                size="sm" 
-                className="w-full bg-gray-100 text-gray-700 hover:bg-red-500 hover:text-white transition-all duration-300 text-xs px-2 py-2"
-                onClick={handleCardClick}
-              >
-                <Eye className="h-3 w-3 mr-1" />
-                Detalles
-              </Button>
-              <Button 
-                size="sm"
-                variant={has(product.model) ? "secondary" : "default"}
-                className="w-full text-xs px-2 py-2"
-                onClick={(e) => {
-                  e.preventDefault();
-                  e.stopPropagation();
-                  toggle(product.model);
-                }}
-              >
-                {has(product.model) ? "Quitar" : "Cotizar"}
-              </Button>
+            
+            {/* Botones responsive - Stack vertical en móvil, grid en desktop */}
+            <div className="pt-2 sm:pt-3 mt-auto">
+              {/* Vista móvil: Botones apilados verticalmente */}
+              <div className="flex flex-col gap-2 sm:hidden">
+                <Button 
+                  size="sm" 
+                  className="w-full bg-gray-100 text-gray-700 hover:bg-red-500 hover:text-white transition-all duration-300 text-xs py-2 h-9"
+                  onClick={handleCardClick}
+                >
+                  <Eye className="h-3 w-3 mr-1" />
+                  Ver Detalles
+                </Button>
+                <Button 
+                  size="sm"
+                  variant={has(product.model) ? "secondary" : "default"}
+                  className="w-full text-xs py-2 h-9"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    toggle(product.model);
+                  }}
+                >
+                  {has(product.model) ? "Quitar de Cotización" : "Agregar a Cotización"}
+                </Button>
+              </div>
+              
+              {/* Vista desktop: Botones en grid horizontal */}
+              <div className="hidden sm:grid grid-cols-2 gap-2">
+                <Button 
+                  size="sm" 
+                  className="w-full bg-gray-100 text-gray-700 hover:bg-red-500 hover:text-white transition-all duration-300 text-xs px-2 py-2"
+                  onClick={handleCardClick}
+                >
+                  <Eye className="h-3 w-3 mr-1" />
+                  Detalles
+                </Button>
+                <Button 
+                  size="sm"
+                  variant={has(product.model) ? "secondary" : "default"}
+                  className="w-full text-xs px-2 py-2"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    toggle(product.model);
+                  }}
+                >
+                  {has(product.model) ? "Quitar" : "Cotizar"}
+                </Button>
+              </div>
             </div>
           </div>
         </CardContent>

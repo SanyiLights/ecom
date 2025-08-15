@@ -161,27 +161,27 @@ const ProductDetail = () => {
             </Button>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mt-8">
-            {/* Columna izquierda - Imágenes del producto */}
-            <div className="space-y-6">
-              <div className="bg-white rounded-xl shadow-lg overflow-hidden">
-                <div className="p-6 border-b border-gray-100">
-                  <h2 className="text-2xl font-bold text-gray-900 flex items-center gap-2">
-                    <span className="w-2 h-8 bg-blue-500 rounded-full"></span>
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mt-8">
+            {/* Columna izquierda - Imágenes del producto (más pequeña) */}
+            <div className="lg:col-span-1 space-y-6">
+              <div className="bg-white rounded-xl shadow-lg overflow-hidden border border-gray-100">
+                <div className="p-4 border-b border-gray-100 bg-gray-50">
+                  <h2 className="text-xl font-bold text-gray-900 flex items-center gap-2">
+                    <span className="w-2 h-6 bg-blue-500 rounded-full"></span>
                     Galería de Imágenes
                   </h2>
-                  <p className="text-gray-600 mt-2">Visualiza el producto desde diferentes ángulos</p>
+                  <p className="text-gray-600 text-sm mt-1">Visualiza el producto desde diferentes ángulos</p>
                 </div>
                 
                 {product.images && product.images.length > 0 && (
-                  <div className="p-6">
+                  <div className="p-4">
                     {/* Imagen principal */}
-                    <div className="relative mb-4">
-                      <div className="bg-gray-50 rounded-lg p-4">
+                    <div className="relative mb-3">
+                      <div className="bg-gray-50 rounded-lg p-3">
                         <img 
                           src={product.images[currentImageIndex]} 
                           alt={`${product.description} - Imagen ${currentImageIndex + 1}`}
-                          className="w-full h-[300px] sm:h-[350px] object-contain mx-auto"
+                          className="w-full h-[250px] sm:h-[280px] object-contain mx-auto"
                           style={{
                             imageRendering: 'crisp-edges',
                             border: 'none',
@@ -199,17 +199,17 @@ const ProductDetail = () => {
                             variant="outline"
                             size="sm"
                             onClick={prevImage}
-                            className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-white/90 hover:bg-white shadow-lg border-gray-200"
+                            className="absolute left-2 top-1/2 transform -translate-y-1/2 bg-white/95 hover:bg-white shadow-lg border-gray-200 h-8 w-8 p-0"
                           >
-                            <ChevronLeft className="h-4 w-4" />
+                            <ChevronLeft className="h-3 w-3" />
                           </Button>
                           <Button
                             variant="outline"
                             size="sm"
                             onClick={nextImage}
-                            className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-white/90 hover:bg-white shadow-lg border-gray-200"
+                            className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-white/95 hover:bg-white shadow-lg border-gray-200 h-8 w-8 p-0"
                           >
-                            <ChevronRight className="h-4 w-4" />
+                            <ChevronRight className="h-3 w-3" />
                           </Button>
                         </>
                       )}
@@ -217,16 +217,16 @@ const ProductDetail = () => {
 
                     {/* Thumbnails de navegación */}
                     {product.images.length > 1 && (
-                      <div className="space-y-3">
-                        <p className="text-sm text-gray-600 font-medium">Navegar por imágenes:</p>
-                        <div className="flex gap-3 overflow-x-auto pb-2">
+                      <div className="space-y-2">
+                        <p className="text-xs text-gray-600 font-medium">Navegar por imágenes:</p>
+                        <div className="flex gap-2 overflow-x-auto pb-1">
                           {product.images.map((image, index) => (
                             <button
                               key={index}
                               onClick={() => goToImage(index)}
-                              className={`flex-shrink-0 w-16 h-16 rounded-lg overflow-hidden border-2 transition-all hover:scale-105 ${
+                              className={`flex-shrink-0 w-12 h-12 rounded-lg overflow-hidden border-2 transition-all hover:scale-105 ${
                                 index === currentImageIndex 
-                                  ? 'border-blue-500 ring-2 ring-blue-200 shadow-lg' 
+                                  ? 'border-blue-500 ring-2 ring-blue-200 shadow-md' 
                                   : 'border-gray-200 hover:border-gray-300'
                               }`}
                             >
@@ -245,12 +245,12 @@ const ProductDetail = () => {
               </div>
             </div>
 
-            {/* Columna derecha - Especificaciones del producto */}
-            <div className="space-y-6">
-              <div className="bg-white rounded-xl shadow-lg overflow-hidden">
-                <div className="p-6 border-b border-gray-100">
+            {/* Columna derecha - Especificaciones del producto (más grande) */}
+            <div className="lg:col-span-2 space-y-6">
+              <div className="bg-white rounded-xl shadow-lg overflow-hidden border border-gray-100">
+                <div className="p-6 border-b border-gray-100 bg-gray-50">
                   <h2 className="text-2xl font-bold text-gray-900 flex items-center gap-2">
-                    <span className="w-2 h-8 bg-green-500 rounded-full"></span>
+                    <span className="w-3 h-8 bg-green-500 rounded-full"></span>
                     Especificaciones Técnicas
                   </h2>
                   <p className="text-gray-600 mt-2">Detalles técnicos y características del producto</p>
@@ -264,7 +264,7 @@ const ProductDetail = () => {
                         <img 
                           src={product.contents[currentContentIndex]} 
                           alt={`${product.description} - Especificaciones ${currentContentIndex + 1}`}
-                          className="w-full h-[400px] sm:h-[450px] object-contain mx-auto"
+                          className="w-full h-[500px] sm:h-[550px] object-contain mx-auto"
                           style={{
                             imageRendering: 'crisp-edges',
                             border: 'none',
@@ -282,7 +282,7 @@ const ProductDetail = () => {
                             variant="outline"
                             size="sm"
                             onClick={prevContent}
-                            className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-white/90 hover:bg-white shadow-lg border-gray-200"
+                            className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-white/95 hover:bg-white shadow-lg border-gray-200"
                           >
                             <ChevronLeft className="h-4 w-4" />
                           </Button>
@@ -290,7 +290,7 @@ const ProductDetail = () => {
                             variant="outline"
                             size="sm"
                             onClick={nextContent}
-                            className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-white/90 hover:bg-white shadow-lg border-gray-200"
+                            className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-white/95 hover:bg-white shadow-lg border-gray-200"
                           >
                             <ChevronRight className="h-4 w-4" />
                           </Button>
@@ -332,27 +332,32 @@ const ProductDetail = () => {
           {/* Sección de Videos */}
           {product.videos && product.videos.length > 0 && (
             <div className="mt-12">
-              <div className="bg-white rounded-xl shadow-lg overflow-hidden">
-                <div className="p-6 border-b border-gray-100">
+              <div className="bg-white rounded-xl shadow-lg overflow-hidden border border-gray-100">
+                <div className="p-6 border-b border-gray-100 bg-gray-50">
                   <h2 className="text-2xl font-bold text-gray-900 flex items-center gap-2">
-                    <span className="w-2 h-8 bg-purple-500 rounded-full"></span>
+                    <span className="w-3 h-8 bg-purple-500 rounded-full"></span>
                     Videos del Producto
                   </h2>
                   <p className="text-gray-600 mt-2">Conoce más sobre {product.model} a través de nuestros videos</p>
                 </div>
                 
                 <div className="p-6">
-                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                  <div className={`grid gap-6 ${
+                    product.videos.length === 1 
+                      ? 'grid-cols-1 max-w-2xl mx-auto' 
+                      : 'grid-cols-1 lg:grid-cols-2'
+                  }`}>
                     {product.videos.map((video, index) => {
                       const videoId = getYouTubeVideoId(video);
                       const isYouTube = isYouTubeVideo(video);
                       
                       return (
                         <div key={index} className="space-y-3">
-                          <h3 className="text-lg font-semibold text-gray-800">
-                            {isYouTube ? `Video ${index + 1}` : `Video ${index + 1}`}
+                          <h3 className="text-lg font-semibold text-gray-800 flex items-center gap-2">
+                            <span className="w-2 h-4 bg-purple-400 rounded-full"></span>
+                            {product.videos.length > 1 ? `Video ${index + 1}` : 'Video del Producto'}
                           </h3>
-                          <div className="relative aspect-video bg-gray-50 rounded-lg overflow-hidden shadow-sm">
+                          <div className="relative aspect-video bg-gray-50 rounded-lg overflow-hidden shadow-sm border border-gray-200">
                             {isYouTube ? (
                               <iframe
                                 src={`https://www.youtube.com/embed/${videoId}`}
@@ -389,11 +394,16 @@ const ProductDetail = () => {
           {/* Productos Relacionados */}
           {relatedProducts.length > 0 && (
             <div className="mt-16">
-              <h2 className="text-4xl lg:text-5xl font-bold mb-12 text-center text-primary">Productos Relacionados</h2>
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl mx-auto">
+              <div className="text-center mb-12">
+                <h2 className="text-4xl lg:text-5xl font-bold text-primary mb-4">Productos Relacionados</h2>
+                <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+                  Descubre otros productos de la misma categoría que podrían interesarte
+                </p>
+              </div>
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
                 {relatedProducts.map((relatedProduct) => (
                   <div key={relatedProduct.model} className="flex justify-center">
-                    <div className="w-full max-w-sm">
+                    <div className="w-full max-w-sm transform transition-all duration-300 hover:scale-105 hover:shadow-xl">
                       <ProductCard {...relatedProduct} />
                     </div>
                   </div>

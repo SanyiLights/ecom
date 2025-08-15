@@ -151,7 +151,7 @@ const Products = () => {
                   )}
                 </>
               ) : (
-                'Cargando productos desde la base de datos...'
+                'Cargando productos...'
               )}
             </div>
           </div>
@@ -160,7 +160,7 @@ const Products = () => {
             <div className="text-center py-8 sm:py-12">
               <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mx-auto mb-4"></div>
               <p className="text-muted-foreground text-base sm:text-lg">
-                Cargando productos desde la base de datos...
+                Cargando productos...
               </p>
             </div>
           ) : (
