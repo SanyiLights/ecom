@@ -67,6 +67,7 @@ export const ProductsTab: React.FC<ProductsTabProps> = ({
           onSubmit={onSaveProduct}
           onCancel={onCancelForm}
           loading={loading}
+          isAddingProduct={isAddingProduct}
         />
       )}
 

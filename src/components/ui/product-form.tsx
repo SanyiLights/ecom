@@ -16,6 +16,7 @@ interface ProductFormProps {
   onSubmit: (product: Omit<Product, 'created_at' | 'updated_at'> & { id?: number }) => Promise<void>
   onCancel: () => void
   loading?: boolean
+  isAddingProduct?: boolean
 }
 
 interface FileItem {
@@ -29,7 +30,8 @@ export const ProductForm: React.FC<ProductFormProps> = ({
   product,
   onSubmit,
   onCancel,
-  loading = false
+  loading = false,
+  isAddingProduct = false
 }) => {
   const { uploadProductImage, uploadProductContent, uploadProductVideo, isUploading } = useSupabaseStorage()
   
@@ -82,6 +84,22 @@ export const ProductForm: React.FC<ProductFormProps> = ({
     setNewContentUrl('')
     setNewVideoUrl('')
   }, [product])
+
+  // Hacer scroll suave hacia el formulario cuando aparece
+  React.useEffect(() => {
+    if (product || isAddingProduct) {
+      // Pequeño delay para asegurar que el DOM se haya renderizado
+      setTimeout(() => {
+        const formElement = document.querySelector('.product-form-container');
+        if (formElement) {
+          formElement.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+          });
+        }
+      }, 100);
+    }
+  }, [product, isAddingProduct])
 
   const handleDragOver = (e: React.DragEvent) => {
     e.preventDefault()
@@ -308,7 +326,7 @@ export const ProductForm: React.FC<ProductFormProps> = ({
   }
 
   return (
-    <div className="bg-white rounded-lg border p-6 max-w-4xl mx-auto">
+    <div className="bg-white rounded-lg border p-6 max-w-4xl mx-auto product-form-container">
       <div className="mb-6">
         <h3 className="text-lg font-semibold text-gray-900">
           {product ? 'Editar Producto' : 'Agregar Nuevo Producto'}

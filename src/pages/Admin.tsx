@@ -133,11 +133,23 @@ const Admin: React.FC = () => {
   const handleAddProduct = () => {
     setIsAddingProduct(true);
     setEditingProduct(null);
+    
+    // Hacer scroll hacia arriba para mostrar el formulario
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
   };
 
   const handleEditProduct = (product: Product) => {
     setEditingProduct(product);
     setIsAddingProduct(false);
+    
+    // Hacer scroll hacia arriba para mostrar el formulario
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
   };
 
   const handleDeleteProduct = async (productToDelete: Product) => {
