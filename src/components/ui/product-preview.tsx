@@ -19,25 +19,25 @@ export const ProductPreview: React.FC<ProductPreviewProps> = ({
   if (!isVisible || !product.model) return null;
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
-      <Card className="w-full max-w-4xl max-h-[90vh] overflow-y-auto">
-        <CardHeader className="flex justify-between items-start">
-          <CardTitle className="text-xl">Vista Previa del Producto</CardTitle>
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-2 sm:p-4 z-50">
+      <Card className="w-full max-w-4xl max-h-[90vh] sm:max-h-[95vh] overflow-y-auto">
+        <CardHeader className="flex justify-between items-start p-4 sm:p-6">
+          <CardTitle className="text-lg sm:text-xl">Vista Previa del Producto</CardTitle>
           <Button
             variant="outline"
             size="sm"
             onClick={onClose}
-            className="h-8 w-8 p-0"
+            className="h-8 w-8 sm:h-10 sm:w-10 p-0 rounded-full"
           >
-            <X className="h-4 w-4" />
+            <X className="h-4 w-4 sm:h-5 sm:w-5" />
           </Button>
         </CardHeader>
-        <CardContent className="space-y-6">
+        <CardContent className="space-y-4 sm:space-y-6 p-4 sm:p-6">
           {/* Header del producto */}
           <div className="text-center space-y-2">
-            <h2 className="text-2xl font-bold text-gray-900">{product.model}</h2>
-            <p className="text-gray-600">{product.description}</p>
-            <div className="flex justify-center space-x-2">
+            <h2 className="text-xl sm:text-2xl font-bold text-gray-900">{product.model}</h2>
+            <p className="text-sm sm:text-base text-gray-600">{product.description}</p>
+            <div className="flex flex-wrap justify-center gap-2">
               <Badge variant="outline">{product.category}</Badge>
               {product.new && (
                 <Badge variant="secondary">Nuevo</Badge>
@@ -46,7 +46,7 @@ export const ProductPreview: React.FC<ProductPreviewProps> = ({
           </div>
 
           {/* Imágenes */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4">
             {/* Imagen principal */}
             <div className="space-y-2">
               <h3 className="font-semibold text-gray-900">Imagen Principal</h3>

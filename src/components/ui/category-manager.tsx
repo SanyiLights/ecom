@@ -7,6 +7,7 @@ import { Badge } from './badge';
 import { Plus, Edit, Trash2, X, Check } from 'lucide-react';
 import { Category, categories } from '@/data/categories';
 import { toast } from 'sonner';
+import { ResponsiveDeleteModal } from "./responsive-delete-modal";
 
 interface CategoryManagerProps {
   onCategoryChange: (categories: Category[]) => void;
@@ -17,6 +18,7 @@ export const CategoryManager: React.FC<CategoryManagerProps> = ({ onCategoryChan
   const [editingCategory, setEditingCategory] = useState<Category | null>(null);
   const [newCategoryName, setNewCategoryName] = useState('');
   const [isAddingCategory, setIsAddingCategory] = useState(false);
+  const [deleteConfirmation, setDeleteConfirmation] = useState<Category | null>(null);
 
   const handleAddCategory = () => {
     if (newCategoryName.trim()) {
@@ -52,11 +54,16 @@ export const CategoryManager: React.FC<CategoryManagerProps> = ({ onCategoryChan
   };
 
   const handleDeleteCategory = (categoryToDelete: Category) => {
-    if (confirm(`¿Estás seguro de que quieres eliminar la categoría "${categoryToDelete}"?`)) {
-      const updatedCategories = currentCategories.filter(cat => cat !== categoryToDelete);
+    setDeleteConfirmation(categoryToDelete);
+  };
+
+  const confirmDeleteCategory = () => {
+    if (deleteConfirmation) {
+      const updatedCategories = currentCategories.filter(cat => cat !== deleteConfirmation);
       setCurrentCategories(updatedCategories);
       onCategoryChange(updatedCategories);
-      toast.success(`Categoría "${categoryToDelete}" eliminada`);
+      toast.success(`Categoría "${deleteConfirmation}" eliminada`);
+      setDeleteConfirmation(null);
     }
   };
 
@@ -185,6 +192,20 @@ export const CategoryManager: React.FC<CategoryManagerProps> = ({ onCategoryChan
             <p>No hay categorías definidas</p>
             <p className="text-sm">Agrega tu primera categoría para empezar</p>
           </div>
+        )}
+
+        {/* Modal de confirmación para eliminar categoría */}
+        {deleteConfirmation && (
+          <ResponsiveDeleteModal
+            isOpen={!!deleteConfirmation}
+            onClose={() => setDeleteConfirmation(null)}
+            onConfirm={confirmDeleteCategory}
+            title="Confirmar eliminación"
+            description="¿Estás seguro de que quieres eliminar la categoría"
+            itemName={deleteConfirmation}
+            itemType="categoría"
+            confirmText="Eliminar Categoría"
+          />
         )}
       </CardContent>
     </Card>

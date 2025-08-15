@@ -329,33 +329,62 @@ const ProductDetail = () => {
             </div>
           </div>
 
-          <div className="space-y-2 mt-6">
-            {product.videos?.[0] && (
-              <div className="max-w-6xl mx-auto">
-                <h3 className="text-lg font-semibold mb-4">Video del {product.model}</h3>
-                <div className="relative aspect-video bg-muted rounded-lg overflow-hidden">
-                  {isYouTubeVideo(product.videos[0]) ? (
-                    <iframe
-                      src={`https://www.youtube.com/embed/${videoId}`}
-                      title={`Video de ${product.model}`}
-                      className="w-full h-full"
-                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                      allowFullScreen
-                    />
-                  ) : (
-                    <video
-                      src={product.videos[0]}
-                      controls
-                      className="w-full h-full object-cover"
-                      preload="metadata"
-                    >
-                      Tu navegador no soporta el elemento de video.
-                    </video>
-                  )}
+          {/* Sección de Videos */}
+          {product.videos && product.videos.length > 0 && (
+            <div className="mt-12">
+              <div className="bg-white rounded-xl shadow-lg overflow-hidden">
+                <div className="p-6 border-b border-gray-100">
+                  <h2 className="text-2xl font-bold text-gray-900 flex items-center gap-2">
+                    <span className="w-2 h-8 bg-purple-500 rounded-full"></span>
+                    Videos del Producto
+                  </h2>
+                  <p className="text-gray-600 mt-2">Conoce más sobre {product.model} a través de nuestros videos</p>
+                </div>
+                
+                <div className="p-6">
+                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                    {product.videos.map((video, index) => {
+                      const videoId = getYouTubeVideoId(video);
+                      const isYouTube = isYouTubeVideo(video);
+                      
+                      return (
+                        <div key={index} className="space-y-3">
+                          <h3 className="text-lg font-semibold text-gray-800">
+                            {isYouTube ? `Video ${index + 1}` : `Video ${index + 1}`}
+                          </h3>
+                          <div className="relative aspect-video bg-gray-50 rounded-lg overflow-hidden shadow-sm">
+                            {isYouTube ? (
+                              <iframe
+                                src={`https://www.youtube.com/embed/${videoId}`}
+                                title={`Video ${index + 1} de ${product.model}`}
+                                className="w-full h-full"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                allowFullScreen
+                              />
+                            ) : (
+                              <video
+                                src={video}
+                                controls
+                                className="w-full h-full object-cover"
+                                preload="metadata"
+                              >
+                                Tu navegador no soporta el elemento de video.
+                              </video>
+                            )}
+                          </div>
+                          {product.videos.length > 1 && (
+                            <p className="text-sm text-gray-600 text-center">
+                              Video {index + 1} de {product.videos.length}
+                            </p>
+                          )}
+                        </div>
+                      );
+                    })}
+                  </div>
                 </div>
               </div>
-            )}
-          </div>
+            </div>
+          )}
 
           {/* Productos Relacionados */}
           {relatedProducts.length > 0 && (

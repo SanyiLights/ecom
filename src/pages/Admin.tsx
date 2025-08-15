@@ -21,6 +21,7 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
 } from '@/components/ui/alert-dialog';
+import { ResponsiveDeleteModal } from "@/components/ui/responsive-delete-modal";
 
 const Admin: React.FC = () => {
   const { toast } = useToast();
@@ -277,24 +278,17 @@ const Admin: React.FC = () => {
 
       {/* Modal de confirmación para eliminar producto */}
       {deleteProductConfirmation && (
-        <AlertDialog open={!!deleteProductConfirmation} onOpenChange={() => setDeleteProductConfirmation(null)}>
-          <AlertDialogContent>
-            <AlertDialogHeader>
-              <AlertDialogTitle>Confirmar eliminación</AlertDialogTitle>
-              <AlertDialogDescription>
-                ¿Estás seguro de que quieres eliminar el producto "{deleteProductConfirmation.model}"?
-                <br />
-                <span className="text-red-600 font-medium">Esta acción no se puede deshacer.</span>
-              </AlertDialogDescription>
-            </AlertDialogHeader>
-            <AlertDialogFooter>
-              <AlertDialogCancel onClick={cancelDeleteProduct}>Cancelar</AlertDialogCancel>
-              <AlertDialogAction onClick={confirmDeleteProduct} className="bg-red-600 hover:bg-red-700">
-                Eliminar Producto
-              </AlertDialogAction>
-            </AlertDialogFooter>
-          </AlertDialogContent>
-        </AlertDialog>
+        <ResponsiveDeleteModal
+          isOpen={!!deleteProductConfirmation}
+          onClose={() => setDeleteProductConfirmation(null)}
+          onConfirm={confirmDeleteProduct}
+          title="Confirmar eliminación"
+          description="¿Estás seguro de que quieres eliminar el producto"
+          itemName={deleteProductConfirmation.model}
+          itemType="producto"
+          confirmText="Eliminar Producto"
+          loading={productsLoading}
+        />
       )}
     </div>
   );
