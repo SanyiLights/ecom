@@ -161,147 +161,171 @@ const ProductDetail = () => {
             </Button>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-5 gap-12 mt-8">
-            {/* Columna izquierda - Imágenes del producto (2/5 del ancho) */}
-            <div className="lg:col-span-2 space-y-4 p-6 bg-gray-50 rounded-lg">
-              <h2 className="text-2xl font-bold text-gray-900 mb-4">Imágenes del producto</h2>
-              {product.images && product.images.length > 0 && (
-                <div className="relative w-full bg-white rounded-lg overflow-hidden shadow-sm">
-                  {/* Imagen principal */}
-                  <div className="relative">
-                    <img 
-                      src={product.images[currentImageIndex]} 
-                      alt={`${product.description} - Imagen ${currentImageIndex + 1}`}
-                      className="w-full h-[120px] sm:h-[150px] md:h-[180px] object-contain bg-white"
-                      style={{
-                        imageRendering: 'crisp-edges',
-                        border: 'none',
-                        outline: 'none',
-                        boxShadow: 'none',
-                        filter: 'none'
-                      }}
-                    />
-                    
-                    {/* Botones de navegación */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mt-8">
+            {/* Columna izquierda - Imágenes del producto */}
+            <div className="space-y-6">
+              <div className="bg-white rounded-xl shadow-lg overflow-hidden">
+                <div className="p-6 border-b border-gray-100">
+                  <h2 className="text-2xl font-bold text-gray-900 flex items-center gap-2">
+                    <span className="w-2 h-8 bg-blue-500 rounded-full"></span>
+                    Galería de Imágenes
+                  </h2>
+                  <p className="text-gray-600 mt-2">Visualiza el producto desde diferentes ángulos</p>
+                </div>
+                
+                {product.images && product.images.length > 0 && (
+                  <div className="p-6">
+                    {/* Imagen principal */}
+                    <div className="relative mb-4">
+                      <div className="bg-gray-50 rounded-lg p-4">
+                        <img 
+                          src={product.images[currentImageIndex]} 
+                          alt={`${product.description} - Imagen ${currentImageIndex + 1}`}
+                          className="w-full h-[300px] sm:h-[350px] object-contain mx-auto"
+                          style={{
+                            imageRendering: 'crisp-edges',
+                            border: 'none',
+                            outline: 'none',
+                            boxShadow: 'none',
+                            filter: 'none'
+                          }}
+                        />
+                      </div>
+                      
+                      {/* Botones de navegación */}
+                      {product.images.length > 1 && (
+                        <>
+                          <Button
+                            variant="outline"
+                            size="sm"
+                            onClick={prevImage}
+                            className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-white/90 hover:bg-white shadow-lg border-gray-200"
+                          >
+                            <ChevronLeft className="h-4 w-4" />
+                          </Button>
+                          <Button
+                            variant="outline"
+                            size="sm"
+                            onClick={nextImage}
+                            className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-white/90 hover:bg-white shadow-lg border-gray-200"
+                          >
+                            <ChevronRight className="h-4 w-4" />
+                          </Button>
+                        </>
+                      )}
+                    </div>
+
+                    {/* Thumbnails de navegación */}
                     {product.images.length > 1 && (
-                      <>
-                        <Button
-                          variant="outline"
-                          size="sm"
-                          onClick={prevImage}
-                          className="absolute left-2 top-1/2 transform -translate-y-1/2 bg-white/80 hover:bg-white"
-                        >
-                          <ChevronLeft className="h-4 w-4" />
-                        </Button>
-                        <Button
-                          variant="outline"
-                          size="sm"
-                          onClick={nextImage}
-                          className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-white/80 hover:bg-white"
-                        >
-                          <ChevronRight className="h-4 w-4" />
-                        </Button>
-                      </>
+                      <div className="space-y-3">
+                        <p className="text-sm text-gray-600 font-medium">Navegar por imágenes:</p>
+                        <div className="flex gap-3 overflow-x-auto pb-2">
+                          {product.images.map((image, index) => (
+                            <button
+                              key={index}
+                              onClick={() => goToImage(index)}
+                              className={`flex-shrink-0 w-16 h-16 rounded-lg overflow-hidden border-2 transition-all hover:scale-105 ${
+                                index === currentImageIndex 
+                                  ? 'border-blue-500 ring-2 ring-blue-200 shadow-lg' 
+                                  : 'border-gray-200 hover:border-gray-300'
+                              }`}
+                            >
+                              <img
+                                src={image}
+                                alt={`Thumbnail ${index + 1}`}
+                                className="w-full h-full object-cover"
+                              />
+                            </button>
+                          ))}
+                        </div>
+                      </div>
                     )}
                   </div>
-
-                  {/* Thumbnails de navegación */}
-                  {product.images.length > 1 && (
-                    <div className="p-3 bg-gray-50">
-                      <div className="flex gap-2 overflow-x-auto">
-                        {product.images.map((image, index) => (
-                          <button
-                            key={index}
-                            onClick={() => goToImage(index)}
-                            className={`flex-shrink-0 w-12 h-12 rounded-lg overflow-hidden border-2 transition-all ${
-                              index === currentImageIndex 
-                                ? 'border-blue-500 ring-2 ring-blue-200' 
-                                : 'border-gray-200 hover:border-gray-300'
-                            }`}
-                          >
-                            <img
-                              src={image}
-                              alt={`Thumbnail ${index + 1}`}
-                              className="w-full h-full object-cover"
-                            />
-                          </button>
-                        ))}
-                      </div>
-                    </div>
-                  )}
-                </div>
-              )}
+                )}
+              </div>
             </div>
 
-            {/* Columna derecha - Contenidos del producto (3/5 del ancho) */}
-            <div className="lg:col-span-3 space-y-4 p-6 bg-gray-50 rounded-lg">
-              <h2 className="text-2xl font-bold text-gray-900 mb-4">Especificaciones</h2>
-              {product.contents && product.contents.length > 0 && (
-                <div className="relative w-full bg-white rounded-lg overflow-hidden shadow-sm">
-                  {/* Contenido principal */}
-                  <div className="relative">
-                    <img 
-                      src={product.contents[currentContentIndex]} 
-                      alt={`${product.description} - Contenido ${currentContentIndex + 1}`}
-                      className="w-full h-[400px] sm:h-[500px] md:h-[600px] lg:h-[700px] xl:h-[800px] object-contain bg-white"
-                      style={{
-                        imageRendering: 'crisp-edges',
-                        border: 'none',
-                        outline: 'none',
-                        boxShadow: 'none',
-                        filter: 'none'
-                      }}
-                    />
-                    
-                    {/* Botones de navegación */}
+            {/* Columna derecha - Especificaciones del producto */}
+            <div className="space-y-6">
+              <div className="bg-white rounded-xl shadow-lg overflow-hidden">
+                <div className="p-6 border-b border-gray-100">
+                  <h2 className="text-2xl font-bold text-gray-900 flex items-center gap-2">
+                    <span className="w-2 h-8 bg-green-500 rounded-full"></span>
+                    Especificaciones Técnicas
+                  </h2>
+                  <p className="text-gray-600 mt-2">Detalles técnicos y características del producto</p>
+                </div>
+                
+                {product.contents && product.contents.length > 0 && (
+                  <div className="p-6">
+                    {/* Contenido principal */}
+                    <div className="relative mb-4">
+                      <div className="bg-gray-50 rounded-lg p-4">
+                        <img 
+                          src={product.contents[currentContentIndex]} 
+                          alt={`${product.description} - Especificaciones ${currentContentIndex + 1}`}
+                          className="w-full h-[400px] sm:h-[450px] object-contain mx-auto"
+                          style={{
+                            imageRendering: 'crisp-edges',
+                            border: 'none',
+                            outline: 'none',
+                            boxShadow: 'none',
+                            filter: 'none'
+                          }}
+                        />
+                      </div>
+                      
+                      {/* Botones de navegación */}
+                      {product.contents.length > 1 && (
+                        <>
+                          <Button
+                            variant="outline"
+                            size="sm"
+                            onClick={prevContent}
+                            className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-white/90 hover:bg-white shadow-lg border-gray-200"
+                          >
+                            <ChevronLeft className="h-4 w-4" />
+                          </Button>
+                          <Button
+                            variant="outline"
+                            size="sm"
+                            onClick={nextContent}
+                            className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-white/90 hover:bg-white shadow-lg border-gray-200"
+                          >
+                            <ChevronRight className="h-4 w-4" />
+                          </Button>
+                        </>
+                      )}
+                    </div>
+
+                    {/* Thumbnails de navegación */}
                     {product.contents.length > 1 && (
-                      <>
-                        <Button
-                          variant="outline"
-                          size="sm"
-                          onClick={prevContent}
-                          className="absolute left-2 top-1/2 transform -translate-y-1/2 bg-white/80 hover:bg-white"
-                        >
-                          <ChevronLeft className="h-4 w-4" />
-                        </Button>
-                        <Button
-                          variant="outline"
-                          size="sm"
-                          onClick={nextContent}
-                          className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-white/80 hover:bg-white"
-                        >
-                          <ChevronRight className="h-4 w-4" />
-                        </Button>
-                      </>
+                      <div className="space-y-3">
+                        <p className="text-sm text-gray-600 font-medium">Navegar por especificaciones:</p>
+                        <div className="flex gap-3 overflow-x-auto pb-2">
+                          {product.contents.map((content, index) => (
+                            <button
+                              key={index}
+                              onClick={() => goToContent(index)}
+                              className={`flex-shrink-0 w-16 h-16 rounded-lg overflow-hidden border-2 transition-all hover:scale-105 ${
+                                index === currentContentIndex 
+                                  ? 'border-green-500 ring-2 ring-green-200 shadow-lg' 
+                                  : 'border-gray-200 hover:border-gray-300'
+                              }`}
+                            >
+                              <img
+                                src={content}
+                                alt={`Especificación ${index + 1}`}
+                                className="w-full h-full object-cover"
+                              />
+                            </button>
+                          ))}
+                        </div>
+                      </div>
                     )}
                   </div>
-
-                  {/* Thumbnails de navegación */}
-                  {product.contents.length > 1 && (
-                    <div className="p-3 bg-gray-50">
-                      <div className="flex gap-2 overflow-x-auto">
-                        {product.contents.map((content, index) => (
-                          <button
-                            key={index}
-                            onClick={() => goToContent(index)}
-                            className={`flex-shrink-0 w-12 h-12 rounded-lg overflow-hidden border-2 transition-all ${
-                              index === currentContentIndex 
-                                ? 'border-green-500 ring-2 ring-green-200' 
-                                : 'border-gray-200 hover:border-gray-300'
-                            }`}
-                          >
-                            <img
-                              src={content}
-                              alt={`Contenido ${index + 1}`}
-                              className="w-full h-full object-cover"
-                            />
-                          </button>
-                        ))}
-                      </div>
-                    </div>
-                  )}
-                </div>
-              )}
+                )}
+              </div>
             </div>
           </div>
 
