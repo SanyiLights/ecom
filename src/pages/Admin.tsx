@@ -11,6 +11,16 @@ import { LoginForm } from '@/components/admin/LoginForm';
 import { AdminHeader } from '@/components/admin/AdminHeader';
 import { ProductsTab } from '@/components/admin/ProductsTab';
 import { ProductStats } from '@/components/admin/ProductStats';
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+} from '@/components/ui/alert-dialog';
 
 const Admin: React.FC = () => {
   const { toast } = useToast();
@@ -24,6 +34,7 @@ const Admin: React.FC = () => {
   const [isAddingProduct, setIsAddingProduct] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedCategory, setSelectedCategory] = useState<Category>(Category.ALL);
+  const [deleteProductConfirmation, setDeleteProductConfirmation] = useState<Product | null>(null);
   const { 
     products: currentProducts, 
     loading: productsLoading,
@@ -129,13 +140,17 @@ const Admin: React.FC = () => {
   };
 
   const handleDeleteProduct = async (productToDelete: Product) => {
-    if (confirm(`¿Estás seguro de que quieres eliminar el producto "${productToDelete.model}"?`)) {
+    setDeleteProductConfirmation(productToDelete);
+  };
+
+  const confirmDeleteProduct = async () => {
+    if (deleteProductConfirmation) {
       try {
-        if (productToDelete.id) {
-          await deleteProduct(productToDelete.id);
+        if (deleteProductConfirmation.id) {
+          await deleteProduct(deleteProductConfirmation.id);
           toast({
             title: "Éxito",
-            description: `🗑️ Producto "${productToDelete.model}" eliminado exitosamente`
+            description: `🗑️ Producto "${deleteProductConfirmation.model}" eliminado exitosamente`
           });
         } else {
           toast({
@@ -150,8 +165,14 @@ const Admin: React.FC = () => {
           title: "Error",
           description: `Error eliminando producto: ${error instanceof Error ? error.message : 'Error desconocido'}`
         });
+      } finally {
+        setDeleteProductConfirmation(null);
       }
     }
+  };
+
+  const cancelDeleteProduct = () => {
+    setDeleteProductConfirmation(null);
   };
 
   const handleSaveProduct = async (productData: Omit<Product, 'created_at' | 'updated_at'> & { id?: number }) => {
@@ -253,6 +274,28 @@ const Admin: React.FC = () => {
           </TabsContent>
         </Tabs>
       </main>
+
+      {/* Modal de confirmación para eliminar producto */}
+      {deleteProductConfirmation && (
+        <AlertDialog open={!!deleteProductConfirmation} onOpenChange={() => setDeleteProductConfirmation(null)}>
+          <AlertDialogContent>
+            <AlertDialogHeader>
+              <AlertDialogTitle>Confirmar eliminación</AlertDialogTitle>
+              <AlertDialogDescription>
+                ¿Estás seguro de que quieres eliminar el producto "{deleteProductConfirmation.model}"?
+                <br />
+                <span className="text-red-600 font-medium">Esta acción no se puede deshacer.</span>
+              </AlertDialogDescription>
+            </AlertDialogHeader>
+            <AlertDialogFooter>
+              <AlertDialogCancel onClick={cancelDeleteProduct}>Cancelar</AlertDialogCancel>
+              <AlertDialogAction onClick={confirmDeleteProduct} className="bg-red-600 hover:bg-red-700">
+                Eliminar Producto
+              </AlertDialogAction>
+            </AlertDialogFooter>
+          </AlertDialogContent>
+        </AlertDialog>
+      )}
     </div>
   );
 };

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import { Button } from './button'
 import { Input } from './input'
 import { Label } from './label'
@@ -6,9 +6,18 @@ import { Textarea } from './textarea'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from './select'
 import { Product } from '@/data/products'
 import { Category } from '@/data/categories'
-import { X, Plus, Upload, FileText, Image, Video, Trash2 } from 'lucide-react'
-import { useSupabaseStorage } from '@/hooks/use-supabase-storage'
+import { X, Plus, Eye, Play, FileText, Image, Video } from 'lucide-react'
 import { toast } from 'sonner'
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+} from './alert-dialog'
 
 interface ProductFormProps {
   product?: Product
@@ -17,19 +26,12 @@ interface ProductFormProps {
   loading?: boolean
 }
 
-interface FileItem {
-  file: File
-  previewUrl: string
-}
-
 export const ProductForm: React.FC<ProductFormProps> = ({
   product,
   onSubmit,
   onCancel,
   loading = false
 }) => {
-  const { uploadProductImage, uploadProductContent, uploadProductVideo, isUploading } = useSupabaseStorage()
-  
   const [formData, setFormData] = useState({
     model: product?.model || '',
     description: product?.description || '',
@@ -43,10 +45,74 @@ export const ProductForm: React.FC<ProductFormProps> = ({
   const [newImageUrl, setNewImageUrl] = useState('')
   const [newContentUrl, setNewContentUrl] = useState('')
   const [newVideoUrl, setNewVideoUrl] = useState('')
-  
-  const [imageFiles, setImageFiles] = useState<FileItem[]>([])
-  const [contentFiles, setContentFiles] = useState<FileItem[]>([])
-  const [videoFiles, setVideoFiles] = useState<FileItem[]>([])
+  const [selectedImage, setSelectedImage] = useState<string | null>(null)
+  const [selectedContentImage, setSelectedContentImage] = useState<string | null>(null)
+  const [deleteConfirmation, setDeleteConfirmation] = useState<{
+    type: 'images' | 'contents' | 'videos'
+    index: number
+    url: string
+  } | null>(null)
+
+  React.useEffect(() => {
+    setFormData({
+      model: product?.model || '',
+      description: product?.description || '',
+      category: product?.category || Category.MOVING_HEAD,
+      images: product?.images || [],
+      contents: product?.contents || [],
+      videos: product?.videos || [],
+      new: product?.new || false
+    })
+    setNewImageUrl('')
+    setNewContentUrl('')
+    setNewVideoUrl('')
+  }, [product])
+
+  const handleDragOver = (e: React.DragEvent) => {
+    e.preventDefault()
+  }
+
+  const handleDrop = (e: React.DragEvent, field: 'images' | 'contents' | 'videos') => {
+    e.preventDefault()
+    const files = Array.from(e.dataTransfer.files)
+    
+    files.forEach(file => {
+      if (field === 'images' && file.type.startsWith('image/')) {
+        const url = URL.createObjectURL(file)
+        addUrl(url, field)
+      } else if (field === 'videos' && file.type.startsWith('video/')) {
+        const url = URL.createObjectURL(file)
+        addUrl(url, field)
+      } else if (field === 'contents') {
+        const url = URL.createObjectURL(file)
+        addUrl(url, field)
+      }
+    })
+  }
+
+  const handleFileSelect = (field: 'images' | 'contents' | 'videos') => {
+    const input = document.createElement('input')
+    input.type = 'file'
+    input.multiple = true
+    
+    if (field === 'images') {
+      input.accept = 'image/*'
+    } else if (field === 'videos') {
+      input.accept = 'video/*'
+    } else {
+      input.accept = '*/*'
+    }
+    
+    input.onchange = (e) => {
+      const files = Array.from((e.target as HTMLInputElement).files || [])
+      files.forEach(file => {
+        const url = URL.createObjectURL(file)
+        addUrl(url, field)
+      })
+    }
+    
+    input.click()
+  }
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -57,28 +123,13 @@ export const ProductForm: React.FC<ProductFormProps> = ({
     }
 
     try {
-      // Subir archivos y obtener URLs
-      const [uploadedImageUrls, uploadedContentUrls, uploadedVideoUrls] = await Promise.all([
-        uploadFiles(imageFiles, uploadProductImage, 'imagen'),
-        uploadFiles(contentFiles, uploadProductContent, 'contenido'),
-        uploadFiles(videoFiles, uploadProductVideo, 'video')
-      ])
-
       const finalProductData = {
         ...formData,
-        images: [...(formData.images || []), ...uploadedImageUrls],
-        contents: [...(formData.contents || []), ...uploadedContentUrls],
-        videos: [...(formData.videos || []), ...uploadedVideoUrls],
-        id: product?.id // Incluir el ID si existe
+        id: product?.id
       }
 
       await onSubmit(finalProductData)
       toast.success(product ? 'Producto actualizado exitosamente' : 'Producto creado exitosamente')
-      
-      // Limpiar archivos
-      setImageFiles([])
-      setContentFiles([])
-      setVideoFiles([])
       
     } catch (error) {
       console.error('Error al guardar el producto:', error)
@@ -86,237 +137,48 @@ export const ProductForm: React.FC<ProductFormProps> = ({
     }
   }
 
-  const uploadFiles = async (
-    files: FileItem[], 
-    uploadFn: (file: File, model: string) => Promise<string | null>,
-    fileType: string
-  ): Promise<string[]> => {
-    if (files.length === 0) return []
-    
-    toast.info(`Subiendo ${files.length} ${fileType}(es)...`)
-    const urls: string[] = []
-    
-    for (const fileItem of files) {
-      try {
-        const url = await uploadFn(fileItem.file, formData.model)
-        if (url) urls.push(url)
-        else toast.error(`Error al subir ${fileType}: ${fileItem.file.name}`)
-      } catch (error) {
-        toast.error(`Error al subir ${fileType}: ${fileItem.file.name}`)
-      }
-    }
-    
-    return urls
-  }
-
-  const addUrl = (url: string, setUrls: (urls: string[]) => void, currentUrls: string[]) => {
+  const addUrl = (url: string, field: 'images' | 'contents' | 'videos') => {
     if (url.trim()) {
-      setUrls([...currentUrls, url.trim()])
+      setFormData(prev => ({
+        ...prev,
+        [field]: [...(prev[field] || []), url.trim()]
+      }))
+      if (field === 'images') setNewImageUrl('')
+      if (field === 'contents') setNewContentUrl('')
+      if (field === 'videos') setNewVideoUrl('')
     }
   }
 
-  const removeUrl = (index: number, setUrls: (urls: string[]) => void, currentUrls: string[]) => {
-    setUrls(currentUrls.filter((_, i) => i !== index))
-  }
-
-  const handleFileSelect = (
-    files: FileList | null, 
-    setFiles: React.Dispatch<React.SetStateAction<FileItem[]>>
-  ) => {
-    if (!files) return
-    
-    const newFiles: FileItem[] = Array.from(files).map(file => ({
-      file,
-      previewUrl: URL.createObjectURL(file)
+  const removeUrl = (index: number, field: 'images' | 'contents' | 'videos') => {
+    setFormData(prev => ({
+      ...prev,
+      [field]: prev[field]?.filter((_, i) => i !== index) || []
     }))
-    
-    setFiles(prev => [...prev, ...newFiles])
   }
 
-  const removeFile = (index: number, setFiles: React.Dispatch<React.SetStateAction<FileItem[]>>) => {
-    setFiles(prev => {
-      const newFiles = prev.filter((_, i) => i !== index)
-      if (prev[index]) URL.revokeObjectURL(prev[index].previewUrl)
-      return newFiles
-    })
+  const confirmDelete = (type: 'images' | 'contents' | 'videos', index: number, url: string) => {
+    setDeleteConfirmation({ type, index, url })
   }
 
-  const handleDrop = (
-    e: React.DragEvent, 
-    setFiles: React.Dispatch<React.SetStateAction<FileItem[]>>
-  ) => {
-    e.preventDefault()
-    const files = Array.from(e.dataTransfer.files)
-    const newFiles: FileItem[] = files.map(file => ({
-      file,
-      previewUrl: URL.createObjectURL(file)
-    }))
-    setFiles(prev => [...prev, ...newFiles])
-  }
-
-  // Cleanup de URLs temporales
-  useEffect(() => {
-    return () => {
-      imageFiles.forEach(item => URL.revokeObjectURL(item.previewUrl))
-      contentFiles.forEach(item => URL.revokeObjectURL(item.previewUrl))
-      videoFiles.forEach(item => URL.revokeObjectURL(item.previewUrl))
+  const handleDelete = () => {
+    if (deleteConfirmation) {
+      removeUrl(deleteConfirmation.index, deleteConfirmation.type)
+      setDeleteConfirmation(null)
     }
-  }, [imageFiles, contentFiles, videoFiles])
+  }
 
-  const renderFileUploadArea = (
-    fileType: 'image' | 'content' | 'video',
-    files: FileItem[],
-    setFiles: React.Dispatch<React.SetStateAction<FileItem[]>>,
-    accept: string,
-    icon: React.ReactNode,
-    title: string,
-    description: string,
-    extensions: string
-  ) => (
-    <div className="space-y-3">
-      <Label className="text-sm font-medium text-gray-700">{title}</Label>
-      
-      <div 
-        className="border-2 border-dashed border-gray-300 rounded-lg p-6 text-center hover:border-blue-400 transition-colors cursor-pointer"
-        onDrop={(e) => handleDrop(e, setFiles)}
-        onDragOver={(e) => e.preventDefault()}
-        onClick={() => document.getElementById(`${fileType}-file-input`)?.click()}
-      >
-        <input
-          type="file"
-          accept={accept}
-          multiple
-          onChange={(e) => handleFileSelect(e.target.files, setFiles)}
-          className="hidden"
-          id={`${fileType}-file-input`}
-        />
-        <div className="space-y-2">
-          <div className="text-3xl">{icon}</div>
-          <div className="text-lg font-medium text-gray-700">
-            Arrastra y suelta archivos aquí
-          </div>
-          <div className="text-sm text-gray-500">
-            o haz clic para seleccionar
-          </div>
-          <div className="text-xs text-gray-400">
-            {extensions}
-          </div>
-        </div>
-      </div>
+  const cancelDelete = () => {
+    setDeleteConfirmation(null)
+  }
 
-      {files.length > 0 && (
-        <div className="space-y-2">
-          <Label className="text-sm font-medium text-gray-700">Archivos seleccionados:</Label>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
-            {files.map((item, index) => (
-              <div key={index} className="relative group">
-                <div className="w-full h-32 bg-gray-100 rounded-lg border overflow-hidden">
-                  {item.file.type.startsWith('image/') ? (
-                    <img 
-                      src={item.previewUrl} 
-                      alt="Preview" 
-                      className="w-full h-full object-cover"
-                    />
-                  ) : item.file.type.startsWith('video/') ? (
-                    <video 
-                      src={item.previewUrl} 
-                      className="w-full h-full object-cover"
-                      muted
-                    />
-                  ) : (
-                    <div className="w-full h-full flex items-center justify-center">
-                      <div className="text-center">
-                        <div className="text-gray-500 text-2xl mb-1">📄</div>
-                        <div className="text-xs text-gray-500">Documento</div>
-                      </div>
-                    </div>
-                  )}
-                </div>
-                
-                <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-50 transition-all duration-200 rounded-lg flex items-center justify-center">
-                  <Button
-                    type="button"
-                    variant="destructive"
-                    size="sm"
-                    onClick={() => removeFile(index, setFiles)}
-                    className="opacity-0 group-hover:opacity-100 transition-opacity duration-200"
-                  >
-                    <X className="h-4 w-4" />
-                  </Button>
-                </div>
-                
-                <div className="mt-2 space-y-1">
-                  <div className="text-sm font-medium text-gray-900 truncate">
-                    {item.file.name}
-                  </div>
-                  <div className="text-xs text-gray-500">
-                    {(item.file.size / 1024 / 1024).toFixed(2)} MB
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      )}
-    </div>
-  )
+  const isVideoUrl = (url: string) => {
+    return url.includes('youtube.com') || url.includes('youtu.be') || url.includes('vimeo.com') || 
+           url.match(/\.(mp4|mov|avi|webm|mkv)$/i)
+  }
 
-  const renderUrlInput = (
-    value: string,
-    onChange: (value: string) => void,
-    onAdd: () => void,
-    placeholder: string,
-    label: string
-  ) => (
-    <div className="space-y-2">
-      <Label className="text-sm font-medium text-gray-700">{label}</Label>
-      <div className="flex gap-2">
-        <Input
-          value={value}
-          onChange={(e) => onChange(e.target.value)}
-          placeholder={placeholder}
-          className="flex-1"
-        />
-        <Button type="button" onClick={onAdd} variant="outline" size="sm">
-          <Plus className="h-4 w-4" />
-        </Button>
-      </div>
-    </div>
-  )
-
-  const renderUrlList = (
-    urls: string[],
-    setUrls: (urls: string[]) => void,
-    title: string
-  ) => (
-    urls.length > 0 && (
-      <div className="space-y-3">
-        <Label className="text-sm font-medium text-gray-700">{title}:</Label>
-        <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
-          {urls.map((url, index) => (
-            <div key={index} className="relative group">
-              <img 
-                src={url} 
-                alt={`${title} ${index + 1}`}
-                className="w-full h-24 object-cover rounded-lg border"
-              />
-              <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-50 transition-all duration-200 rounded-lg flex items-center justify-center">
-                <Button
-                  type="button"
-                  variant="destructive"
-                  size="sm"
-                  onClick={() => removeUrl(index, setUrls, urls)}
-                  className="opacity-0 group-hover:opacity-100 transition-opacity duration-200"
-                >
-                  <X className="h-4 w-4" />
-                </Button>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-    )
-  )
+  const isImageUrl = (url: string) => {
+    return url.match(/\.(png|jpg|jpeg|gif|webp|svg)$/i) || url.includes('blob:')
+  }
 
   return (
     <div className="bg-white rounded-lg border p-6 max-w-4xl mx-auto">
@@ -324,9 +186,6 @@ export const ProductForm: React.FC<ProductFormProps> = ({
         <h3 className="text-lg font-semibold text-gray-900">
           {product ? 'Editar Producto' : 'Agregar Nuevo Producto'}
         </h3>
-        <p className="text-sm text-gray-600">
-          Completa la información del producto
-        </p>
       </div>
 
       <form onSubmit={handleSubmit} className="space-y-6">
@@ -375,97 +234,282 @@ export const ProductForm: React.FC<ProductFormProps> = ({
           />
         </div>
 
-        {/* Imágenes */}
-        <div className="space-y-4">
-          <div className="border-b pb-2">
-            <h4 className="text-lg font-medium text-gray-900 flex items-center gap-2">
-              <Image className="h-5 w-5" />
-              Imágenes
-            </h4>
+        {/* Sección de Imágenes */}
+        <div className="border border-gray-200 rounded-lg p-6 bg-gray-50">
+          <div className="flex items-center gap-2 mb-4">
+            <Image className="h-5 w-5 text-blue-600" />
+            <h4 className="text-lg font-semibold text-gray-900">Imágenes</h4>
           </div>
           
-          {renderUrlInput(
-            newImageUrl,
-            setNewImageUrl,
-            () => addUrl(newImageUrl, (urls) => setFormData(prev => ({ ...prev, images: urls })), formData.images || []),
-            "Pega la URL de la imagen aquí",
-            "Agregar URL de imagen"
-          )}
-          
-          {renderUrlList(formData.images || [], (urls) => setFormData(prev => ({ ...prev, images: urls })), "Imágenes existentes")}
-          
-          {renderFileUploadArea(
-            'image',
-            imageFiles,
-            setImageFiles,
-            'image/*',
-            <Image className="h-8 w-8 text-blue-500" />,
-            'Subir archivos de imagen',
-            'Arrastra y suelta imágenes aquí',
-            'PNG, JPG, GIF, WebP hasta 10MB'
-          )}
+          <div className="space-y-4">
+            {/* Área de drag and drop */}
+            <div 
+              className="border-2 border-dashed border-blue-300 rounded-lg p-6 text-center hover:border-blue-400 transition-colors bg-blue-50 cursor-pointer"
+              onDragOver={handleDragOver}
+              onDrop={(e) => handleDrop(e, 'images')}
+              onClick={() => handleFileSelect('images')}
+            >
+              <Image className="h-8 w-8 text-blue-500 mx-auto mb-2" />
+              <p className="text-sm text-blue-600 font-medium">Arrastra y suelta imágenes aquí</p>
+              <p className="text-xs text-blue-500">o haz click para seleccionar archivos</p>
+            </div>
+
+            <div className="space-y-2">
+              <Label>Agregar URL de imagen</Label>
+              <div className="flex gap-2">
+                <Input
+                  value={newImageUrl}
+                  onChange={(e) => setNewImageUrl(e.target.value)}
+                  placeholder="https://ejemplo.com/imagen.jpg"
+                  className="flex-1"
+                />
+                <Button type="button" onClick={() => addUrl(newImageUrl, 'images')} variant="outline">
+                  <Plus className="h-4 w-4" />
+                </Button>
+              </div>
+            </div>
+            
+            {formData.images && formData.images.length > 0 && (
+              <div className="space-y-3">
+                <Label className="text-sm font-medium text-gray-700">Imágenes agregadas:</Label>
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+                  {formData.images.map((url, index) => (
+                    <div key={index} className="relative group">
+                      <div className="w-full h-32 bg-gray-100 rounded-lg border overflow-hidden">
+                        <img 
+                          src={url} 
+                          alt={`Imagen ${index + 1}`}
+                          className="w-full h-full object-cover cursor-pointer hover:opacity-80 transition-opacity"
+                          onClick={() => setSelectedImage(url)}
+                        />
+                      </div>
+                      <div className="absolute top-2 right-2 bg-black bg-opacity-50 rounded-full p-1 opacity-0 group-hover:opacity-100 transition-opacity">
+                        <Button
+                          type="button"
+                          variant="ghost"
+                          size="sm"
+                          onClick={() => setSelectedImage(url)}
+                          className="h-6 w-6 p-0 text-white hover:bg-white hover:text-black"
+                        >
+                          <Eye className="h-4 w-4" />
+                        </Button>
+                      </div>
+                      <div className="absolute bottom-2 right-2 bg-black bg-opacity-50 rounded-full p-1 opacity-0 group-hover:opacity-100 transition-opacity">
+                        <Button
+                          type="button"
+                          variant="ghost"
+                          size="sm"
+                          onClick={() => confirmDelete('images', index, url)}
+                          className="h-6 w-6 p-0 text-white hover:bg-red-500"
+                        >
+                          <X className="h-4 w-4" />
+                        </Button>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+          </div>
         </div>
 
-        {/* Contenidos */}
-        <div className="space-y-4">
-          <div className="border-b pb-2">
-            <h4 className="text-lg font-medium text-gray-900 flex items-center gap-2">
-              <FileText className="h-5 w-5" />
-              Contenidos
-            </h4>
+        {/* Sección de Contenidos */}
+        <div className="border border-gray-200 rounded-lg p-6 bg-green-50">
+          <div className="flex items-center gap-2 mb-4">
+            <FileText className="h-5 w-5 text-green-600" />
+            <h4 className="text-lg font-semibold text-gray-900">Contenidos</h4>
           </div>
           
-          {renderUrlInput(
-            newContentUrl,
-            setNewContentUrl,
-            () => addUrl(newContentUrl, (urls) => setFormData(prev => ({ ...prev, contents: urls })), formData.contents || []),
-            "Pega la URL del contenido aquí",
-            "Agregar URL de contenido"
-          )}
-          
-          {renderUrlList(formData.contents || [], (urls) => setFormData(prev => ({ ...prev, contents: urls })), "Contenidos existentes")}
-          
-          {renderFileUploadArea(
-            'content',
-            contentFiles,
-            setContentFiles,
-            '.pdf,.doc,.docx,.txt,.rtf,.xls,.xlsx,.png,.jpg,.jpeg,.gif,.webp',
-            <FileText className="h-8 w-8 text-green-500" />,
-            'Subir archivos de contenido',
-            'Arrastra y suelta documentos e imágenes aquí',
-            'PDF, DOC, TXT, XLS, PNG, JPG, GIF hasta 10MB'
-          )}
+          <div className="space-y-4">
+            {/* Área de drag and drop */}
+            <div 
+              className="border-2 border-dashed border-green-300 rounded-lg p-6 text-center hover:border-green-400 transition-colors bg-green-50 cursor-pointer"
+              onDragOver={handleDragOver}
+              onDrop={(e) => handleDrop(e, 'contents')}
+              onClick={() => handleFileSelect('contents')}
+            >
+              <FileText className="h-8 w-8 text-green-500 mx-auto mb-2" />
+              <p className="text-sm text-green-600 font-medium">Arrastra y suelta archivos aquí</p>
+              <p className="text-xs text-green-500">PDFs, documentos, imágenes o haz click para seleccionar</p>
+            </div>
+
+            <div className="space-y-2">
+              <Label>Agregar URL de contenido</Label>
+              <div className="flex gap-2">
+                <Input
+                  value={newContentUrl}
+                  onChange={(e) => setNewContentUrl(e.target.value)}
+                  placeholder="https://ejemplo.com/documento.pdf"
+                  className="flex-1"
+                />
+                <Button type="button" onClick={() => addUrl(newContentUrl, 'contents')} variant="outline">
+                  <Plus className="h-4 w-4" />
+                </Button>
+              </div>
+            </div>
+            
+            {formData.contents && formData.contents.length > 0 && (
+              <div className="space-y-3">
+                <Label className="text-sm font-medium text-gray-700">Contenidos agregados:</Label>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                  {formData.contents.map((url, index) => (
+                    <div key={index} className="flex items-center gap-3 p-3 bg-white rounded-lg border">
+                      <div className="flex-shrink-0">
+                        {isImageUrl(url) ? (
+                          <img 
+                            src={url} 
+                            alt={`Contenido ${index + 1}`}
+                            className="w-12 h-12 object-cover rounded cursor-pointer hover:opacity-80 transition-opacity"
+                            onClick={() => setSelectedContentImage(url)}
+                          />
+                        ) : (
+                          <div className="w-12 h-12 bg-green-100 rounded flex items-center justify-center">
+                            <FileText className="h-6 w-6 text-green-600" />
+                          </div>
+                        )}
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <p className="text-sm font-medium text-gray-900 truncate">
+                          {url.includes('http') ? url.split('/').pop() || url : url}
+                        </p>
+                        <p className="text-xs text-gray-500 truncate">{url}</p>
+                      </div>
+                      <div className="flex gap-1">
+                        {isImageUrl(url) && (
+                          <Button
+                            type="button"
+                            variant="ghost"
+                            size="sm"
+                            onClick={() => setSelectedContentImage(url)}
+                            className="text-blue-500 hover:text-blue-700"
+                            title="Ver imagen completa"
+                          >
+                            <Eye className="h-4 w-4" />
+                          </Button>
+                        )}
+                        <Button
+                          type="button"
+                          variant="ghost"
+                          size="sm"
+                          onClick={() => confirmDelete('contents', index, url)}
+                          className="text-red-500 hover:text-red-700"
+                          title="Eliminar contenido"
+                        >
+                          <X className="h-4 w-4" />
+                        </Button>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+          </div>
         </div>
 
-        {/* Videos */}
-        <div className="space-y-4">
-          <div className="border-b pb-2">
-            <h4 className="text-lg font-medium text-gray-900 flex items-center gap-2">
-              <Video className="h-5 w-5" />
-              Videos
-            </h4>
+        {/* Sección de Videos */}
+        <div className="border border-gray-200 rounded-lg p-6 bg-purple-50">
+          <div className="flex items-center gap-2 mb-4">
+            <Video className="h-5 w-5 text-purple-600" />
+            <h4 className="text-lg font-semibold text-gray-900">Videos</h4>
           </div>
           
-          {renderUrlInput(
-            newVideoUrl,
-            setNewVideoUrl,
-            () => addUrl(newVideoUrl, (urls) => setFormData(prev => ({ ...prev, videos: urls })), formData.videos || []),
-            "Pega la URL del video aquí (YouTube, Vimeo, etc.)",
-            "Agregar URL de video"
-          )}
-          
-          {renderUrlList(formData.videos || [], (urls) => setFormData(prev => ({ ...prev, videos: urls })), "Videos existentes")}
-          
-          {renderFileUploadArea(
-            'video',
-            videoFiles,
-            setVideoFiles,
-            'video/*',
-            <Video className="h-8 w-8 text-purple-500" />,
-            'Subir archivos de video',
-            'Arrastra y suelta videos aquí',
-            'MP4, MOV, AVI, WebM hasta 100MB'
-          )}
+          <div className="space-y-4">
+            {/* Área de drag and drop */}
+            <div 
+              className="border-2 border-dashed border-purple-300 rounded-lg p-6 text-center hover:border-purple-400 transition-colors bg-purple-50 cursor-pointer"
+              onDragOver={handleDragOver}
+              onDrop={(e) => handleDrop(e, 'videos')}
+              onClick={() => handleFileSelect('videos')}
+            >
+              <Video className="h-8 w-8 text-purple-500 mx-auto mb-2" />
+              <p className="text-sm text-purple-600 font-medium">Arrastra y suelta videos aquí</p>
+              <p className="text-xs text-purple-500">MP4, MOV, AVI o haz click para seleccionar</p>
+            </div>
+
+            <div className="space-y-2">
+              <Label>Agregar URL de video</Label>
+              <div className="flex gap-2">
+                <Input
+                  value={newVideoUrl}
+                  onChange={(e) => setNewVideoUrl(e.target.value)}
+                  placeholder="https://youtube.com/watch?v=... o https://ejemplo.com/video.mp4"
+                  className="flex-1"
+                />
+                <Button type="button" onClick={() => addUrl(newVideoUrl, 'videos')} variant="outline">
+                  <Plus className="h-4 w-4" />
+                </Button>
+              </div>
+            </div>
+            
+            {formData.videos && formData.videos.length > 0 && (
+              <div className="space-y-3">
+                <Label className="text-sm font-medium text-gray-700">Videos agregados:</Label>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                  {formData.videos.map((url, index) => (
+                    <div key={index} className="relative group">
+                      <div className="w-full h-40 bg-gray-100 rounded-lg border overflow-hidden">
+                        {isVideoUrl(url) ? (
+                          url.includes('youtube.com') || url.includes('youtu.be') ? (
+                            <div className="w-full h-full bg-red-100 flex items-center justify-center">
+                              <div className="text-center">
+                                <Play className="h-12 w-12 text-red-600 mx-auto mb-2" />
+                                <p className="text-sm text-red-600 font-medium">YouTube Video</p>
+                                <p className="text-xs text-red-500 truncate">{url}</p>
+                              </div>
+                            </div>
+                          ) : url.includes('vimeo.com') ? (
+                            <div className="w-full h-full bg-blue-100 flex items-center justify-center">
+                              <div className="text-center">
+                                <Play className="h-12 w-12 text-blue-600 mx-auto mb-2" />
+                                <p className="text-sm text-blue-600 font-medium">Vimeo Video</p>
+                                <p className="text-xs text-blue-500 truncate">{url}</p>
+                              </div>
+                            </div>
+                          ) : (
+                            <video 
+                              src={url} 
+                              className="w-full h-full object-cover"
+                              controls
+                              preload="metadata"
+                            />
+                          )
+                        ) : (
+                          <div className="w-full h-full bg-gray-200 flex items-center justify-center">
+                            <div className="text-center">
+                              <Play className="h-12 w-12 text-gray-400 mx-auto mb-2" />
+                              <p className="text-sm text-gray-500">URL de video</p>
+                            </div>
+                          </div>
+                        )}
+                      </div>
+                      <div className="absolute top-2 right-2 bg-black bg-opacity-50 rounded-full p-1 opacity-0 group-hover:opacity-100 transition-opacity">
+                        <Button
+                          type="button"
+                          variant="ghost"
+                          size="sm"
+                          onClick={() => window.open(url, '_blank')}
+                          className="h-6 w-6 p-0 text-white hover:bg-white hover:text-black"
+                        >
+                          <Play className="h-4 w-4" />
+                        </Button>
+                      </div>
+                      <div className="absolute bottom-2 right-2 bg-black bg-opacity-50 rounded-full p-1 opacity-0 group-hover:opacity-100 transition-opacity">
+                        <Button
+                          type="button"
+                          variant="ghost"
+                          size="sm"
+                          onClick={() => confirmDelete('videos', index, url)}
+                          className="h-6 w-6 p-0 text-white hover:bg-red-500"
+                        >
+                          <X className="h-4 w-4" />
+                      </Button>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+          </div>
         </div>
 
         {/* Checkbox para producto nuevo */}
@@ -480,28 +524,92 @@ export const ProductForm: React.FC<ProductFormProps> = ({
           <Label htmlFor="new">Producto nuevo</Label>
         </div>
 
-        {/* Resumen de archivos */}
-        {(imageFiles.length > 0 || contentFiles.length > 0 || videoFiles.length > 0) && (
-          <div className="p-4 bg-blue-50 border border-blue-200 rounded-lg">
-            <h4 className="text-sm font-medium text-blue-900 mb-3">Resumen de archivos a subir:</h4>
-            <div className="space-y-2 text-sm text-blue-700">
-              {imageFiles.length > 0 && <div>📷 Imágenes: {imageFiles.length} archivo(s)</div>}
-              {contentFiles.length > 0 && <div>📄 Contenidos: {contentFiles.length} archivo(s)</div>}
-              {videoFiles.length > 0 && <div>🎥 Videos: {videoFiles.length} archivo(s)</div>}
-            </div>
-          </div>
-        )}
-
         {/* Botones de acción */}
         <div className="flex justify-end gap-3 pt-4 border-t">
           <Button type="button" variant="outline" onClick={onCancel}>
             Cancelar
           </Button>
-          <Button type="submit" disabled={loading || isUploading}>
-            {loading || isUploading ? 'Guardando...' : product ? 'Actualizar Producto' : 'Crear Producto'}
+          <Button type="submit" disabled={loading}>
+            {loading ? 'Guardando...' : product ? 'Actualizar Producto' : 'Crear Producto'}
           </Button>
         </div>
       </form>
+
+      {/* Modal para ver imagen en tamaño completo */}
+      {selectedImage && (
+        <div className="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50 p-4">
+          <div className="relative max-w-4xl max-h-full">
+            <img 
+              src={selectedImage} 
+              alt="Vista previa completa"
+              className="max-w-full max-h-full object-contain"
+            />
+            <Button
+              type="button"
+              variant="ghost"
+              size="sm"
+              onClick={() => setSelectedImage(null)}
+              className="absolute top-4 right-4 bg-black bg-opacity-50 text-white hover:bg-white hover:text-black"
+            >
+              <X className="h-6 w-6" />
+            </Button>
+          </div>
+        </div>
+      )}
+
+      {/* Modal para ver imagen de contenido en tamaño completo */}
+      {selectedContentImage && (
+        <div className="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50 p-4">
+          <div className="relative max-w-4xl max-h-full">
+            <img 
+              src={selectedContentImage} 
+              alt="Vista previa completa del contenido"
+              className="max-w-full max-h-full object-contain"
+            />
+            <Button
+              type="button"
+              variant="ghost"
+              size="sm"
+              onClick={() => setSelectedContentImage(null)}
+              className="absolute top-4 right-4 bg-black bg-opacity-50 text-white hover:bg-white hover:text-black"
+            >
+              <X className="h-6 w-6" />
+            </Button>
+          </div>
+        </div>
+      )}
+
+      {/* Modal de confirmación de borrado */}
+      {deleteConfirmation && (
+        <AlertDialog open={!!deleteConfirmation} onOpenChange={() => setDeleteConfirmation(null)}>
+          <AlertDialogContent>
+            <AlertDialogHeader>
+              <AlertDialogTitle className="flex items-center gap-3">
+                {deleteConfirmation.type === 'images' && <Image className="h-6 w-6 text-red-500" />}
+                {deleteConfirmation.type === 'contents' && <FileText className="h-6 w-6 text-red-500" />}
+                {deleteConfirmation.type === 'videos' && <Video className="h-6 w-6 text-red-500" />}
+                Confirmar eliminación
+              </AlertDialogTitle>
+              <AlertDialogDescription>
+                <p className="text-sm text-gray-700 mb-2">
+                  ¿Estás seguro de que quieres eliminar este {deleteConfirmation.type === 'images' ? 'imagen' : 
+                                                           deleteConfirmation.type === 'contents' ? 'contenido' : 'video'}?
+                </p>
+                <div className="bg-gray-50 p-3 rounded border">
+                  <p className="text-xs text-gray-600 font-medium">URL:</p>
+                  <p className="text-xs text-gray-800 truncate">{deleteConfirmation.url}</p>
+                </div>
+              </AlertDialogDescription>
+            </AlertDialogHeader>
+            <AlertDialogFooter>
+              <AlertDialogCancel onClick={cancelDelete}>Cancelar</AlertDialogCancel>
+              <AlertDialogAction onClick={handleDelete} className="bg-red-600 hover:bg-red-700">
+                Eliminar
+              </AlertDialogAction>
+            </AlertDialogFooter>
+          </AlertDialogContent>
+        </AlertDialog>
+      )}
     </div>
   )
 }
