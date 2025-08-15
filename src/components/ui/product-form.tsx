@@ -12,11 +12,7 @@ import { toast } from 'sonner'
 
 interface ProductFormProps {
   product?: Product
-  onSubmit: (product: Omit<Product, 'id' | 'created_at' | 'updated_at'> & { 
-    imageFiles?: File[], 
-    contentFiles?: File[], 
-    videoFiles?: File[] 
-  }) => Promise<void>
+  onSubmit: (product: Omit<Product, 'created_at' | 'updated_at'> & { id?: number }) => Promise<void>
   onCancel: () => void
   loading?: boolean
 }
@@ -44,12 +40,10 @@ export const ProductForm: React.FC<ProductFormProps> = ({
     new: product?.new || false
   })
 
-  // Estados para URLs
   const [newImageUrl, setNewImageUrl] = useState('')
   const [newContentUrl, setNewContentUrl] = useState('')
   const [newVideoUrl, setNewVideoUrl] = useState('')
   
-  // Estados para archivos
   const [imageFiles, setImageFiles] = useState<FileItem[]>([])
   const [contentFiles, setContentFiles] = useState<FileItem[]>([])
   const [videoFiles, setVideoFiles] = useState<FileItem[]>([])
@@ -63,178 +57,70 @@ export const ProductForm: React.FC<ProductFormProps> = ({
     }
 
     try {
-      console.log('🚀 Iniciando subida de archivos para producto:', formData.model)
-      console.log('📁 Archivos a subir:', {
-        images: imageFiles.length,
-        contents: contentFiles.length,
-        videos: videoFiles.length
-      })
+      // Subir archivos y obtener URLs
+      const [uploadedImageUrls, uploadedContentUrls, uploadedVideoUrls] = await Promise.all([
+        uploadFiles(imageFiles, uploadProductImage, 'imagen'),
+        uploadFiles(contentFiles, uploadProductContent, 'contenido'),
+        uploadFiles(videoFiles, uploadProductVideo, 'video')
+      ])
 
-      // Subir archivos de imagen
-      const uploadedImageUrls: string[] = []
-      if (imageFiles.length > 0) {
-        toast.info(`Subiendo ${imageFiles.length} imagen(es)...`)
-        for (let i = 0; i < imageFiles.length; i++) {
-          const fileItem = imageFiles[i]
-          console.log(`📷 Subiendo imagen ${i + 1}/${imageFiles.length}:`, fileItem.file.name)
-          
-          try {
-            const imageUrl = await uploadProductImage(fileItem.file, formData.model)
-            if (imageUrl) {
-              uploadedImageUrls.push(imageUrl)
-              console.log(`✅ Imagen subida exitosamente:`, imageUrl)
-            } else {
-              console.error(`❌ Error al subir imagen:`, fileItem.file.name)
-              toast.error(`Error al subir imagen: ${fileItem.file.name}`)
-            }
-          } catch (error) {
-            console.error(`❌ Error al subir imagen ${fileItem.file.name}:`, error)
-            toast.error(`Error al subir imagen: ${fileItem.file.name}`)
-          }
-        }
-      }
-
-      // Subir archivos de contenido
-      const uploadedContentUrls: string[] = []
-      if (contentFiles.length > 0) {
-        toast.info(`Subiendo ${contentFiles.length} contenido(s)...`)
-        for (let i = 0; i < contentFiles.length; i++) {
-          const fileItem = contentFiles[i]
-          console.log(`📄 Subiendo contenido ${i + 1}/${contentFiles.length}:`, fileItem.file.name)
-          
-          try {
-            const contentUrl = await uploadProductContent(fileItem.file, formData.model)
-            if (contentUrl) {
-              uploadedContentUrls.push(contentUrl)
-              console.log(`✅ Contenido subido exitosamente:`, contentUrl)
-            } else {
-              console.error(`❌ Error al subir contenido:`, fileItem.file.name)
-              toast.error(`Error al subir contenido: ${fileItem.file.name}`)
-            }
-          } catch (error) {
-            console.error(`❌ Error al subir contenido ${fileItem.file.name}:`, error)
-            toast.error(`Error al subir contenido: ${fileItem.file.name}`)
-          }
-        }
-      }
-
-      // Subir archivos de video
-      const uploadedVideoUrls: string[] = []
-      if (videoFiles.length > 0) {
-        toast.info(`Subiendo ${videoFiles.length} video(s)...`)
-        for (let i = 0; i < videoFiles.length; i++) {
-          const fileItem = videoFiles[i]
-          console.log(`🎥 Subiendo video ${i + 1}/${videoFiles.length}:`, fileItem.file.name)
-          
-          try {
-            const videoUrl = await uploadProductVideo(fileItem.file, formData.model)
-            if (videoUrl) {
-              uploadedVideoUrls.push(videoUrl)
-              console.log(`✅ Video subido exitosamente:`, videoUrl)
-            } else {
-              console.error(`❌ Error al subir video:`, fileItem.file.name)
-              toast.error(`Error al subir video: ${fileItem.file.name}`)
-            }
-          } catch (error) {
-            console.error(`❌ Error al subir video ${fileItem.file.name}:`, error)
-            toast.error(`Error al subir video: ${fileItem.file.name}`)
-          }
-        }
-      }
-
-      console.log('📊 Resumen de archivos subidos:', {
-        images: uploadedImageUrls.length,
-        contents: uploadedContentUrls.length,
-        videos: uploadedVideoUrls.length
-      })
-
-      // Combinar URLs existentes con las nuevas subidas
-      const finalImages = [...(formData.images || []), ...uploadedImageUrls]
-      const finalContents = [...(formData.contents || []), ...uploadedContentUrls]
-      const finalVideos = [...(formData.videos || []), ...uploadedVideoUrls]
-
-      // Crear datos finales del producto
       const finalProductData = {
         ...formData,
-        images: finalImages,
-        contents: finalContents,
-        videos: finalVideos
+        images: [...(formData.images || []), ...uploadedImageUrls],
+        contents: [...(formData.contents || []), ...uploadedContentUrls],
+        videos: [...(formData.videos || []), ...uploadedVideoUrls],
+        id: product?.id // Incluir el ID si existe
       }
 
-      console.log('📦 Datos finales del producto:', finalProductData)
-
-      // Enviar datos del producto
       await onSubmit(finalProductData)
+      toast.success(product ? 'Producto actualizado exitosamente' : 'Producto creado exitosamente')
       
-      // Limpiar archivos después del envío exitoso
+      // Limpiar archivos
       setImageFiles([])
       setContentFiles([])
       setVideoFiles([])
       
-      toast.success('Producto guardado exitosamente')
-      
     } catch (error) {
-      console.error('🚨 Error al guardar el producto:', error)
+      console.error('Error al guardar el producto:', error)
       toast.error('Error al guardar el producto')
     }
   }
 
-  // Funciones para manejar URLs
-  const addImageUrl = () => {
-    if (newImageUrl.trim()) {
-      setFormData(prev => ({
-        ...prev,
-        images: [...(prev.images || []), newImageUrl.trim()]
-      }))
-      setNewImageUrl('')
+  const uploadFiles = async (
+    files: FileItem[], 
+    uploadFn: (file: File, model: string) => Promise<string | null>,
+    fileType: string
+  ): Promise<string[]> => {
+    if (files.length === 0) return []
+    
+    toast.info(`Subiendo ${files.length} ${fileType}(es)...`)
+    const urls: string[] = []
+    
+    for (const fileItem of files) {
+      try {
+        const url = await uploadFn(fileItem.file, formData.model)
+        if (url) urls.push(url)
+        else toast.error(`Error al subir ${fileType}: ${fileItem.file.name}`)
+      } catch (error) {
+        toast.error(`Error al subir ${fileType}: ${fileItem.file.name}`)
+      }
+    }
+    
+    return urls
+  }
+
+  const addUrl = (url: string, setUrls: (urls: string[]) => void, currentUrls: string[]) => {
+    if (url.trim()) {
+      setUrls([...currentUrls, url.trim()])
     }
   }
 
-  const removeImageUrl = (index: number) => {
-    setFormData(prev => ({
-      ...prev,
-      images: prev.images?.filter((_, i) => i !== index) || []
-    }))
+  const removeUrl = (index: number, setUrls: (urls: string[]) => void, currentUrls: string[]) => {
+    setUrls(currentUrls.filter((_, i) => i !== index))
   }
 
-  const addContentUrl = () => {
-    if (newContentUrl.trim()) {
-      setFormData(prev => ({
-        ...prev,
-        contents: [...(prev.contents || []), newContentUrl.trim()]
-      }))
-      setNewContentUrl('')
-    }
-  }
-
-  const removeContentUrl = (index: number) => {
-    setFormData(prev => ({
-      ...prev,
-      contents: prev.contents?.filter((_, i) => i !== index) || []
-    }))
-  }
-
-  const addVideoUrl = () => {
-    if (newVideoUrl.trim()) {
-      setFormData(prev => ({
-        ...prev,
-        videos: [...(prev.videos || []), newVideoUrl.trim()]
-      }))
-      setNewVideoUrl('')
-    }
-  }
-
-  const removeVideoUrl = (index: number) => {
-    setFormData(prev => ({
-      ...prev,
-      videos: prev.videos?.filter((_, i) => i !== index) || []
-    }))
-  }
-
-  // Funciones para manejar archivos
   const handleFileSelect = (
     files: FileList | null, 
-    fileType: 'image' | 'content' | 'video',
     setFiles: React.Dispatch<React.SetStateAction<FileItem[]>>
   ) => {
     if (!files) return
@@ -247,54 +133,25 @@ export const ProductForm: React.FC<ProductFormProps> = ({
     setFiles(prev => [...prev, ...newFiles])
   }
 
-  const removeFile = (
-    index: number, 
-    setFiles: React.Dispatch<React.SetStateAction<FileItem[]>>
-  ) => {
+  const removeFile = (index: number, setFiles: React.Dispatch<React.SetStateAction<FileItem[]>>) => {
     setFiles(prev => {
       const newFiles = prev.filter((_, i) => i !== index)
-      // Limpiar URL temporal
-      if (prev[index]) {
-        URL.revokeObjectURL(prev[index].previewUrl)
-      }
+      if (prev[index]) URL.revokeObjectURL(prev[index].previewUrl)
       return newFiles
     })
   }
 
-  // Funciones para drag and drop
   const handleDrop = (
     e: React.DragEvent, 
-    fileType: 'image' | 'content' | 'video',
     setFiles: React.Dispatch<React.SetStateAction<FileItem[]>>
   ) => {
     e.preventDefault()
     const files = Array.from(e.dataTransfer.files)
-    
-    let filteredFiles: File[] = []
-    if (fileType === 'image') {
-      filteredFiles = files.filter(file => file.type.startsWith('image/'))
-    } else if (fileType === 'video') {
-      filteredFiles = files.filter(file => file.type.startsWith('video/'))
-    } else if (fileType === 'content') {
-      filteredFiles = files.filter(file => 
-        file.type.startsWith('text/') || 
-        file.type.includes('pdf') || 
-        file.type.includes('document') ||
-        file.type.includes('application/')
-      )
-    }
-    
-    if (filteredFiles.length > 0) {
-      const newFiles: FileItem[] = filteredFiles.map(file => ({
-        file,
-        previewUrl: URL.createObjectURL(file)
-      }))
-      setFiles(prev => [...prev, ...newFiles])
-    }
-  }
-
-  const handleDragOver = (e: React.DragEvent) => {
-    e.preventDefault()
+    const newFiles: FileItem[] = files.map(file => ({
+      file,
+      previewUrl: URL.createObjectURL(file)
+    }))
+    setFiles(prev => [...prev, ...newFiles])
   }
 
   // Cleanup de URLs temporales
@@ -319,18 +176,17 @@ export const ProductForm: React.FC<ProductFormProps> = ({
     <div className="space-y-3">
       <Label className="text-sm font-medium text-gray-700">{title}</Label>
       
-      {/* Área de drag & drop */}
       <div 
         className="border-2 border-dashed border-gray-300 rounded-lg p-6 text-center hover:border-blue-400 transition-colors cursor-pointer"
-        onDrop={(e) => handleDrop(e, fileType, setFiles)}
-        onDragOver={handleDragOver}
+        onDrop={(e) => handleDrop(e, setFiles)}
+        onDragOver={(e) => e.preventDefault()}
         onClick={() => document.getElementById(`${fileType}-file-input`)?.click()}
       >
         <input
           type="file"
           accept={accept}
           multiple
-          onChange={(e) => handleFileSelect(e.target.files, fileType, setFiles)}
+          onChange={(e) => handleFileSelect(e.target.files, setFiles)}
           className="hidden"
           id={`${fileType}-file-input`}
         />
@@ -348,52 +204,58 @@ export const ProductForm: React.FC<ProductFormProps> = ({
         </div>
       </div>
 
-      {/* Lista de archivos seleccionados */}
       {files.length > 0 && (
         <div className="space-y-2">
           <Label className="text-sm font-medium text-gray-700">Archivos seleccionados:</Label>
-          {files.map((item, index) => (
-            <div key={index} className="flex items-center gap-3 p-3 bg-gray-50 rounded-lg">
-              {fileType === 'image' && (
-                <img 
-                  src={item.previewUrl} 
-                  alt="Preview" 
-                  className="w-16 h-16 object-cover rounded"
-                />
-              )}
-              {fileType === 'video' && (
-                <video 
-                  src={item.previewUrl} 
-                  className="w-16 h-16 object-cover rounded"
-                  muted
-                />
-              )}
-              {fileType === 'content' && (
-                <div className="w-16 h-16 bg-gray-200 rounded flex items-center justify-center">
-                  <FileText className="w-8 h-8 text-gray-500" />
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
+            {files.map((item, index) => (
+              <div key={index} className="relative group">
+                <div className="w-full h-32 bg-gray-100 rounded-lg border overflow-hidden">
+                  {item.file.type.startsWith('image/') ? (
+                    <img 
+                      src={item.previewUrl} 
+                      alt="Preview" 
+                      className="w-full h-full object-cover"
+                    />
+                  ) : item.file.type.startsWith('video/') ? (
+                    <video 
+                      src={item.previewUrl} 
+                      className="w-full h-full object-cover"
+                      muted
+                    />
+                  ) : (
+                    <div className="w-full h-full flex items-center justify-center">
+                      <div className="text-center">
+                        <div className="text-gray-500 text-2xl mb-1">📄</div>
+                        <div className="text-xs text-gray-500">Documento</div>
+                      </div>
+                    </div>
+                  )}
                 </div>
-              )}
-              
-              <div className="flex-1 min-w-0">
-                <div className="text-sm font-medium text-gray-900 truncate">
-                  {item.file.name}
+                
+                <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-50 transition-all duration-200 rounded-lg flex items-center justify-center">
+                  <Button
+                    type="button"
+                    variant="destructive"
+                    size="sm"
+                    onClick={() => removeFile(index, setFiles)}
+                    className="opacity-0 group-hover:opacity-100 transition-opacity duration-200"
+                  >
+                    <X className="h-4 w-4" />
+                  </Button>
                 </div>
-                <div className="text-xs text-gray-500">
-                  {(item.file.size / 1024 / 1024).toFixed(2)} MB
+                
+                <div className="mt-2 space-y-1">
+                  <div className="text-sm font-medium text-gray-900 truncate">
+                    {item.file.name}
+                  </div>
+                  <div className="text-xs text-gray-500">
+                    {(item.file.size / 1024 / 1024).toFixed(2)} MB
+                  </div>
                 </div>
               </div>
-              
-              <Button
-                type="button"
-                variant="ghost"
-                size="sm"
-                onClick={() => removeFile(index, setFiles)}
-                className="text-red-600 hover:text-red-700"
-              >
-                <Trash2 className="h-4 w-4" />
-              </Button>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
       )}
     </div>
@@ -423,27 +285,35 @@ export const ProductForm: React.FC<ProductFormProps> = ({
   )
 
   const renderUrlList = (
-    items: string[],
-    onRemove: (index: number) => void,
-    label: string
+    urls: string[],
+    setUrls: (urls: string[]) => void,
+    title: string
   ) => (
-    items.length > 0 && (
-      <div className="space-y-2">
-        <Label className="text-sm font-medium text-gray-700">{label}:</Label>
-        {items.map((item, index) => (
-          <div key={index} className="flex items-center gap-2 p-2 bg-gray-50 rounded">
-            <span className="text-sm text-gray-600 flex-1 truncate">{item}</span>
-            <Button
-              type="button"
-              onClick={() => onRemove(index)}
-              variant="ghost"
-              size="sm"
-              className="text-red-600 hover:text-red-700"
-            >
-              <X className="h-4 w-4" />
-            </Button>
-          </div>
-        ))}
+    urls.length > 0 && (
+      <div className="space-y-3">
+        <Label className="text-sm font-medium text-gray-700">{title}:</Label>
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
+          {urls.map((url, index) => (
+            <div key={index} className="relative group">
+              <img 
+                src={url} 
+                alt={`${title} ${index + 1}`}
+                className="w-full h-24 object-cover rounded-lg border"
+              />
+              <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-50 transition-all duration-200 rounded-lg flex items-center justify-center">
+                <Button
+                  type="button"
+                  variant="destructive"
+                  size="sm"
+                  onClick={() => removeUrl(index, setUrls, urls)}
+                  className="opacity-0 group-hover:opacity-100 transition-opacity duration-200"
+                >
+                  <X className="h-4 w-4" />
+                </Button>
+              </div>
+            </div>
+          ))}
+        </div>
       </div>
     )
   )
@@ -514,18 +384,16 @@ export const ProductForm: React.FC<ProductFormProps> = ({
             </h4>
           </div>
           
-          {/* URLs de imágenes */}
           {renderUrlInput(
             newImageUrl,
             setNewImageUrl,
-            addImageUrl,
+            () => addUrl(newImageUrl, (urls) => setFormData(prev => ({ ...prev, images: urls })), formData.images || []),
             "Pega la URL de la imagen aquí",
             "Agregar URL de imagen"
           )}
           
-          {renderUrlList(formData.images || [], removeImageUrl, "URLs de imágenes")}
+          {renderUrlList(formData.images || [], (urls) => setFormData(prev => ({ ...prev, images: urls })), "Imágenes existentes")}
           
-          {/* Subida de archivos de imagen */}
           {renderFileUploadArea(
             'image',
             imageFiles,
@@ -547,27 +415,25 @@ export const ProductForm: React.FC<ProductFormProps> = ({
             </h4>
           </div>
           
-          {/* URLs de contenidos */}
           {renderUrlInput(
             newContentUrl,
             setNewContentUrl,
-            addContentUrl,
+            () => addUrl(newContentUrl, (urls) => setFormData(prev => ({ ...prev, contents: urls })), formData.contents || []),
             "Pega la URL del contenido aquí",
             "Agregar URL de contenido"
           )}
           
-          {renderUrlList(formData.contents || [], removeContentUrl, "URLs de contenidos")}
+          {renderUrlList(formData.contents || [], (urls) => setFormData(prev => ({ ...prev, contents: urls })), "Contenidos existentes")}
           
-          {/* Subida de archivos de contenido */}
           {renderFileUploadArea(
             'content',
             contentFiles,
             setContentFiles,
-            '.pdf,.doc,.docx,.txt,.rtf,.xls,.xlsx',
+            '.pdf,.doc,.docx,.txt,.rtf,.xls,.xlsx,.png,.jpg,.jpeg,.gif,.webp',
             <FileText className="h-8 w-8 text-green-500" />,
             'Subir archivos de contenido',
-            'Arrastra y suelta documentos aquí',
-            'PDF, DOC, TXT, XLS hasta 10MB'
+            'Arrastra y suelta documentos e imágenes aquí',
+            'PDF, DOC, TXT, XLS, PNG, JPG, GIF hasta 10MB'
           )}
         </div>
 
@@ -580,18 +446,16 @@ export const ProductForm: React.FC<ProductFormProps> = ({
             </h4>
           </div>
           
-          {/* URLs de videos */}
           {renderUrlInput(
             newVideoUrl,
             setNewVideoUrl,
-            addVideoUrl,
+            () => addUrl(newVideoUrl, (urls) => setFormData(prev => ({ ...prev, videos: urls })), formData.videos || []),
             "Pega la URL del video aquí (YouTube, Vimeo, etc.)",
             "Agregar URL de video"
           )}
           
-          {renderUrlList(formData.videos || [], removeVideoUrl, "URLs de videos")}
+          {renderUrlList(formData.videos || [], (urls) => setFormData(prev => ({ ...prev, videos: urls })), "Videos existentes")}
           
-          {/* Subida de archivos de video */}
           {renderFileUploadArea(
             'video',
             videoFiles,
@@ -616,22 +480,14 @@ export const ProductForm: React.FC<ProductFormProps> = ({
           <Label htmlFor="new">Producto nuevo</Label>
         </div>
 
-
-
         {/* Resumen de archivos */}
         {(imageFiles.length > 0 || contentFiles.length > 0 || videoFiles.length > 0) && (
           <div className="p-4 bg-blue-50 border border-blue-200 rounded-lg">
             <h4 className="text-sm font-medium text-blue-900 mb-3">Resumen de archivos a subir:</h4>
             <div className="space-y-2 text-sm text-blue-700">
-              {imageFiles.length > 0 && (
-                <div>📷 Imágenes: {imageFiles.length} archivo(s)</div>
-              )}
-              {contentFiles.length > 0 && (
-                <div>📄 Contenidos: {contentFiles.length} archivo(s)</div>
-              )}
-              {videoFiles.length > 0 && (
-                <div>🎥 Videos: {videoFiles.length} archivo(s)</div>
-              )}
+              {imageFiles.length > 0 && <div>📷 Imágenes: {imageFiles.length} archivo(s)</div>}
+              {contentFiles.length > 0 && <div>📄 Contenidos: {contentFiles.length} archivo(s)</div>}
+              {videoFiles.length > 0 && <div>🎥 Videos: {videoFiles.length} archivo(s)</div>}
             </div>
           </div>
         )}

@@ -131,30 +131,30 @@ const Admin: React.FC = () => {
   const handleDeleteProduct = async (productToDelete: Product) => {
     if (confirm(`¿Estás seguro de que quieres eliminar el producto "${productToDelete.model}"?`)) {
       try {
-                  if (productToDelete.id) {
-            await deleteProduct(productToDelete.id);
-            toast({
-              title: "Éxito",
-              description: `🗑️ Producto "${productToDelete.model}" eliminado exitosamente`
-            });
-          } else {
-            toast({
-              variant: "destructive",
-              title: "Error",
-              description: "No se puede eliminar el producto: ID no encontrado"
-            });
-          }
-        } catch (error) {
+        if (productToDelete.id) {
+          await deleteProduct(productToDelete.id);
+          toast({
+            title: "Éxito",
+            description: `🗑️ Producto "${productToDelete.model}" eliminado exitosamente`
+          });
+        } else {
           toast({
             variant: "destructive",
             title: "Error",
-            description: `Error eliminando producto: ${error instanceof Error ? error.message : 'Error desconocido'}`
+            description: "No se puede eliminar el producto: ID no encontrado"
           });
         }
+      } catch (error) {
+        toast({
+          variant: "destructive",
+          title: "Error",
+          description: `Error eliminando producto: ${error instanceof Error ? error.message : 'Error desconocido'}`
+        });
+      }
     }
   };
 
-  const handleSaveProduct = async (productData: Omit<Product, 'id' | 'created_at' | 'updated_at'>) => {
+  const handleSaveProduct = async (productData: Omit<Product, 'created_at' | 'updated_at'> & { id?: number }) => {
     try {
       if (editingProduct && editingProduct.id) {
         await updateProduct(editingProduct.id, productData);

@@ -44,7 +44,6 @@ export const useSupabaseStorage = () => {
     }
   };
 
-  // Subir imagen de producto
   const uploadProductImage = async (file: File, productModel: string): Promise<string | null> => {
     const fileName = `${Date.now()}_${file.name}`;
     const path = `products/${productModel}/${fileName}`;
@@ -54,7 +53,13 @@ export const useSupabaseStorage = () => {
 
   const uploadProductContent = async (file: File, productModel: string): Promise<string | null> => {
     const fileName = `${Date.now()}_${file.name}`;
-    const path = `products/${productModel}/content/${fileName}`;
+    
+    let path: string;
+    if (file.type.startsWith('image/')) {
+      path = `products/${productModel}/content/images/${fileName}`;
+    } else {
+      path = `products/${productModel}/content/documents/${fileName}`;
+    }
     
     return uploadFile(file, 'product-content', path);
   };

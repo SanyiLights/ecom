@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { supabase, DatabaseProduct, productToDatabase, databaseToProduct } from '@/lib/supabase'
+import { supabase} from '@/lib/supabase'
 import { Product } from '@/data/products'
 
 export const useProducts = () => {
@@ -16,9 +16,7 @@ export const useProducts = () => {
         .order('created_at', { ascending: false })
 
       if (error) throw error
-
-      const convertedProducts = data?.map(databaseToProduct) || []
-      setProducts(convertedProducts)
+      setProducts(data)
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Error al obtener productos')
     } finally {
@@ -31,15 +29,14 @@ export const useProducts = () => {
       setLoading(true)
       const { data, error } = await supabase
         .from('products')
-        .insert(productToDatabase(product))
+        .insert(product)
         .select()
         .single()
 
       if (error) throw error
 
-      const newProduct = databaseToProduct(data)
-      setProducts(prev => [newProduct, ...prev])
-      return newProduct
+      setProducts(prev => [data, ...prev])
+      return data
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Error al crear producto')
       throw err
@@ -51,18 +48,18 @@ export const useProducts = () => {
   const updateProduct = async (id: number, updates: Partial<Product>) => {
     try {
       setLoading(true)
+      
       const { data, error } = await supabase
         .from('products')
-        .update(productToDatabase(updates as Product))
+        .update(updates)
         .eq('id', id)
         .select()
         .single()
 
       if (error) throw error
 
-      const updatedProduct = databaseToProduct(data)
-      setProducts(prev => prev.map(p => p.model === updatedProduct.model ? updatedProduct : p))
-      return updatedProduct
+      setProducts(prev => prev.map(p => p.id === id ? data : p))
+      return data
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Error al actualizar producto')
       throw err
@@ -81,7 +78,7 @@ export const useProducts = () => {
 
       if (error) throw error
 
-      setProducts(prev => prev.filter(p => p.model !== products.find(prod => prod.id === id)?.model))
+      setProducts(prev => prev.filter(p => p.id !== id))
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Error al eliminar producto')
       throw err
